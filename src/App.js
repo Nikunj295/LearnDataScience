@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import {BrowserRouter as Router, Route} from "react-router-dom"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Classification from "./component/Classification/Classification"
+import Regression from "./component/Regression/Regression"
+import ChoiceMethod from "./component/ChoiceMethod/ChoiceMethod";
+import CusNavbar from "./component/Navbar/CusNavbar";
+
+export class App extends Component{  
+  render() {
+      return (
+        <>
+          <CusNavbar/>
+          <Router>
+            <Route path="/" exact component={ChoiceMethod}/>
+            <Route path="/Classification" component={Classification}/>
+            <Route path="/Regression" component={Regression}/>
+          </Router>
+        </>
+      )
+  }
 }
 
-export default App;
+export default App
