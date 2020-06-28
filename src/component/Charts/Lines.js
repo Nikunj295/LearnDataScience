@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import Ta from "./Ta.js"
+import React from 'react'
 import {LineChart, Line, XAxis,Scatter,ScatterChart ,YAxis, CartesianGrid, Tooltip, Legend,} from 'recharts';
 
 export default function Lines ({values}){
