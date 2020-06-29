@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import CanvasJSReact from './canvasjs.react'
+import React from 'react'
+import CanvasJSReact from '../files/canvasjs.react'
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
 
@@ -8,7 +8,7 @@ export default function ZoomPan({options}){
 		<div>
 			<CanvasJSChart options={options}/>
 		</div>
-		);
+	);
 }
 
  

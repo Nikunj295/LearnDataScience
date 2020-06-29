@@ -13,7 +13,7 @@ export default function Lines ({values}){
             }}
         >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="" />
+            <XAxis dataKey="" />  
             <YAxis />
             <Tooltip />
             <Legend />

@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import CustomPaginationActionsTable from "../Tables/Table";
 import ZoomPan from "../Charts/ZoomPan/ZoomPan";
+import Scatterplot from "../Charts/Scatterplot/Scatterplot"
+import Multiplines from "../Charts/Lines/Multiplines";
 
 class Regression extends Component {
     state = {
-        options:[],values:[]
+        options:[],
+        values:[]
     }
     
     componentDidMount(){
@@ -16,12 +19,12 @@ class Regression extends Component {
                     return data[key];
                 })
                 this.setState({values:myData})
-                const newArray = [];
+                var newArray = [];
                 this.state.values.map(i=>{
-                    newArray.push({y: i['0']});
+                    newArray.push({x: i['0'],y:i['1']});
                 });	
                 const options = {
-                    theme: "light2", // "light1", "dark1", "dark2"
+                    theme: "light2", 
                     animationEnabled: true,
                     zoomEnabled: true,
                     title: {
@@ -40,14 +43,14 @@ class Regression extends Component {
         )
     }
 
-    getData = ({data})=>{
-        var values = []
-        for (var key in data){
-          if(data.hasOwnProperty(key)){
-            values.push(data[key])
-          }
-        }
-    }
+    // getData = ({data})=>{
+    //     var values = []
+    //     for (var key in data){
+    //       if(data.hasOwnProperty(key)){
+    //         values.push(data[key])
+    //       }
+    //     }
+    // }
 
     render() {
         const {values,options} = this.state
@@ -55,7 +58,9 @@ class Regression extends Component {
             <div>
                 <h1>Regression</h1> 
                 {/* <CustomPaginationActionsTable values={values}/> */}
-                <ZoomPan options={options}/>
+                {/* <ZoomPan options={options}/> */}
+                {/* <Scatterplot values={values}/> */}
+                <Multiplines values={values}/>
             </div>
         )
     }
