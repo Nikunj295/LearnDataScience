@@ -51,3 +51,19 @@ function Ta({values}){
 export default Ta
 
 
+
+              <TableCell style={{ width: 160 }} align="right">
+              {i++}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+              {value['0']}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+              {value['1']}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+              {value['Original']}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+              {value['Predicted']}
+              </TableCell>

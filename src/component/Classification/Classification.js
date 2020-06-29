@@ -7,24 +7,26 @@ class Classification extends Component {
     }
     
     componentDidMount(){
-        fetch("http://127.0.0.1:5000/classification?rows=1000")
+        fetch("http://127.0.0.1:5000/classification?cols=1")
         .then(response=>response.json())
         .then(
-        data => this.setState({data})
+            data => this.setState({data})
         )
     }
 
     render() {
-        const { data } = this.state    
+        var { data } = this.state    
         var values = []
         for (var key in data){
-          if(data.hasOwnProperty(key)){
-            values.push(data[key])
-          }
+            if(data.hasOwnProperty(key)){
+                values.push(data[key])
+            }
         }
+
         return (
             <div>
                 <div>
+                    <h1>Classification</h1>
                     <CustomPaginationActionsTable values={values}/>
                 </div>
             </div>

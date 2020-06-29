@@ -23,6 +23,7 @@ class Regression extends Component {
         }
         return (
             <div>
+                <h1>Regression</h1>
                 <CustomPaginationActionsTable values={values}/>
             </div>
         )
