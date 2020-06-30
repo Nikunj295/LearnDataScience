@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CustomPaginationActionsTable from "../Tables/Table";
 import ZoomPan from "../Charts/ZoomPan/ZoomPan";
+import ControlledOpenSelect from "../Select/ControlledOpenSelect"
 
 class Classification extends Component {
     state = {
@@ -58,6 +59,7 @@ class Classification extends Component {
                     <h1>Classification</h1>
                     {/* <CustomPaginationActionsTable values={values}/> */}
                     {/* <ZoomPan options={options}/> */}
+                    <ControlledOpenSelect />
                 </div>
             </div>
         )
