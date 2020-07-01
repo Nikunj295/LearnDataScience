@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import ControlledOpenSelect from "../Select/ControlledOpenSelect"
+import ClassificationOption from "../Select/ClassificationOption"
 
 class Classification extends Component {
     render() {
         return (
-            <div>
+            
+            <div style={{'text-align': 'center'}}>
                 <h1>Classification</h1>
-                <ControlledOpenSelect />
+                <ClassificationOption />
             </div>
         )
     }
