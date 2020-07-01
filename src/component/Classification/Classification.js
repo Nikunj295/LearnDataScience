@@ -42,24 +42,15 @@ class Classification extends Component {
         )
     }
 
-    getData = ({data})=>{
-        var values = []
-        for (var key in data){
-          if(data.hasOwnProperty(key)){
-            values.push(data[key])
-          }
-        }
-    }
-
     render() {
         const {values,options} = this.state
         return (
             <div>
                 <div>
                     <h1>Classification</h1>
-                    {/* <CustomPaginationActionsTable values={values}/> */}
-                    {/* <ZoomPan options={options}/> */}
+                    <ZoomPan options={options}/>
                     <ControlledOpenSelect />
+                    <CustomPaginationActionsTable values={values}/>
                 </div>
             </div>
         )

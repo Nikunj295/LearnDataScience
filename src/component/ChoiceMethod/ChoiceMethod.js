@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import ButtonBases from "./test"
+import ButtonBases from "./test"
 
 export default function ChoiceMethod() {
     return (
