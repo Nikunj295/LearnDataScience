@@ -29,7 +29,7 @@ export default function CustomPaginationActionsTable({values}){
           pagination={ paginationFactory()}
       >
         {
-          col.map((value)=><TableHeaderColumn style={{'text-color':"white"}} 
+          col.map((value)=><TableHeaderColumn 
                               dataAlign="center" 
                               dataField={value}
                             >

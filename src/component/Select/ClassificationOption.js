@@ -33,7 +33,7 @@ const useStyles = theme => ({
 
 class ClassificationOption extends Component {
   state={
-    algorithm:'',
+    algorithm:'logisticRegression',
     rows:10,
     cols:2,
     cluster:2,
@@ -72,27 +72,6 @@ class ClassificationOption extends Component {
       )
     }
 
-  svm = () =>{
-      return (
-        <>
-        <FormControl className={this.props.classes.formControl}>
-          <InputLabel id="kernel">Kernel</InputLabel>
-          <Select
-            labelId="kernel"
-            id="kernel"
-            value={this.state.kernel}
-            onChange={(e)=>this.setState({kernel:e.target.value})}
-          >
-            <MenuItem value="linear">Linear</MenuItem>
-            <MenuItem value="poly">Polynomial</MenuItem>
-            <MenuItem value="rbf">Radial Basis Function</MenuItem>
-            <MenuItem value="sigmoid">Sigmoid</MenuItem>
-          </Select>
-        </FormControl>
-        </>  
-      )
-    }
-
   rtree=()=>{
       return (
         <TextField className={this.props.classes.formControl} 
@@ -108,7 +87,9 @@ class ClassificationOption extends Component {
     }
     
   getData = ()=>{
-      fetch("http://127.0.0.1:5000/classification")
+    const {algorithm,rows,cols,cluster,kn,maxTree,ntree} = this.state
+
+      fetch(`http://127.0.0.1:5000/classification?algorithm=${algorithm}&rows=${rows}&cols=${cols}&clust=${cluster}&knear=${kn}&max_depth=${maxTree}&n_estimators=${ntree}`)
         .then(response=>response.json())
         .then(
             data => {
@@ -188,7 +169,6 @@ class ClassificationOption extends Component {
           />       
           {
             this.state.algorithm==="knear" ? this.knear():
-            this.state.algorithm==="svm" ? this.svm():
             this.state.algorithm==="dtree" ? this.dtree():
             this.state.algorithm==="rtree" ? this.rtree():
             null
