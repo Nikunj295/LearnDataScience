@@ -19,7 +19,7 @@ export default function CustomPaginationActionsTable({values}){
     }
   }
   return (
-		<div>
+		<div class="row justify-content-center" >
       <BootstrapTable
           containerStyle={{maxWidth:"1000px"}}
           headerStyle={ { backgroundColor:"#323a40"} }
@@ -29,7 +29,7 @@ export default function CustomPaginationActionsTable({values}){
           pagination={ paginationFactory()}
       >
         {
-          col.map((value)=><TableHeaderColumn style={{'text-color':"white"}} 
+          col.map((value)=><TableHeaderColumn 
                               dataAlign="center" 
                               dataField={value}
                             >
@@ -37,7 +37,6 @@ export default function CustomPaginationActionsTable({values}){
                             </TableHeaderColumn>)
         }
       </BootstrapTable>
-      {/* <BootstrapTable keyField='0' data={ values } columns={ columns } /> */}
 		</div>
 	)
 }
