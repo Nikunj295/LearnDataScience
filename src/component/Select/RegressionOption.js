@@ -35,7 +35,7 @@ const useStyles = theme => ({
 
 class RegressionOption extends Component {
   state={
-    algorithm:'',
+    algorithm:'linearRegression',
     rows:10,
     cols:2,
     cluster:2,
@@ -59,7 +59,8 @@ class RegressionOption extends Component {
   
     
   getData = ()=>{
-      fetch("http://127.0.0.1:5000/regression")
+    const {algorithm,rows,cols,cluster,ri} = this.state
+      fetch(`http://127.0.0.1:5000/regression?algorithm=${algorithm}&rows=${rows}&cols=${cols}&clust=${cluster}&ridge=${ri}`)
         .then(response=>response.json())
         .then(
             data => {
@@ -102,8 +103,8 @@ class RegressionOption extends Component {
               value={this.state.algorithm}
               onChange={(e)=>this.setState({algorithm:e.target.value})}
             >
-              <MenuItem value="logisticRegression">Linear Regression</MenuItem>
-              <MenuItem value="linearRegression">Logistic Regression</MenuItem>
+              <MenuItem value="linearRegression">Linear Regression</MenuItem>
+              <MenuItem value="logisticRegression">Logistic Regression</MenuItem>
               <MenuItem value="ridge">Ridge Regression</MenuItem>
             </Select>
           </FormControl>
