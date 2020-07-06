@@ -1,50 +1,48 @@
 import React, { Component } from 'react'
 import CanvasJSReact from '../files/canvasjs.react'
-var CanvasJSChart = CanvasJSReact.CanvasJSChart
+import {
+    ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+} from 'recharts'
+// var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
 class Scatterplot extends Component {
-    state={
-        options:[]
-    }
-
     componentWillReceiveProps(){
-        var newArray = [];
-        
-        this.props.values.map(i=>{
-            console.log("in")
-            newArray.push({x: i['0'],y: i['1']});
-        });	
-
-        const options = {
-            theme: "dark2",
-			animationEnabled: true,
-			zoomEnabled: true,
-			title:{
-				text: "Ice Cream Sales vs Temperature"
-			},
-			axisX: {
-				title:"Original",
-			},
-			axisY:{
-				title: "Predicted",
-				includeZero: false,
-			},
-            data: [{
-                type: "scatter",
-				markerSize: 15,
-                dataPoints: newArray
-            }]
-        }
-        this.setState({options})
+        if(this.props.final){
+            this.setState({data:this.props.final})
+            const x = this.props.final
+            const hello = Object.keys(x)
+            this.setState({hello})
+        } 
     }
     
     render() {
-        const {options} = this.state
+        const x = this.props.final       
+        const arr = ["star","traingle","circle","square"]
         return (
             <div>
-                <h1>Scatterplot</h1>
-                <CanvasJSChart options={options}/>       
-            </div>
+                {this.props.final?
+                    <ScatterChart
+                        width={1000}
+                        height={500}
+                        margin={{
+                        top: 100, right: 20, bottom: 20, left: 20,
+                        }}
+                    >
+                        <CartesianGrid />
+                        <XAxis type="number" dataKey="x" name="0"  />
+                        <YAxis type="number" dataKey="y" name="1"  />
+                        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                        <Legend />
+                        {
+                            Object.keys(x).map(function(key, index) {
+                                return <Scatter name="1" data={x[key]} shape={""+arr[Math.floor(Math.random() * arr.length)]} fill={"#"+Math.floor(Math.random()*16777215).toString(16)}  />
+                            }) 
+                            
+                        }
+                    </ScatterChart>
+                :
+                null }   
+           </div>
         )
     }
 }

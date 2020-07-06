@@ -7,6 +7,9 @@ import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField"
 import CustomPaginationActionsTable from "../Tables/Table";
 import { withStyles } from "@material-ui/core/styles"
+import Scatterplot from "../Charts/Scatterplot/Scatterplot"
+
+
 const useStyles = theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -20,9 +23,8 @@ const useStyles = theme => ({
   },
   button: {
     margin: theme.spacing(3),
-    
   },
-  center: {
+  mob: {
     [theme.breakpoints.down(500)]: {
       textAlign:'left',
       margin: theme.spacing(5),
@@ -42,9 +44,8 @@ class ClassificationOption extends Component {
     ntree:20,
     kernel:'',
     values:[],
-    option:[]
+    test:[]
   }
-  
   knear=()=>{
       return (
         <TextField className={this.props.classes.formControl} 
@@ -57,7 +58,7 @@ class ClassificationOption extends Component {
                  onChange={(e)=>this.setState({kn:e.target.value})}
         />  
       )
-    }
+  }
   
   dtree = () =>{
       return (
@@ -70,7 +71,7 @@ class ClassificationOption extends Component {
                  onChange={(e)=>this.setState({maxTree:e.target.value})}
         />  
       )
-    }
+  }
 
   rtree=()=>{
       return (
@@ -84,11 +85,25 @@ class ClassificationOption extends Component {
                  onChange={(e)=>this.setState({ntree:e.target.value})}
         />  
       )
-    }
-    
+  }
+  
+  groupBy=(arr, property)=>{
+    return arr.reduce(function(memo, x) {
+      if (!memo[x[property]]) { memo[x[property]] = []; }
+      memo[x[property]].push(x);
+      return memo;
+    }, []);
+  }
+  groupByObj=(arr, property)=>{
+    return arr.reduce(function(memo, x) {
+      if (!memo[x[property]]) { memo[x[property]] = []; }
+      memo[x[property]].push(x);
+      return memo;
+    }, {});
+  }
+
   getData = ()=>{
     const {algorithm,rows,cols,cluster,kn,maxTree,ntree} = this.state
-
       fetch(`http://127.0.0.1:5000/classification?algorithm=${algorithm}&rows=${rows}&cols=${cols}&clust=${cluster}&knear=${kn}&max_depth=${maxTree}&n_estimators=${ntree}`)
         .then(response=>response.json())
         .then(
@@ -96,34 +111,26 @@ class ClassificationOption extends Component {
                 var myData = Object.keys(data).map(key => {
                     return data[key];
                 })
-                this.setState({values:myData})
-                const newArray = [];
-                this.state.values.map(i=>{
-                    newArray.push({y: i['0']});
-                });	
-                const options = {
-                    theme: "light2", // "light1", "dark1", "dark2"
-                    animationEnabled: true,
-                    zoomEnabled: true,
-                    title: {
-                        text: "Try Zooming and Panning"
-                    },
-                    axisY: {
-                        includeZero: false
-                    },
-                    data: [{
-                        type: "area",
-                        dataPoints: newArray
-                    }]
-                }
-                this.setState({options})
-          })
-    }
+                this.setState({values:myData})   
+                var points = this.groupBy(this.state.values, 'Predicted'); 
+                this.setState({points})
+                var newArray = []
+                if(this.state.points)
+                    this.state.points.map(item=>{
+                        item.map(i=>{
+                            newArray.push({x: i['0'],y: i['1'],z: i['Predicted']})
+                        })
+                    });	
+                this.setState({newArray})
+                var final = this.groupByObj(this.state.newArray, 'z'); 
+                this.setState({final})
+            })
+  }
     
     render(){
       const { classes } = this.props
       return (
-        <div className={classes.center} >
+        <div className={classes.mob} >
           <FormControl className={classes.formControl}>
             <InputLabel id="algorithm">Algorithm</InputLabel>
             <Select
@@ -182,6 +189,7 @@ class ClassificationOption extends Component {
             Create
           </Button>
           <CustomPaginationActionsTable values={this.state.values}/>
+          <Scatterplot values={this.state.values} final={this.state.final}/>
         </div>
     )
   }
