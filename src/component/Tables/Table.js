@@ -19,14 +19,14 @@ export default function CustomPaginationActionsTable({values}){
     }
   }
   return (
-		<div class="row justify-content-center" >
+		<div className="" >
       <BootstrapTable
           containerStyle={{maxWidth:"1000px"}}
           headerStyle={ { backgroundColor:"#323a40"} }
           data={values} 
           striped={true} hover={true} 
           keyField='0' 
-          pagination={ paginationFactory()}
+          pagination={true}
       >
         {
           col.map((value)=><TableHeaderColumn 
