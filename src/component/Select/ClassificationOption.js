@@ -10,6 +10,7 @@ import { withStyles } from "@material-ui/core/styles"
 import Scatterplot from "../Charts/Scatterplot/Scatterplot"
 import AxisSelect from "./AxisSelect";
 import { AxisProvider } from '../Charts/files/Axis';
+import HMap from "../Charts/HeatMap/HeatMap";
 
 const useStyles = theme => ({
   formControl: {
@@ -32,7 +33,6 @@ const useStyles = theme => ({
     }
   },
 })
-
 
 class ClassificationOption extends Component {
   state={
@@ -118,9 +118,14 @@ class ClassificationOption extends Component {
             })
     this.setState({r:true})
   }
+
+
+
   render(){
     const { classes } = this.props
+
     return (
+    <> 
       <div className={classes.mob} >
         <AxisProvider>
           <FormControl className={classes.formControl}>
@@ -181,14 +186,17 @@ class ClassificationOption extends Component {
           <CustomPaginationActionsTable values={this.state.values}/>
             {
               // this.state.r? 
-              //   <div>
-              //     <AxisSelect values={this.state.values}/> 
-              //     <Scatterplot values={this.state.values} />
-              //   </div>
+              // <div>
+                // <AxisSelect values={this.state.values}/> 
+                // <Scatterplot values={this.state.values} />
+                // <HMap values={this.state.values} />
+              // </div>
               // :null
             }
+          
         </AxisProvider>
       </div>
+    </>
     )
   }
 }
