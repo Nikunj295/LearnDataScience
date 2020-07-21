@@ -5,12 +5,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField"
-import CustomPaginationActionsTable from "../Tables/Table";
 import { withStyles } from "@material-ui/core/styles"
-import Scatterplot from "../Charts/Scatterplot/Scatterplot"
-import AxisSelect from "./AxisSelect";
 import { AxisProvider } from '../Charts/files/Axis';
-import HMap from "../Charts/HeatMap/HeatMap";
+
+import axios from "axios"
 
 const useStyles = theme => ({
   formControl: {
@@ -45,6 +43,7 @@ class ClassificationOption extends Component {
     ntree:20,
     kernel:'',
     values:[],
+    values1:[],
     r:false
   }
 
@@ -105,7 +104,7 @@ class ClassificationOption extends Component {
     }, {});
   }
 
-  getData = ()=>{
+  getRandomData = ()=>{
     const {algorithm,rows,cols,cluster,kn,maxTree,ntree} = this.state
       fetch(`http://127.0.0.1:5000/classification?algorithm=${algorithm}&rows=${rows}&cols=${cols}&clust=${cluster}&knear=${kn}&max_depth=${maxTree}&n_estimators=${ntree}`)
         .then(response=>response.json())
@@ -119,7 +118,22 @@ class ClassificationOption extends Component {
     this.setState({r:true})
   }
 
-
+  getToyData = () =>{
+    axios.get('http://127.0.0.1:5000/classification/fetchData/iris')
+    .then(response=>response.data)
+        .then(data => {
+                const tb = data[0]
+                const ds = data[1]
+                var myData = Object.keys(tb).map(key => {
+                    return tb[key];
+                })
+                var myData1 = Object.keys(ds).map(key => {
+                  return ds[key];
+                })
+                this.setState({values:myData})
+                this.setState({values1:myData1})
+        })
+  }
 
   render(){
     const { classes } = this.props
@@ -180,20 +194,9 @@ class ClassificationOption extends Component {
           <Button
             variant="contained"
             color="primary"
-            onClick={this.getData}
+            onClick={this.getRandomData}
             className={classes.button}
           >Create</Button>
-          <CustomPaginationActionsTable values={this.state.values}/>
-            {
-              // this.state.r? 
-              // <div>
-                // <AxisSelect values={this.state.values}/> 
-                // <Scatterplot values={this.state.values} />
-                // <HMap values={this.state.values} />
-              // </div>
-              // :null
-            }
-          
         </AxisProvider>
       </div>
     </>

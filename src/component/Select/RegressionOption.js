@@ -7,6 +7,12 @@ import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField"
 import CustomPaginationActionsTable from "../Tables/Table";
 import { withStyles } from "@material-ui/core/styles"
+import { AxisProvider } from '../Charts/files/Axis';
+
+
+import Lines from "../Charts/Lines/Lines";
+import Example from "../Charts/Lines/SynchronizedLineChart";
+import { AxisSelect2 } from "./AxisSelect";
 
 
 const useStyles = theme => ({
@@ -41,7 +47,7 @@ class RegressionOption extends Component {
     cluster:2,
     ri:0,
     values:[],
-    option:[]
+    r:false
   }
   
   ridge=()=>{
@@ -55,7 +61,7 @@ class RegressionOption extends Component {
                  onChange={(e)=>this.setState({ri:e.target.value})}
         />  
       )
-    }
+  }
   
     
   getData = ()=>{
@@ -68,86 +74,80 @@ class RegressionOption extends Component {
                     return data[key];
                 })
                 this.setState({values:myData})
-                const newArray = [];
-                this.state.values.map(i=>{
-                    newArray.push({y: i['0']});
-                });	
-                const options = {
-                    theme: "light2", // "light1", "dark1", "dark2"
-                    animationEnabled: true,
-                    zoomEnabled: true,
-                    title: {
-                        text: "Try Zooming and Panning"
-                    },
-                    axisY: {
-                        includeZero: false
-                    },
-                    data: [{
-                        type: "area",
-                        dataPoints: newArray
-                    }]
-                }
-                this.setState({options})
           })
+          this.setState({r:true})
     }
     
     render(){
       const { classes } = this.props
       return (
         <div className={classes.center} >
-          <FormControl className={classes.formControl}>
-            <InputLabel id="algorithm">Algorithm</InputLabel>
-            <Select
-              labelId="algorithm"
-              id="algorithm"
-              value={this.state.algorithm}
-              onChange={(e)=>this.setState({algorithm:e.target.value})}
+          <AxisProvider>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="algorithm">Algorithm</InputLabel>
+              <Select
+                labelId="algorithm"
+                id="algorithm"
+                value={this.state.algorithm}
+                onChange={(e)=>this.setState({algorithm:e.target.value})}
+              >
+                <MenuItem value="linearRegression">Linear Regression</MenuItem>
+                <MenuItem value="logisticRegression">Logistic Regression</MenuItem>
+                <MenuItem value="ridge">Ridge Regression</MenuItem>
+              </Select>
+            </FormControl>
+            <TextField className={classes.formControl} 
+                      type="number" 
+                      InputProps={{ inputProps: { min: 10, max: 100000 } }} 
+                      id="standard-basic" 
+                      label="Rows"
+                      value={this.state.rows}
+                      helperText="Some important text"
+                      onChange={(e)=>this.setState({rows:e.target.value})}
+            />
+            <TextField className={classes.formControl} 
+                      type="number" 
+                      InputProps={{ inputProps: { min: 2, max: 50 } }} 
+                      id="standard-basic" 
+                      label="Columns" 
+                      value={this.state.cols}
+                      helperText="Some important text"
+                      onChange={(e)=>this.setState({cols:e.target.value})}
+            />    
+            <TextField className={classes.formControl} 
+                      type="number" 
+                      InputProps={{ inputProps: { min: 2, max: 10 } }} 
+                      id="standard-basic" 
+                      label="No. of Classification"
+                      value={this.state.cluster}
+                      helperText="How many class you want to distinguish?"
+                      onChange={(e)=>this.setState({cluster:e.target.value})}
+            />       
+            {
+              this.state.algorithm==="ridge" ? this.ridge():
+              null
+            }
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.getData}
+              className={classes.button}
             >
-              <MenuItem value="linearRegression">Linear Regression</MenuItem>
-              <MenuItem value="logisticRegression">Logistic Regression</MenuItem>
-              <MenuItem value="ridge">Ridge Regression</MenuItem>
-            </Select>
-          </FormControl>
-          <TextField className={classes.formControl} 
-                    type="number" 
-                    InputProps={{ inputProps: { min: 10, max: 100000 } }} 
-                    id="standard-basic" 
-                    label="Rows"
-                    value={this.state.rows}
-                    helperText="Some important text"
-                    onChange={(e)=>this.setState({rows:e.target.value})}
-          />
-          <TextField className={classes.formControl} 
-                    type="number" 
-                    InputProps={{ inputProps: { min: 2, max: 50 } }} 
-                    id="standard-basic" 
-                    label="Columns" 
-                    value={this.state.cols}
-                    helperText="Some important text"
-                    onChange={(e)=>this.setState({cols:e.target.value})}
-          />    
-          <TextField className={classes.formControl} 
-                    type="number" 
-                    InputProps={{ inputProps: { min: 2, max: 10 } }} 
-                    id="standard-basic" 
-                    label="No. of Classification"
-                    value={this.state.cluster}
-                    helperText="How many class you want to distinguish?"
-                    onChange={(e)=>this.setState({cluster:e.target.value})}
-          />       
-          {
-            this.state.algorithm==="ridge" ? this.ridge():
-            null
-          }
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.getData}
-            className={classes.button}
-          >
-            Create
-          </Button>
-          <CustomPaginationActionsTable values={this.state.values}/>
+              Create
+            </Button>
+            <CustomPaginationActionsTable values={this.state.values}/>
+            {
+              // this.state.r? 
+              //   <div>
+              //     <AxisSelect2 values={this.state.values}/> 
+              //     <Lines values={this.state.values}/>
+              //   </div>
+              // :
+              // null
+            }
+  
+            
+          </AxisProvider>
         </div>
     )
   }

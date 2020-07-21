@@ -104,5 +104,67 @@ function AxisSelect(props){
     )
 }
 
+export function AxisSelect2(props){
+    const [x_axe,setX_axe] = useState("0")
+    const [tg,setTG] = useState("Predicted")
+
+    const {x,z} = useContext(AxisContext)
+    const [x_axis,setX_axis] = x
+    const [tar,setTar] = z
+
+    var col = []
+    var columns = []
+    if(props.values[0]){
+        col = Object.keys(props.values[0])
+        for(let i=0;i<col.length-2;i++){
+            columns.push(col[i])
+        }
+    }
+    const updateX = (e) => {
+        e.preventDefault()
+        setX_axe(e.target.value)
+        setX_axis(e.target.value)
+    }
+    const updateTg = (e) => {
+        e.preventDefault()
+        setTG(e.target.value)
+        setTar(e.target.value)
+    }
+
+    const classes = useStyles();
+    return (
+        <div>
+            <h2 className="mt-3">Graph</h2>
+            <FormControl className={classes.formControl}>
+                <InputLabel id="x">X-axis</InputLabel>
+                <Select
+                    labelId="x"
+                    id="x"
+                    value={x_axe}
+                    onChange={(e)=>updateX(e)}
+                >
+                    {
+                        columns.map(item=>{
+                            return <MenuItem name="xaxe" value={item}>{item}</MenuItem>        
+                        })
+                    }
+                </Select>
+            </FormControl>
+            <FormControl className={classes.formControl}>  
+                <InputLabel id="tar">Points</InputLabel>
+                <Select
+                    labelId="tar"
+                    id="tar"
+                    value={tg}
+                    onChange={(e)=>updateTg(e)}
+                >
+                    <MenuItem name="tg" value="Predicted">Predicted</MenuItem>
+                    <MenuItem name="tg" value="Original">Original</MenuItem>
+                </Select>
+            </FormControl>
+        </div>
+    )
+}
+
 
 export default AxisSelect
