@@ -5,10 +5,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField"
-import CustomPaginationActionsTable from "../Tables/Table";
 import { withStyles } from "@material-ui/core/styles"
-import Scatterplot from "../Charts/Scatterplot/Scatterplot"
+import { AxisProvider } from '../Charts/files/Axis';
 
+import axios from "axios"
 
 const useStyles = theme => ({
   formControl: {
@@ -32,7 +32,6 @@ const useStyles = theme => ({
   },
 })
 
-
 class ClassificationOption extends Component {
   state={
     algorithm:'logisticRegression',
@@ -44,8 +43,10 @@ class ClassificationOption extends Component {
     ntree:20,
     kernel:'',
     values:[],
-    test:[]
+    values1:[],
+    r:false
   }
+
   knear=()=>{
       return (
         <TextField className={this.props.classes.formControl} 
@@ -94,6 +95,7 @@ class ClassificationOption extends Component {
       return memo;
     }, []);
   }
+
   groupByObj=(arr, property)=>{
     return arr.reduce(function(memo, x) {
       if (!memo[x[property]]) { memo[x[property]] = []; }
@@ -102,7 +104,7 @@ class ClassificationOption extends Component {
     }, {});
   }
 
-  getData = ()=>{
+  getRandomData = ()=>{
     const {algorithm,rows,cols,cluster,kn,maxTree,ntree} = this.state
       fetch(`http://127.0.0.1:5000/classification?algorithm=${algorithm}&rows=${rows}&cols=${cols}&clust=${cluster}&knear=${kn}&max_depth=${maxTree}&n_estimators=${ntree}`)
         .then(response=>response.json())
@@ -111,26 +113,35 @@ class ClassificationOption extends Component {
                 var myData = Object.keys(data).map(key => {
                     return data[key];
                 })
-                this.setState({values:myData})   
-                var points = this.groupBy(this.state.values, 'Predicted'); 
-                this.setState({points})
-                var newArray = []
-                if(this.state.points)
-                    this.state.points.map(item=>{
-                        item.map(i=>{
-                            newArray.push({x: i['0'],y: i['1'],z: i['Predicted']})
-                        })
-                    });	
-                this.setState({newArray})
-                var final = this.groupByObj(this.state.newArray, 'z'); 
-                this.setState({final})
+                this.setState({values:myData})
             })
+    this.setState({r:true})
   }
-    
-    render(){
-      const { classes } = this.props
-      return (
-        <div className={classes.mob} >
+
+  getToyData = () =>{
+    axios.get('http://127.0.0.1:5000/classification/fetchData/iris')
+    .then(response=>response.data)
+        .then(data => {
+                const tb = data[0]
+                const ds = data[1]
+                var myData = Object.keys(tb).map(key => {
+                    return tb[key];
+                })
+                var myData1 = Object.keys(ds).map(key => {
+                  return ds[key];
+                })
+                this.setState({values:myData})
+                this.setState({values1:myData1})
+        })
+  }
+
+  render(){
+    const { classes } = this.props
+
+    return (
+    <> 
+      <div className={classes.mob} >
+        <AxisProvider>
           <FormControl className={classes.formControl}>
             <InputLabel id="algorithm">Algorithm</InputLabel>
             <Select
@@ -183,14 +194,12 @@ class ClassificationOption extends Component {
           <Button
             variant="contained"
             color="primary"
-            onClick={this.getData}
+            onClick={this.getRandomData}
             className={classes.button}
-          >
-            Create
-          </Button>
-          <CustomPaginationActionsTable values={this.state.values}/>
-          <Scatterplot values={this.state.values} final={this.state.final}/>
-        </div>
+          >Create</Button>
+        </AxisProvider>
+      </div>
+    </>
     )
   }
 }

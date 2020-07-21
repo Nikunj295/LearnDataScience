@@ -7,6 +7,7 @@ import 'react-bootstrap-table/dist/react-bootstrap-table.min.css';
 import paginationFactory from 'react-bootstrap-table2-paginator';  
 
 export default function CustomPaginationActionsTable({values}){
+  
   var col = []
   var columns = []
   if(values[0]){
@@ -18,23 +19,26 @@ export default function CustomPaginationActionsTable({values}){
       })
     }
   }
+  
   return (
-		<div class="row justify-content-center" >
+		<div className="" >
       <BootstrapTable
           containerStyle={{maxWidth:"1000px"}}
           headerStyle={ { backgroundColor:"#323a40"} }
           data={values} 
           striped={true} hover={true} 
           keyField='0' 
-          pagination={ paginationFactory()}
+          pagination={true}
       >
         {
           col.map((value)=><TableHeaderColumn 
                               dataAlign="center" 
                               dataField={value}
+                              key={value}
                             >
                               {value}
-                            </TableHeaderColumn>)
+                            </TableHeaderColumn>
+                  )
         }
       </BootstrapTable>
 		</div>
