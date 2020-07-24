@@ -1,28 +1,14 @@
 import React, { useEffect, useContext, useState } from 'react'
 import axios from 'axios'
-import { DataContext } from "../Charts/files/DataProvider";
 import CustomPaginationActionsTable from '../Tables/Table';
 import { Link } from 'react-router-dom';
 
-function SplitData(props) {
-    
-    const col = props.location.selected
-    const {data1} = useContext(DataContext)
-    const [data,setData] = data1
+function SplitData() {
     const [train,setTrain] = useState([])
     const [test,setTest] = useState([])
 
     useEffect(()=>{
-        let payload = {
-            col,
-            data
-        }
-        axios.post('http://127.0.0.1:5000/classification/fetchData/iris',null,{
-            params:{
-                type: 'splitData',
-                col: payload
-            }
-        })
+        axios.post('http://127.0.0.1:5000/classification/splitData')
         .then(response=>response.data)
         .then(data=>{
             const tb = data[0]
@@ -36,8 +22,6 @@ function SplitData(props) {
             setTrain(myData)
             setTest(myData1)
         })
-    
-
     },[])
 
     return (

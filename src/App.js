@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect, useContext } from 'react'
 import {BrowserRouter as Router, Route} from "react-router-dom"
 import Classification from "./component/Classification/Classification"
 import Regression from "./component/Regression/Regression"
@@ -7,11 +7,11 @@ import CusNavbar from "./component/Navbar/CusNavbar";
 import Iris from './component/PreDefine_Dataset/Iris';
 import Wine from './component/PreDefine_Dataset/Wine';
 import FeatureSelection from './component/PreDefine_Dataset/FeatureSelection';
-import { DataProvider } from './component/Charts/files/DataProvider';
+import { DataProvider, DataContext } from './component/Charts/files/DataProvider';
 import SplitData from './component/PreDefine_Dataset/SplitData';
 import Model from './component/PreDefine_Dataset/Model';
-export class App extends Component{  
-  render() {
+
+function App(){ 
   return (
         <>
         <DataProvider>
@@ -30,6 +30,5 @@ export class App extends Component{
         </>
       )
   }
-}
 
 export default App

@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect , useContext} from 'react'
+import { DataContext } from '../Charts/files/DataProvider'
 
 function Model() {
     return (
         <div>
-            <h1>Model</h1>
+            <h1>
+                Model
+                {localStorage.getItem('myid')}
+            </h1>
         </div>
     )
 }

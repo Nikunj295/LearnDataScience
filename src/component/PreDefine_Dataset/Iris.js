@@ -7,17 +7,13 @@ import { DataContext } from '../Charts/files/DataProvider';
 function Iris(){
     
     const [infoData,setInfoData] = useState([]) 
-    const {data1,mod1,cols} = useContext(DataContext)
-    const [data,setData] = data1
-    const [mod,setMod] = mod1
+    const {cols} = useContext(DataContext)
+    const [data,setData] = useState([])
     const [col,setCol] = cols
     
     useEffect(()=>{
-        axios.post('http://127.0.0.1:5000/classification/fetchData/iris',null,{
-            params:{
-                type:'fetchData'
-            }
-        })
+        localStorage.setItem('dataset','iris')
+        axios.post('http://127.0.0.1:5000/classification/fetchData/iris')
         .then(response=>response.data)
         .then(data => {
             const tb = data[0]
@@ -30,7 +26,6 @@ function Iris(){
             })
             setInfoData(myData1)
             setData(myData)
-            setMod(myData)
 
             let column = [] 
             let columns = []
@@ -41,6 +36,7 @@ function Iris(){
                 }
             }
             setCol(columns)
+            localStorage.setItem("selected",columns)
         })
     },[])
 

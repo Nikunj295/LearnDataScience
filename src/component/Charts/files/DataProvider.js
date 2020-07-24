@@ -6,9 +6,11 @@ export const DataProvider = props => {
     const [data,setData] = useState([])
     const [mod,setMod] = useState([])
     const [col,setCol] = useState([])
+    const [id,setId] = useState([])
+    const [mthd,setMthd]  = useState([])
     
     return (
-        <DataContext.Provider value={{data1:[data,setData] , mod1:[mod,setMod], cols:[col,setCol]}}> 
+        <DataContext.Provider value={{ data1:[data,setData] , cols:[col,setCol], mth:[mthd,setMthd]}}> 
             {props.children}
         </DataContext.Provider>
     )
