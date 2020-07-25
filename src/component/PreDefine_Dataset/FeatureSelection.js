@@ -15,12 +15,10 @@ function FeatureSelection(){
     useEffect(()=>{
         const id = localStorage.getItem('myid')
         const dataset = localStorage.getItem('dataset')
-        const method = localStorage.getItem('method')
         let payload = {
             id,
             item,
-            dataset,
-            method
+            dataset
         }
 
         axios.post("http://127.0.0.1:5000/classification/selection",null,{

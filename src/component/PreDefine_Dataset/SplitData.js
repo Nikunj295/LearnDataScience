@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import CustomPaginationActionsTable from '../Tables/Table';
 import { Link } from 'react-router-dom';
@@ -8,9 +8,17 @@ function SplitData() {
     const [test,setTest] = useState([])
 
     useEffect(()=>{
-        axios.post('http://127.0.0.1:5000/classification/splitData')
+        const id = localStorage.getItem('myid')
+        let payload = {
+            id
+        }
+        axios.post('http://127.0.0.1:5000/classification/splitData',null,{
+            params:{
+                payload
+            }
+        })
         .then(response=>response.data)
-        .then(data=>{
+        .then(data => {
             const tb = data[0]
             const ds = data[1]
             var myData = Object.keys(tb).map(key => {

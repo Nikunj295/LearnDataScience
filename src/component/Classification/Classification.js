@@ -3,22 +3,16 @@ import { Link } from 'react-router-dom';
 import axios from "axios"
 import { DataContext } from '../Charts/files/DataProvider';
 
-function Classification(){
-    const {mth} = useContext(DataContext)
-    const [mthd,setMthd] = mth
-    const temp = "classification"
-
+function Classification(){  
      useEffect(()=>{
         let id = localStorage.getItem('myid')     
         localStorage.setItem('method','classification')
         axios.post("http://127.0.0.1:5000/addId",null,{
             params:{
                 id,
-                method: temp
             }   
         })
         .then(response=>console.log(response))
-        setMthd('classification')
     },[])
 
     return (

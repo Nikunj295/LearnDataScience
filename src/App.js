@@ -10,6 +10,7 @@ import FeatureSelection from './component/PreDefine_Dataset/FeatureSelection';
 import { DataProvider, DataContext } from './component/Charts/files/DataProvider';
 import SplitData from './component/PreDefine_Dataset/SplitData';
 import Model from './component/PreDefine_Dataset/Model';
+import Prediction from './component/PreDefine_Dataset/Prediction';
 
 function App(){ 
   return (
@@ -25,6 +26,7 @@ function App(){
             <Route path="/FeatureSelection" component={FeatureSelection}/>
             <Route path="/SplitData" component={SplitData}/>
             <Route path="/Model" component={Model}/>
+            <Route path="/Prediction" component={Prediction}/>
           </Router>
         </DataProvider>
         </>
