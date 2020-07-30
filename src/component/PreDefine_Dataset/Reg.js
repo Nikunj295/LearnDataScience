@@ -1,21 +1,29 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import CustomPaginationActionsTable from "../Tables/Table";
 import { Link } from 'react-router-dom';
-import { DataContext } from '../Charts/files/DataProvider';
 
-function Iris(){
+function Reg(props){
+
+    let dataset = ""
+    if(props.location.data){
+        sessionStorage.setItem('db', props.location.data.data)
+        dataset = props.location.data.data
+    }
+    else{
+        dataset = sessionStorage.getItem('db')
+    }
     
-    const [infoData,setInfoData] = useState([]) 
-    const {cols} = useContext(DataContext)
+    sessionStorage.setItem('type','regression')
+    const [infoData,setInfoData] = useState([])
     const [data,setData] = useState([])
-    const [col,setCol] = cols
     
     useEffect(()=>{
-        localStorage.setItem('dataset','iris')
-        axios.post('http://127.0.0.1:5000/classification/fetchData/iris')
+        localStorage.setItem('dataset',dataset)
+        axios.post(`http://127.0.0.1:5000/classification/fetchData/${dataset}`)
         .then(response=>response.data)
         .then(data => {
+            console.log(data)
             const tb = data[0]
             const ds = data[1]
             var myData = Object.keys(tb).map(key => {
@@ -35,10 +43,9 @@ function Iris(){
                     columns.push(column[i])
                 }
             }
-            setCol(columns)
             localStorage.setItem("selected",columns)
         })
-    },[])
+    },[dataset])
 
     return (
         <div>
@@ -61,4 +68,4 @@ function Iris(){
     )
 }
 
-export default Iris
+export default Reg

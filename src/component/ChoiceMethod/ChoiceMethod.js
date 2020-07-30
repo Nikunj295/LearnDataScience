@@ -1,10 +1,8 @@
-import React, { useEffect, useContext} from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import "./main.css"
 import log3 from "./3.png"
 import log4 from "./4.png"
-import { DataContext } from '../Charts/files/DataProvider';
-import axios from 'axios'
 
 export default function ChoiceMethod() {
     const [value, setValue] = React.useState(
@@ -16,7 +14,7 @@ export default function ChoiceMethod() {
     }, [value])
 
     return (
-        <div>
+        <div className="mainScreen">
             <section>
                 <div id="qwe" class="screen">
                     <div class="imgBox">

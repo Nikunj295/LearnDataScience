@@ -1,10 +1,10 @@
-import React,{useState} from 'react'
+import React from 'react'
 import HeatMap from "react-heatmap-grid"
 import ConfusionMatrix from 'ml-confusion-matrix';
 
 function HMap(props) {
 
-    var Original = []
+    var target = []
     var Predicted = []
     var CM = []
     var CM2 = []
@@ -18,9 +18,9 @@ function HMap(props) {
     }
 
     const compare_item = (a, b)=>{
-        if(a.Original < b.Original){
+        if(a.target < b.target){
                 return -1;
-        }else if(a.Original > b.Original){
+        }else if(a.target > b.target){
                 return 1;
         }else{
                 return 0;
@@ -30,24 +30,25 @@ function HMap(props) {
     
     var check = false
     if(props.values.length!==0){
+        console.log(props.values)
         check = true
-        const some = props.values.map(({Original, Predicted}) => ({Original, Predicted}))
+        const some = props.values.map(({target, Predicted}) => ({target, Predicted}))
         some.sort(compare_item)
 
         //Normal Mode
-        Original = some.map(item=>item.Original)
+        target = some.map(item=>item.target)
         Predicted = some.map(item=>item.Predicted)
-        CM = ConfusionMatrix.fromLabels(Original,Predicted)   
+        CM = ConfusionMatrix.fromLabels(target,Predicted)   
 
         //Percentage Mode
         var newArray = []
         some.map(i=>{
-            newArray.push({'Original': `${(i['Original']/some.length)*100}%`,"Predicted": `${(i['Predicted']/some.length)*100}%`})
+            newArray.push({'target': `${(i['target']/some.length)*100}%`,"Predicted": `${(i['Predicted']/some.length)*100}%`})
         })
         
-        Original = newArray.map(item=>item.Original)
+        target = newArray.map(item=>item.target)
         Predicted = newArray.map(item=>item.Predicted)
-        CM2 = ConfusionMatrix.fromLabels(Original,Predicted)   
+        CM2 = ConfusionMatrix.fromLabels(target,Predicted)   
 
     }
 

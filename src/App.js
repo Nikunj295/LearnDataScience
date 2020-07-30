@@ -1,34 +1,38 @@
-import React, { useEffect, useContext } from 'react'
+import React from 'react'
 import {BrowserRouter as Router, Route} from "react-router-dom"
 import Classification from "./component/Classification/Classification"
 import Regression from "./component/Regression/Regression"
 import ChoiceMethod from "./component/ChoiceMethod/ChoiceMethod";
 import CusNavbar from "./component/Navbar/CusNavbar";
-import Iris from './component/PreDefine_Dataset/Iris';
-import Wine from './component/PreDefine_Dataset/Wine';
+import Reg from './component/PreDefine_Dataset/Reg'
+import Clas from './component/PreDefine_Dataset/Clas'
+import Test from './component/PreDefine_Dataset/Test'
+import Visulization from './component/PreDefine_Dataset/Visulization'
 import FeatureSelection from './component/PreDefine_Dataset/FeatureSelection';
-import { DataProvider, DataContext } from './component/Charts/files/DataProvider';
 import SplitData from './component/PreDefine_Dataset/SplitData';
 import Model from './component/PreDefine_Dataset/Model';
 import Prediction from './component/PreDefine_Dataset/Prediction';
+import { AxisProvider } from "../src/component/Charts/files/Axis";
 
 function App(){ 
   return (
         <>
-        <DataProvider>
-          <CusNavbar/>
+        <AxisProvider>
           <Router>
+            <CusNavbar/>
             <Route path="/" exact component={ChoiceMethod}/>
             <Route path="/Classification" component={Classification}/>
             <Route path="/Regression" component={Regression}/>
-            <Route path="/Iris" component={Iris}/>
-            <Route path="/Wine" component={Wine}/>
+            <Route path="/Reg" component={Reg}/>
+            <Route path="/Clas" component={Clas}/>
+            <Route path="/Test" component={Test}/>
+            <Route path="/Visulization" component={Visulization}/>
             <Route path="/FeatureSelection" component={FeatureSelection}/>
             <Route path="/SplitData" component={SplitData}/>
             <Route path="/Model" component={Model}/>
             <Route path="/Prediction" component={Prediction}/>
           </Router>
-        </DataProvider>
+          </AxisProvider>
         </>
       )
   }

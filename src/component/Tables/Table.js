@@ -4,7 +4,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import 'react-bootstrap-table/dist/react-bootstrap-table.min.css';
-import paginationFactory from 'react-bootstrap-table2-paginator';  
 
 export default function CustomPaginationActionsTable({values}){
   
@@ -23,7 +22,7 @@ export default function CustomPaginationActionsTable({values}){
   return (
 		<div className="" >
       <BootstrapTable
-          containerStyle={{maxWidth:"1000px"}}
+          containerStyle={{maxWidth:"100%"}}
           headerStyle={ { backgroundColor:"#323a40"} }
           data={values} 
           striped={true} hover={true} 

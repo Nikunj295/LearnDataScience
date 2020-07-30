@@ -1,15 +1,18 @@
-import React, {useContext} from 'react'
+import React, { useContext,useEffect, useState} from 'react'
 import {LineChart, Line, XAxis,YAxis, CartesianGrid, Tooltip, Legend,} from 'recharts';
+import { Button } from '@material-ui/core';
 import { AxisContext } from "../files/Axis"
+
 
 export default function Lines ({values}){
   const {x,z} = useContext(AxisContext)
   const [x_axis,setX_axis] = x
   const [tar,setTar] = z
+
   return (
     <>
       <LineChart
-          width={1500}
+          width={1200}
           height={600}
           data={values}
           margin={{
@@ -22,7 +25,6 @@ export default function Lines ({values}){
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey={tar} stroke="#8884d8" activeDot={{ r: 8 }} />
-          {/* <Line type="monotone" dataKey="Original" stroke="blue" /> */}
       </LineChart> 
     </>
   );

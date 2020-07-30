@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import CustomPaginationActionsTable from '../Tables/Table'
+import {Link} from "react-router-dom"
 
 function Prediction() {
     
@@ -37,6 +38,7 @@ function Prediction() {
     return (
         <div>
             <h1>Prediction</h1>
+            <Link to="/Visulization">Visulization!</Link>
             <CustomPaginationActionsTable values={result} />
             <CustomPaginationActionsTable values={final} />
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect,useContext, useState } from 'react'
+import React, { useEffect,useState } from 'react'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import CustomPaginationActionsTable from '../Tables/Table'
@@ -34,6 +34,7 @@ function FeatureSelection(){
             })
             setData(myData)
         })
+        sessionStorage.setItem('train',item)
     },[item])
 
     const handleChange = (event) => {
