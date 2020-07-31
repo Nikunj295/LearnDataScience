@@ -18,12 +18,13 @@ function Clas(props){
 
     const [infoData,setInfoData] = useState([])
     const [data,setData] = useState([])
+    
     useEffect(()=>{
         localStorage.setItem('dataset',dataset)
-        axios.post(`http://127.0.0.1:5000/classification/fetchData/${dataset}`)
+        sessionStorage.setItem('raw','false')
+        axios.post(`http://127.0.0.1:5000/fetchData/${dataset}`)
         .then(response=>response.data)
         .then(data => {
-            console.log(data)
             const tb = data[0]
             const ds = data[1]
             var myData = Object.keys(tb).map(key => {

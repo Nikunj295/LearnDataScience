@@ -3,6 +3,8 @@ import {
     ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts'
 import { AxisContext } from "../files/Axis"
+import ScatterPlot1 from "./ScatterPlot-with-trendline";
+
 
 function Scatterplot(props){
     const {x,y,z} = useContext(AxisContext)
@@ -35,6 +37,7 @@ function Scatterplot(props){
             newArray.push({x: i[x_axis],y: i[y_axis],z: i[tar]})
         })
     });	
+        
 
     var final = groupByObj(newArray, 'z');
     const arr = ["star","traingle","circle","square"]

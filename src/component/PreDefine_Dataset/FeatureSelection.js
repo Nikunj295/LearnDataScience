@@ -15,25 +15,44 @@ function FeatureSelection(){
     useEffect(()=>{
         const id = localStorage.getItem('myid')
         const dataset = localStorage.getItem('dataset')
+        const raw = sessionStorage.getItem('raw')
         let payload = {
             id,
             item,
             dataset
         }
 
-        axios.post("http://127.0.0.1:5000/classification/selection",null,{
-            params:{
-                payload
-            }
-        })
-        .then(response=>response.data)
-        .then(data => {
-            const tb = data
-            var myData = Object.keys(tb).map(key => {
-                return tb[key];
+
+        if(raw==='true'){
+            axios.post("http://127.0.0.1:5000/create/selection",null,{
+                params:{
+                    payload
+                }
             })
-            setData(myData)
-        })
+            .then(response=>response.data)
+            .then(data => {
+                const tb = data
+                var myData = Object.keys(tb).map(key => {
+                    return tb[key];
+                })
+                setData(myData)
+            })
+        }
+        else{
+            axios.post("http://127.0.0.1:5000/selection",null,{
+                params:{
+                    payload
+                }
+            })
+            .then(response=>response.data)
+            .then(data => {
+                const tb = data
+                var myData = Object.keys(tb).map(key => {
+                    return tb[key];
+                })
+                setData(myData)
+            })
+        }
         sessionStorage.setItem('train',item)
     },[item])
 

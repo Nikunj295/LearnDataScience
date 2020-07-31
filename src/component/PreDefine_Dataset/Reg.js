@@ -20,7 +20,7 @@ function Reg(props){
     
     useEffect(()=>{
         localStorage.setItem('dataset',dataset)
-        axios.post(`http://127.0.0.1:5000/classification/fetchData/${dataset}`)
+        axios.post(`http://127.0.0.1:5000/fetchData/${dataset}`)
         .then(response=>response.data)
         .then(data => {
             console.log(data)

@@ -1,17 +1,26 @@
 import React, { useEffect } from 'react'
 import Axios from "axios"
+import { Link } from 'react-router-dom'
 
 function Test(props) {
     
     let id = localStorage.getItem('myid')
-    let algo = props.location.data.data
+
+    let algo = ""
+    if(props.location.data){
+        sessionStorage.setItem('algo', props.location.data.data)
+        algo = props.location.data.data
+    }
+    else{
+        algo = sessionStorage.getItem('algo')
+    }
 
     useEffect(()=>{
         let payload = {
             id,
             algorithm: algo
         }
-        Axios.post("http://127.0.0.1:5000/classification/model",null,{
+        Axios.post("http://127.0.0.1:5000/model",null,{
             params:{
                 payload
             }
@@ -22,6 +31,8 @@ function Test(props) {
     return (
         <div>
             <h1>Test</h1>
+            <h3>Algo Information</h3>
+            <Link to="/Prediction">Predict!!</Link>
         </div>
     )
 }

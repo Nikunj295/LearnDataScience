@@ -47,6 +47,27 @@ const c = [
     },
 ]
 
+const r = [
+    {
+        algo:"linearRegression",
+        name:"Linear Regression"
+    },
+    {
+        algo:"logisticRegression",
+        name:"Logistic Regression"
+    },
+    {
+        algo:"svm",
+        name:"Support Vector Machine"
+    },
+    {
+        algo:"ridge",
+        name:"Ridge"
+    },
+
+
+]
+
 function Model() {
 
     let type = sessionStorage.getItem('type')
@@ -92,7 +113,42 @@ function Model() {
                         }
                     </Grid>
                 </>
-                :null
+                :
+                <>
+                    <Grid container spacing={10} style={{padding: '24px', textAlign:'center'}}>
+                        {
+                            r.map(item=>{
+                                return (
+                                    <Link style={{textDecoration: 'none',padding:'10px'}} 
+                                    to={{ pathname: '/Test', data: { data: `${item.algo}` } }}>   
+                                        <Card className={classes.root}>
+                                            <CardActionArea>
+                                            <CardMedia
+                                                className={classes.media}
+                                                image={log4}
+                                                title={item.name}
+                                            />
+                                            <CardContent style={{height:'100px',width:'250px'}}>
+                                                <Typography gutterBottom variant="h5" component="h2">
+                                                    {item.name}
+                                                </Typography>
+                                                <Typography variant="body2" color="textSecondary" component="p">
+                                                {item.name}
+                                                </Typography>
+                                            </CardContent>
+                                            </CardActionArea>
+                                            <CardActions>
+                                            <Button size="small" color="primary" >
+                                                Share
+                                            </Button>
+                                            </CardActions>
+                                        </Card>
+                                    </Link>
+                                )
+                            })
+                        }
+                    </Grid>
+                </>
             }
             
         </div>

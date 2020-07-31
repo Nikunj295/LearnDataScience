@@ -7,10 +7,10 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Axios from "axios"
-import HeatMap from "../Charts/HeatMap/HeatMap"
 import AxisSelect, { AxisSelect2 } from '../Select/AxisSelect';
-import ScatterPlot from "../Charts/Scatterplot/Scatterplot";
-import CustomActiveShapePieChart from "../Charts/PieChart/CustomActiveShapePieChart";
+import Lines from '../Charts/Lines/Lines';
+import Example from '../Charts/Lines/SynchronizedLineChart';
+import ScatterPlot1 from "../Charts/Scatterplot/ScatterPlot-with-trendline";
 
 
 
@@ -110,24 +110,24 @@ export default function Visulization() {
             onChange={handleChange}
             aria-label="nav tabs example"
           >
-            <LinkTab label="HeatMap"  {...a11yProps(0)} />
-            <LinkTab label="PieChart"  {...a11yProps(1)} />
-            <LinkTab label="ScatterPlot"  {...a11yProps(2)} />
+            <LinkTab label="Lines"  {...a11yProps(0)} />
+            <LinkTab label="Sync Chart"  {...a11yProps(1)} />
+            <LinkTab label="TrendLine"  {...a11yProps(2)} />
           </Tabs>
       </AppBar>
           <TabPanel value={value} index={0}>
             {
-              result?<HeatMap values={final}/>:null
+                result? <> <AxisSelect values={final}/>  <Lines values={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={1}>
             {
-              final? <CustomActiveShapePieChart values={final} />:null
+                result? <> <AxisSelect values={final}/> <Example values={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={2}>
             {
-              final? <> <AxisSelect values={final}/> <ScatterPlot values={final}/> </> : null
+                result? <> <AxisSelect2 values={final}/> <ScatterPlot1 data={final}/> </> :null
             }
           </TabPanel>
 

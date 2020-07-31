@@ -12,7 +12,7 @@ function SplitData() {
         let payload = {
             id
         }
-        axios.post('http://127.0.0.1:5000/classification/splitData',null,{
+        axios.post('http://127.0.0.1:5000/splitData',null,{
             params:{
                 payload
             }

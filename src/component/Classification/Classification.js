@@ -43,6 +43,7 @@ const Details = [
         db:'diabete',
         detail:'The wine dataset contains the results of a chemical analysis of wines grown in a specific area of Italy. Three types of wine are represented in the 178 samples, with the results of 13 chemical analyses recorded for each sample. The Type variable has been transformed into a categoric variable'    
     },
+    
 ]
 
 function Classification(){  
@@ -95,6 +96,35 @@ function Classification(){
                     )
                 })
             }
+
+                        <Link style={{textDecoration: 'none',padding:'10px'}} 
+                        to={{ pathname: '/CCreate', data: { data: `create` } }}>   
+                            <Card className={classes.root}>
+                                <CardActionArea >
+                                <CardMedia
+                                    className={classes.media}
+                                    image={log4}
+                                    title="Create Your Own Data"
+                                />
+                                <CardContent style={{height:'200px'}}>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                    Create Your Own Data
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                    Create Your Own Data
+                                    </Typography>
+                                </CardContent>
+                                </CardActionArea>
+                                <CardActions>
+                                <Button size="small" color="primary">
+                                    Share
+                                </Button>
+                                <Button size="small" color="primary">
+                                    Learn More
+                                </Button>
+                                </CardActions>
+                            </Card>
+                        </Link>
             </Grid>
         </div>
     )

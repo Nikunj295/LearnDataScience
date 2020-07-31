@@ -14,7 +14,7 @@ function Prediction() {
             id
         }    
 
-        axios.post("http://127.0.0.1:5000/classification/predict",null,{
+        axios.post("http://127.0.0.1:5000/predict",null,{
             params:{
                 payload
             }
@@ -38,7 +38,7 @@ function Prediction() {
     return (
         <div>
             <h1>Prediction</h1>
-            <Link to="/Visulization">Visulization!</Link>
+            <Link to="/Check">Visulization!</Link>
             <CustomPaginationActionsTable values={result} />
             <CustomPaginationActionsTable values={final} />
         </div>
