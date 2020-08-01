@@ -14,7 +14,6 @@ function Clas(props){
         dataset = sessionStorage.getItem('db')
     }
 
-    sessionStorage.setItem('type','classification')
 
     const [infoData,setInfoData] = useState([])
     const [data,setData] = useState([])
@@ -49,7 +48,7 @@ function Clas(props){
     },[dataset])
 
     return (
-        <div>
+        <div style={{display:'flex',flexDirection: 'column',alignItems: 'center'}}>
                 <Link to={{
                     pathname:"/FeatureSelection",
                     featureSelection:{
@@ -59,10 +58,11 @@ function Clas(props){
                     Feature Selection
                 </Link>
                 {
-                    data?<>
-                        <CustomPaginationActionsTable values={data}/> 
-                        <CustomPaginationActionsTable values={infoData}/>            
-                        </>
+                    data?
+                    <div >
+                        <CustomPaginationActionsTable values={data} /> 
+                        <CustomPaginationActionsTable values={infoData} type="info"/>            
+                    </div>
                     :null
                 }
         </div>

@@ -66,7 +66,7 @@ function FeatureSelection(){
     }; 
 
     return (
-        <div>
+        <div >
             {
                 arr?
                 arr.map(item=>
@@ -82,7 +82,7 @@ function FeatureSelection(){
             }}>Split Data</Link>
             {
                 data?
-                    <CustomPaginationActionsTable values={data}/>
+                    <div style={{display:'flex',flexDirection: 'column',alignItems: 'center'}}><CustomPaginationActionsTable values={data}/></div>
                 :null
             }
         </div>

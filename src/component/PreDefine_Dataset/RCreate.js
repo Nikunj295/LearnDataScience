@@ -20,19 +20,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function CCreate() {
+function RCreate() {
+    sessionStorage.setItem('raw','true')
     const classes = useStyles();
     const [rows, setRows] = useState(10)
     const [cols, setCols] = useState(2)
     const [cluster, setCluster] = useState(2)
     const [values, setValues] = useState([])
     const [info, setInfo] = useState([])
-    
-    sessionStorage.setItem('raw','true')
-    let type = sessionStorage.getItem('type')   
-    console.log(type)
+
     const getData = () => {
         let id = localStorage.getItem('myid')
+        let type = sessionStorage.getItem('type')
         let payload = {
             id,
             rows,
@@ -87,10 +86,8 @@ function CCreate() {
                         value={cols}
                         helperText="Some important text"
                         onChange={(e)=>setCols(e.target.value)}
-            /> 
-            {
-                type==="classification"?
-                <TextField className={classes.formControl} 
+            />    
+            <TextField className={classes.formControl} 
                         type="number" 
                         InputProps={{ inputProps: { min: 2, max: 10 } }} 
                         id="standard-basic" 
@@ -98,8 +95,7 @@ function CCreate() {
                         value={cluster}
                         helperText="How many class you want to distinguish?"
                         onChange={(e)=>setCluster(e.target.value)}
-                /> :null
-            }    
+            /> 
             <Button
                 variant="contained"
                 color="primary"
@@ -127,4 +123,4 @@ function CCreate() {
     )
 }
 
-export default CCreate
+export default RCreate

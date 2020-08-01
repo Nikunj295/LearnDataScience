@@ -48,7 +48,8 @@ const Details = [
 
 function Classification(){  
      useEffect(()=>{
-        let id = localStorage.getItem('myid')     
+        let id = localStorage.getItem('myid')
+        sessionStorage.setItem('type','classification')     
         axios.post("http://127.0.0.1:5000/addId",null,{
             params:{
                 id,

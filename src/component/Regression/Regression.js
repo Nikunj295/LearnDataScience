@@ -53,6 +53,7 @@ const useStyles = makeStyles({
 function Regression (){
     useEffect(()=>{
         let id = localStorage.getItem('myid')     
+        sessionStorage.setItem('type','regression')
         axios.post("http://127.0.0.1:5000/addId",null,{
             params:{
                 id,
@@ -60,6 +61,7 @@ function Regression (){
         })
         .then(response=>console.log(response))
     },[])
+
     const classes = useStyles();
 
     return (
@@ -100,6 +102,34 @@ function Regression (){
                     )
                 })
             }
+            <Link style={{textDecoration: 'none', padding:'10px'}} 
+                to={{ pathname: '/CCreate'}}>   
+                    <Card  style={{width:'345px'}}>
+                        <CardActionArea >
+                        <CardMedia
+                            className={classes.media}
+                            image={log4}
+                            title="Create Your Own Data"
+                        />
+                        <CardContent style={{height:'200px'}}>
+                            <Typography gutterBottom variant="h5" component="h2">
+                            Create Your Own Data
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                            Create Your Own Data
+                            </Typography>
+                        </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                        <Button size="small" color="primary">
+                            Share
+                        </Button>
+                        <Button size="small" color="primary">
+                            Learn More
+                        </Button>
+                        </CardActions>
+                    </Card>
+                </Link>
             </Grid>
         </div>
     )

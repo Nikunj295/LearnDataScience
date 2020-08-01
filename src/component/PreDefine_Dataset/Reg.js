@@ -14,7 +14,6 @@ function Reg(props){
         dataset = sessionStorage.getItem('db')
     }
     
-    sessionStorage.setItem('type','regression')
     const [infoData,setInfoData] = useState([])
     const [data,setData] = useState([])
     
