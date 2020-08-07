@@ -9,12 +9,6 @@ import CustomPaginationActionsTable from "../Tables/Table";
 import { withStyles } from "@material-ui/core/styles"
 import { AxisProvider } from '../Charts/files/Axis';
 
-
-import Lines from "../Charts/Lines/Lines";
-import Example from "../Charts/Lines/SynchronizedLineChart";
-import { AxisSelect2 } from "./AxisSelect";
-
-
 const useStyles = theme => ({
   formControl: {
     margin: theme.spacing(1),

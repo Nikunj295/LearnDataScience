@@ -14,7 +14,7 @@ const useStyles = theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 160,
-    [theme.breakpoints.down(500)]: {
+   [theme.breakpoints.down(500)]: {
       minWidth: 200,
     }
   },
@@ -88,21 +88,21 @@ class ClassificationOption extends Component {
       )
   }
   
-  groupBy=(arr, property)=>{
-    return arr.reduce(function(memo, x) {
-      if (!memo[x[property]]) { memo[x[property]] = []; }
-      memo[x[property]].push(x);
-      return memo;
-    }, []);
-  }
+  // groupBy=(arr, property)=>{
+  //   return arr.reduce(function(memo, x) {
+  //     if (!memo[x[property]]) { memo[x[property]] = []; }
+  //     memo[x[property]].push(x);
+  //     return memo;
+  //   }, []);
+  // }
 
-  groupByObj=(arr, property)=>{
-    return arr.reduce(function(memo, x) {
-      if (!memo[x[property]]) { memo[x[property]] = []; }
-      memo[x[property]].push(x);
-      return memo;
-    }, {});
-  }
+  // groupByObj=(arr, property)=>{
+  //   return arr.reduce(function(memo, x) {
+  //     if (!memo[x[property]]) { memo[x[property]] = []; }
+  //     memo[x[property]].push(x);
+  //     return memo;
+  //   }, {});
+  // }
 
   getRandomData = ()=>{
     const {algorithm,rows,cols,cluster,kn,maxTree,ntree} = this.state

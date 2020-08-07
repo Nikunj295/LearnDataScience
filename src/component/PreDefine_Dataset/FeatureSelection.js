@@ -1,18 +1,60 @@
-import React, { useEffect,useContext } from 'react'
+import React, { useEffect,useState } from 'react'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import CustomPaginationActionsTable from '../Tables/Table'
 import {Link} from "react-router-dom"
-import { DataContext } from "../Charts/files/DataProvider"
+import axios from 'axios';
 
-function FeatureSelection(props) {
+function FeatureSelection(){
+    const [data, setData] = useState([])
+    let col = localStorage.getItem('selected').split(",")
+    var arr = []
+    col.map(item=>arr.push(item))
+    let [item,setItem] = React.useState(arr)
 
-    const {mod1,data1,cols} = useContext(DataContext)
-    const [mod,setMod] = mod1
-    const [data,setData] = data1
-    const [col,setCol] = cols
+    useEffect(()=>{
+        const id = localStorage.getItem('myid')
+        const dataset = localStorage.getItem('dataset')
+        const raw = sessionStorage.getItem('raw')
+        let payload = {
+            id,
+            item,
+            dataset
+        }
 
-    let [item,setItem] = React.useState(col)
+
+        if(raw==='true'){
+            axios.post("http://127.0.0.1:5000/create/selection",null,{
+                params:{
+                    payload
+                }
+            })
+            .then(response=>response.data)
+            .then(data => {
+                const tb = data
+                var myData = Object.keys(tb).map(key => {
+                    return tb[key];
+                })
+                setData(myData)
+            })
+        }
+        else{
+            axios.post("http://127.0.0.1:5000/selection",null,{
+                params:{
+                    payload
+                }
+            })
+            .then(response=>response.data)
+            .then(data => {
+                const tb = data
+                var myData = Object.keys(tb).map(key => {
+                    return tb[key];
+                })
+                setData(myData)
+            })
+        }
+        sessionStorage.setItem('train',item)
+    },[item])
 
     const handleChange = (event) => {
         if(event.target.checked && !item.includes(event.target.name)){
@@ -22,18 +64,12 @@ function FeatureSelection(props) {
             setItem(item.filter(i => i !== event.target.name))
         }
     }; 
-    
-    // const deleteProps = (obj, prop) => {
-    //     for (const p of prop) {
-    //         (p in obj) && (delete obj[p]);
-    //     }    
-    // }
 
     return (
-        <div>
+        <div >
             {
-                col?
-                col.map(item=>
+                arr?
+                arr.map(item=>
                     <FormControlLabel
                         control={<Checkbox defaultChecked={true} onChange={handleChange} name={item} />}
                         label={item} 
@@ -44,7 +80,11 @@ function FeatureSelection(props) {
                 pathname:"SplitData",
                 selected:item
             }}>Split Data</Link>
-            <CustomPaginationActionsTable values={mod}/>
+            {
+                data?
+                    <div style={{display:'flex',flexDirection: 'column',alignItems: 'center'}}><CustomPaginationActionsTable values={data}/></div>
+                :null
+            }
         </div>
     )
 }

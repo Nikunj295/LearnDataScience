@@ -20,28 +20,34 @@ export default function CustomActiveShapePieChart (props) {
         pre.push({'name':i,value:item.length})
         i++
     })
-    var count1 = groupBy(props.values,'Original')
+    // console.log(pre)
+    var count1 = groupBy(props.values,'target')
     var og = []
     let j=0
     count1.map(item=>{
-        og.push({'name':i,value:item.length})
+        og.push({'name':j,value:item.length})
         j++
     })
+    console.log(og)
     
     return (
         <>
-        <h3>Predicted</h3>
-        <PieChart width={400} height={400}>
-            <Pie dataKey="value" isAnimationActive={true} data={pre} 
-                cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
-            <Tooltip />
-        </PieChart>
-        <h3>Original</h3>
-        <PieChart width={400} height={400}>
-            <Pie dataKey="value" isAnimationActive={true} data={og} 
-                cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
-            <Tooltip />
-        </PieChart>
+        <div style={{ display:'flex',alignContent:'center',justifyContent:'center'}}>
+            <h3>Predicted</h3>
+            <PieChart width={400} height={400}>
+                <Pie dataKey="value" isAnimationActive={true} data={pre} 
+                    cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
+                <Tooltip />
+                <Legend/>
+            </PieChart>
+            <h3>Original</h3>
+            <PieChart width={400} height={400}>
+                <Pie dataKey="value" isAnimationActive={true} data={og} 
+                    cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
+                <Tooltip />
+                <Legend/>
+            </PieChart>
+        </div>
         </>
     );
 }

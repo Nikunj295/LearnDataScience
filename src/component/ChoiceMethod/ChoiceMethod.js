@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import "./main.css"
 import log3 from "./3.png"
 import log4 from "./4.png"
 
 export default function ChoiceMethod() {
+    const [value, setValue] = React.useState(
+        localStorage.getItem('myid') || ''
+    );
+     
+    useEffect(() => {
+        localStorage.setItem('myid', '_' + Math.random().toString(36).substr(2, 9));
+    }, [value])
+
     return (
-        <div>
+        <div className="mainScreen">
             <section>
                 <div id="qwe" class="screen">
                     <div class="imgBox">

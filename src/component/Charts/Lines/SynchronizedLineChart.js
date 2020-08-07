@@ -9,13 +9,12 @@ export default function Example(props){
 
     const {x,y,z} = useContext(AxisContext)
     const [x_axis,setX_axis] = x
-    const [y_axis,setY_axis] = y
     const [tar,setTar] = z
     const values = props.values
 
     return (
     <>
-        <div >
+        <div style={{display:'flex',flexDirection: 'column',  justifyContent: 'space-between'}}>
         <LineChart
             width={500}
             height={200}
@@ -26,8 +25,8 @@ export default function Example(props){
             }}
         >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey={x_axis} />
-            <YAxis />
+            <XAxis  />
+            <YAxis dataKey={x_axis}/>
             <Tooltip />
             <Brush />
             <Line type="monotone" dataKey={tar} stroke="#8884d8" fill="#8884d8" />
@@ -43,9 +42,9 @@ export default function Example(props){
             }}
         >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
+            <XAxis dataKey={x_axis} />
             <YAxis />
-            <Tooltip />
+            <Tooltip name="Predicted"/>
             <Line type="monotone" dataKey="Predicted" stroke="#8884d8" fill="#8884d8" />
         </LineChart>
 
@@ -61,11 +60,11 @@ export default function Example(props){
             }}
         >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="0"/>
+            <XAxis dataKey={x_axis}/>
             <YAxis/>
-            <Tooltip name="Original"/>
+            <Tooltip name="Target"/>
             <Line type="monotone" dataKey="Predicted" stroke="#82ca9d" fill="#82ca9d" />
-            <Line type="monotone" dataKey="Original" opacity={0}/>
+            <Line type="monotone" dataKey="target" opacity={0}/>
         </LineChart>
         </div>
     </>

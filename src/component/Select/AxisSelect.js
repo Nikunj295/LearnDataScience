@@ -1,11 +1,10 @@
 import React, { useState, useContext } from 'react'
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
-import { AxisContext } from "../Charts/files/Axis"
+import {AxisContext}  from "../Charts/files/Axis"
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -21,8 +20,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function AxisSelect(props){
-    const [x_axe,setX_axe] = useState("0")
-    const [y_axe,setY_axe] = useState("1")
+    const [x_axe,setX_axe] = useState("")
+    const [y_axe,setY_axe] = useState("")
     const [tg,setTG] = useState("Predicted")
 
     const {x,y,z} = useContext(AxisContext)
@@ -30,27 +29,25 @@ function AxisSelect(props){
     const [y_axis,setY_axis] = y
     const [tar,setTar] = z
 
-    var col = []
-    var columns = []
-    if(props.values[0]){
-        col = Object.keys(props.values[0])
-        for(let i=0;i<col.length-2;i++){
-            columns.push(col[i])
-        }
-    }
+    var temp = sessionStorage.getItem('train')
+    const columns = temp.split(",")
     const updateX = (e) => {
         e.preventDefault()
         setX_axe(e.target.value)
+        sessionStorage.setItem('lineX',e.target.value)
         setX_axis(e.target.value)
     }
     const updateY = (e) => {
         e.preventDefault()
         setY_axe(e.target.value)
+        sessionStorage.setItem('lineY',e.target.value)
+        
         setY_axis(e.target.value)
     }
     const updateTg = (e) => {
         e.preventDefault()
         setTG(e.target.value)
+        sessionStorage.setItem('target',e.target.value)
         setTar(e.target.value)
     }
 
@@ -97,7 +94,7 @@ function AxisSelect(props){
                     onChange={(e)=>updateTg(e)}
                 >
                     <MenuItem name="tg" value="Predicted">Predicted</MenuItem>
-                    <MenuItem name="tg" value="Original">Original</MenuItem>
+                    <MenuItem name="tg" value="target">Target</MenuItem>
                 </Select>
             </FormControl>
         </div>
@@ -105,21 +102,15 @@ function AxisSelect(props){
 }
 
 export function AxisSelect2(props){
-    const [x_axe,setX_axe] = useState("0")
+    const [x_axe,setX_axe] = useState("")
     const [tg,setTG] = useState("Predicted")
 
     const {x,z} = useContext(AxisContext)
     const [x_axis,setX_axis] = x
     const [tar,setTar] = z
 
-    var col = []
-    var columns = []
-    if(props.values[0]){
-        col = Object.keys(props.values[0])
-        for(let i=0;i<col.length-2;i++){
-            columns.push(col[i])
-        }
-    }
+    var temp = sessionStorage.getItem('train')
+    const columns = temp.split(",")
     const updateX = (e) => {
         e.preventDefault()
         setX_axe(e.target.value)
@@ -159,7 +150,7 @@ export function AxisSelect2(props){
                     onChange={(e)=>updateTg(e)}
                 >
                     <MenuItem name="tg" value="Predicted">Predicted</MenuItem>
-                    <MenuItem name="tg" value="Original">Original</MenuItem>
+                    <MenuItem name="tg" value="target">Original</MenuItem>
                 </Select>
             </FormControl>
         </div>

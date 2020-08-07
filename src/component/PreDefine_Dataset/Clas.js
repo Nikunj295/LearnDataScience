@@ -1,23 +1,27 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import CustomPaginationActionsTable from "../Tables/Table";
 import { Link } from 'react-router-dom';
-import { DataContext } from '../Charts/files/DataProvider';
 
-function Iris(){
-    
-    const [infoData,setInfoData] = useState([]) 
-    const {data1,mod1,cols} = useContext(DataContext)
-    const [data,setData] = data1
-    const [mod,setMod] = mod1
-    const [col,setCol] = cols
+function Clas(props){
+
+    let dataset = ""
+    if(props.location.data){
+        sessionStorage.setItem('db', props.location.data.data)
+        dataset = props.location.data.data
+    }
+    else{
+        dataset = sessionStorage.getItem('db')
+    }
+
+
+    const [infoData,setInfoData] = useState([])
+    const [data,setData] = useState([])
     
     useEffect(()=>{
-        axios.post('http://127.0.0.1:5000/classification/fetchData/iris',null,{
-            params:{
-                type:'fetchData'
-            }
-        })
+        localStorage.setItem('dataset',dataset)
+        sessionStorage.setItem('raw','false')
+        axios.post(`http://127.0.0.1:5000/fetchData/${dataset}`)
         .then(response=>response.data)
         .then(data => {
             const tb = data[0]
@@ -30,7 +34,6 @@ function Iris(){
             })
             setInfoData(myData1)
             setData(myData)
-            setMod(myData)
 
             let column = [] 
             let columns = []
@@ -40,12 +43,12 @@ function Iris(){
                     columns.push(column[i])
                 }
             }
-            setCol(columns)
+            localStorage.setItem("selected",columns)
         })
-    },[])
+    },[dataset])
 
     return (
-        <div>
+        <div style={{display:'flex',flexDirection: 'column',alignItems: 'center'}}>
                 <Link to={{
                     pathname:"/FeatureSelection",
                     featureSelection:{
@@ -55,14 +58,15 @@ function Iris(){
                     Feature Selection
                 </Link>
                 {
-                    data?<>
-                        <CustomPaginationActionsTable values={data}/> 
-                        <CustomPaginationActionsTable values={infoData}/>            
-                        </>
+                    data?
+                    <div >
+                        <CustomPaginationActionsTable values={data} /> 
+                        <CustomPaginationActionsTable values={infoData} type="info"/>            
+                    </div>
                     :null
                 }
         </div>
     )
 }
 
-export default Iris
+export default Clas

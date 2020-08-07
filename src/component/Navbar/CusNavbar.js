@@ -6,10 +6,10 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   NavbarText
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import {Link} from 'react-router-dom'
 
 function CusNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,10 +22,10 @@ function CusNavbar() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/classification">| Classification |</NavLink>
+              <Link to="/classification">| Classification |</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/regression">| Regression |</NavLink>
+              <Link to="/regression">| Regression |</Link>
             </NavItem>
           </Nav>
         <NavbarText>Learning.... </NavbarText>
