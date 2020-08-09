@@ -9,8 +9,10 @@ import Box from '@material-ui/core/Box';
 import Axios from "axios"
 import AxisSelect, { AxisSelect2 } from '../Select/AxisSelect';
 import Lines from '../Charts/Lines/Lines';
+import MultipeLines from '../Charts/Lines/MultipleLines';
 import Example from '../Charts/Lines/SynchronizedLineChart';
 import ScatterPlot1 from "../Charts/Scatterplot/ScatterPlot-with-trendline";
+import Histogram from '../Charts/Histogram/Histogram';
 
 
 
@@ -113,11 +115,12 @@ export default function Visulization() {
             <LinkTab label="Lines"  {...a11yProps(0)} />
             <LinkTab label="Sync Chart"  {...a11yProps(1)} />
             <LinkTab label="TrendLine"  {...a11yProps(2)} />
+            <LinkTab label="Multiple"  {...a11yProps(3)} />
           </Tabs>
       </AppBar>
           <TabPanel value={value} index={0}>
             {
-                result? <> <AxisSelect values={final}/>  <Lines values={final}/> </> :null
+                result? <><Lines values={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={1}>
@@ -128,6 +131,11 @@ export default function Visulization() {
           <TabPanel value={value} index={2}>
             {
                 result? <> <AxisSelect2 values={final}/> <ScatterPlot1 data={final}/> </> :null
+            }
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            {
+                result? <> <MultipeLines values={final}/> </> :null
             }
           </TabPanel>
 

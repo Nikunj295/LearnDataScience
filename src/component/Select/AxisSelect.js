@@ -41,7 +41,6 @@ function AxisSelect(props){
         e.preventDefault()
         setY_axe(e.target.value)
         sessionStorage.setItem('lineY',e.target.value)
-        
         setY_axis(e.target.value)
     }
     const updateTg = (e) => {

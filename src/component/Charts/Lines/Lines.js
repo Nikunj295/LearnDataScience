@@ -1,5 +1,5 @@
 import React, { useContext,useEffect, useState} from 'react'
-import {LineChart,ResponsiveContainer, Line, XAxis,YAxis, CartesianGrid, Tooltip, Legend,} from 'recharts';
+import {LineChart,ResponsiveContainer, Line, XAxis,YAxis, CartesianGrid, Tooltip, Legend,Brush} from 'recharts';
 import { AxisContext } from "../files/Axis"
 
 export default function Lines (props){
@@ -18,8 +18,8 @@ export default function Lines (props){
     <>
       {
         props.values?
-        <>
-          <ResponsiveContainer width="95%" height={400}>
+        <div style={{display:'flex',flexDirection: 'column',alignItems: 'center'}}>
+          <ResponsiveContainer width="70%" height={400}>
             <LineChart
                 data={props.values}
                 margin={{
@@ -28,15 +28,52 @@ export default function Lines (props){
             >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis/>
-                <YAxis dataKey={x_axis}/>
+                
+                <YAxis/>
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey={tar} stroke="#8884d8" activeDot={{ r: 8 }} />\
+                <Brush endIndex={40} />
+                <Line type="monotone" dataKey='Predicted' stroke="#8884d8" activeDot={{ r: 8 }} />
+                <Line dataKey='target' stroke="red" />
             </LineChart> 
           </ResponsiveContainer>
-        </>
+          <ResponsiveContainer width="95%" height={400}>
+            <LineChart
+                data={props.values}
+                syncId="id"
+                margin={{
+                  top: 5, right: 30, left: 20, bottom: 5,
+                }}
+            >
+                <Brush />
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis/>    
+                <YAxis/>
+                <Tooltip />
+                <Legend />
+                <Line dataKey='target' stroke="red" />
+            </LineChart> 
+          </ResponsiveContainer>
+          <ResponsiveContainer width="95%" height={400}>
+            <LineChart
+                data={props.values}
+                syncId="id"
+                margin={{
+                  top: 5, right: 30, left: 20, bottom: 5,
+                }}
+            >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis/>    
+                <Brush/>
+                <YAxis/>
+                <Tooltip />
+                <Legend />
+                <Line dataKey='Predicted' stroke="Green" />
+            </LineChart> 
+          </ResponsiveContainer>
+        </div>
         :null
       }
-          </>
+    </>
   );
 }

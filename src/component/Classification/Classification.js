@@ -84,14 +84,6 @@ function Classification(){
                                     </Typography>
                                 </CardContent>
                                 </CardActionArea>
-                                <CardActions>
-                                <Button size="small" color="primary">
-                                    Share
-                                </Button>
-                                <Button size="small" color="primary">
-                                    Learn More
-                                </Button>
-                                </CardActions>
                             </Card>
                         </Link>
                     )
@@ -99,7 +91,7 @@ function Classification(){
             }
 
                         <Link style={{textDecoration: 'none',padding:'10px'}} 
-                        to={{ pathname: '/CCreate', data: { data: `create` } }}>   
+                        to={{ pathname: '/CCreate' }}>   
                             <Card className={classes.root}>
                                 <CardActionArea >
                                 <CardMedia
@@ -116,14 +108,6 @@ function Classification(){
                                     </Typography>
                                 </CardContent>
                                 </CardActionArea>
-                                <CardActions>
-                                <Button size="small" color="primary">
-                                    Share
-                                </Button>
-                                <Button size="small" color="primary">
-                                    Learn More
-                                </Button>
-                                </CardActions>
                             </Card>
                         </Link>
             </Grid>

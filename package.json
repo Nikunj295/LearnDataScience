@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
+    "@syncfusion/ej2-react-charts": "^18.2.48",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -21,6 +22,7 @@
     "react-bootstrap-table2-paginator": "^2.1.2",
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
+    "react-google-charts": "^3.0.15",
     "react-heatmap-grid": "^0.8.2",
     "react-numeric-input": "^2.2.3",
     "react-router-dom": "^5.2.0",

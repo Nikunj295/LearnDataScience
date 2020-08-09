@@ -50,10 +50,7 @@ function Clas(props){
     return (
         <div style={{display:'flex',flexDirection: 'column',alignItems: 'center'}}>
                 <Link to={{
-                    pathname:"/FeatureSelection",
-                    featureSelection:{
-                        data:data
-                    }
+                    pathname:"/FeatureSelection"
                 }}>
                     Feature Selection
                 </Link>
