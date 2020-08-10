@@ -5,7 +5,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
 function MultipeLines(props){
     const [options,setOptions] = useState([])
-
+    let  [,setState] = useState()
 	const toggleDataSeries = (e) => {
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
 			e.dataSeries.visible = false;
@@ -13,6 +13,7 @@ function MultipeLines(props){
 		else{
 			e.dataSeries.visible = true;
         }
+        setState({});
 	}
 
     const handle = () => {

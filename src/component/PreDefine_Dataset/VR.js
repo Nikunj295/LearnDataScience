@@ -7,7 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Axios from "axios"
-import AxisSelect, { AxisSelect2 } from '../Select/AxisSelect';
+import AxisSelect, { AxisSelect2, Histo } from '../Select/AxisSelect';
 import Lines from '../Charts/Lines/Lines';
 import MultipeLines from '../Charts/Lines/MultipleLines';
 import Example from '../Charts/Lines/SynchronizedLineChart';
@@ -113,9 +113,9 @@ export default function Visulization() {
             aria-label="nav tabs example"
           >
             <LinkTab label="Lines"  {...a11yProps(0)} />
-            <LinkTab label="Sync Chart"  {...a11yProps(1)} />
-            <LinkTab label="TrendLine"  {...a11yProps(2)} />
-            <LinkTab label="Multiple"  {...a11yProps(3)} />
+            <LinkTab label="TrendLine"  {...a11yProps(1)} />
+            <LinkTab label="Multiple"  {...a11yProps(2)} />
+            <LinkTab label="Histogram"  {...a11yProps(3)} />
           </Tabs>
       </AppBar>
           <TabPanel value={value} index={0}>
@@ -125,19 +125,19 @@ export default function Visulization() {
           </TabPanel>
           <TabPanel value={value} index={1}>
             {
-                result? <> <AxisSelect values={final}/> <Example values={final}/> </> :null
+                result? <>  <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={2}>
             {
-                result? <> <AxisSelect2 values={final}/> <ScatterPlot1 data={final}/> </> :null
+                result? <> <MultipeLines values={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={3}>
             {
-                result? <> <MultipeLines values={final}/> </> :null
+                result? <>  <Histo values={final}/><Histogram values={final}/> </> :null
             }
-          </TabPanel>
+          </TabPanel> 
 
     </div>
   );

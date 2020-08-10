@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import {AxisContext}  from "../Charts/files/Axis"
+import TextField from "@material-ui/core/TextField"
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -20,6 +21,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function AxisSelect(props){
+    var temp = sessionStorage.getItem('train')
+    const columns = temp.split(",")
     const [x_axe,setX_axe] = useState("")
     const [y_axe,setY_axe] = useState("")
     const [tg,setTG] = useState("Predicted")
@@ -29,8 +32,6 @@ function AxisSelect(props){
     const [y_axis,setY_axis] = y
     const [tar,setTar] = z
 
-    var temp = sessionStorage.getItem('train')
-    const columns = temp.split(",")
     const updateX = (e) => {
         e.preventDefault()
         setX_axe(e.target.value)
@@ -101,26 +102,29 @@ function AxisSelect(props){
 }
 
 export function AxisSelect2(props){
-    const [x_axe,setX_axe] = useState("")
+    var temp = sessionStorage.getItem('train')
+    const columns = temp.split(",")
+
+    const [x_axe,setX_axe] = useState(columns[0])
     const [tg,setTG] = useState("Predicted")
 
     const {x,z} = useContext(AxisContext)
     const [x_axis,setX_axis] = x
     const [tar,setTar] = z
 
-    var temp = sessionStorage.getItem('train')
-    const columns = temp.split(",")
+    
     const updateX = (e) => {
         e.preventDefault()
         setX_axe(e.target.value)
         setX_axis(e.target.value)
+        sessionStorage.setItem('lineX',e.target.value)
     }
     const updateTg = (e) => {
         e.preventDefault()
         setTG(e.target.value)
         setTar(e.target.value)
+        sessionStorage.setItem('target',e.target.value)
     }
-
     const classes = useStyles();
     return (
         <div>
@@ -156,5 +160,60 @@ export function AxisSelect2(props){
     )
 }
 
+export function Histo(props){
+    var temp = sessionStorage.getItem('train')
+    let columns = temp.split(",")
+
+    const [x_axe,setX_axe] = useState(columns[0])
+    const [bin,setBin] = useState()
+
+    const {x,b} = useContext(AxisContext)
+    const [x_axis,setX_axis] = x
+    const [bins,setBins] = b
+
+    columns.push('target')
+    columns.push('Predicted')
+
+    const updateX = (e) => {
+        e.preventDefault()
+        setX_axe(e.target.value)
+        setX_axis(e.target.value)
+    }
+    const updateBin = (e) => {
+        e.preventDefault()
+        setBins(e.target.value)
+        setBin(e.target.value)
+    }
+    const classes = useStyles();
+    return (
+        <div>
+            <h2 className="mt-3">Graph</h2>
+            <FormControl className={classes.formControl}>
+                <InputLabel id="x">X-axis</InputLabel>
+                <Select
+                    labelId="x"
+                    id="x"
+                    value={x_axe}
+                    onChange={(e)=>updateX(e)}
+                >
+                    {
+                        columns.map(item=>{
+                            return <MenuItem name="xaxe" value={item}>{item}</MenuItem>        
+                        })
+                    }
+                </Select>
+            </FormControl>
+            <TextField className={classes.formControl} 
+                    type="number" 
+                    InputProps={{ inputProps: { min: 10, max: 100000 } }} 
+                    id="standard-basic" 
+                    label="Bins"
+                    value={bin}
+                    helperText="Bins: Number of Distribution"
+                    onChange={(e)=>updateBin(e)}
+            />
+        </div>
+    )
+}
 
 export default AxisSelect
