@@ -62,7 +62,7 @@ function Classification(){
     return (
         <div>
             <h1>Classification</h1>
-            <Grid container spacing={10} style={{padding: '24px'}}>
+            <Grid container spacing={10} style={{padding: '24px',width:'100%',margin:'0' }}>
             {
                 Details.map(item=>{
                     return (

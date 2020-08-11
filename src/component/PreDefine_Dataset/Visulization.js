@@ -11,6 +11,7 @@ import HeatMap from "../Charts/HeatMap/HeatMap"
 import AxisSelect, { AxisSelect2 } from '../Select/AxisSelect';
 import ScatterPlot from "../Charts/Scatterplot/Scatterplot";
 import CustomActiveShapePieChart from "../Charts/PieChart/CustomActiveShapePieChart";
+import Tree from '../Charts/Tree/Tree';
 
 
 
@@ -113,6 +114,7 @@ export default function Visulization() {
             <LinkTab label="HeatMap"  {...a11yProps(0)} />
             <LinkTab label="PieChart"  {...a11yProps(1)} />
             <LinkTab label="ScatterPlot"  {...a11yProps(2)} />
+            <LinkTab label="Tree"  {...a11yProps(3)} />
           </Tabs>
       </AppBar>
           <TabPanel value={value} index={0}>
@@ -128,6 +130,11 @@ export default function Visulization() {
           <TabPanel value={value} index={2}>
             {
               final? <> <AxisSelect values={final}/> <ScatterPlot values={final}/> </> : null
+            }
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            {
+              final? <> <Tree/> </> : null
             }
           </TabPanel>
 

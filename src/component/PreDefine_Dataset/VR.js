@@ -13,6 +13,7 @@ import MultipeLines from '../Charts/Lines/MultipleLines';
 import Example from '../Charts/Lines/SynchronizedLineChart';
 import ScatterPlot1 from "../Charts/Scatterplot/ScatterPlot-with-trendline";
 import Histogram from '../Charts/Histogram/Histogram';
+import Boxplot from '../Charts/Boxplot/Boxplot';
 
 
 
@@ -116,16 +117,17 @@ export default function Visulization() {
             <LinkTab label="TrendLine"  {...a11yProps(1)} />
             <LinkTab label="Multiple"  {...a11yProps(2)} />
             <LinkTab label="Histogram"  {...a11yProps(3)} />
+            <LinkTab label="Box Plot"  {...a11yProps(4)} />
           </Tabs>
       </AppBar>
           <TabPanel value={value} index={0}>
             {
-                result? <><Lines values={final}/> </> :null
+                result? <> <Lines values={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={1}>
             {
-                result? <>  <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
+                result? <> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={2}>
@@ -136,6 +138,11 @@ export default function Visulization() {
           <TabPanel value={value} index={3}>
             {
                 result? <>  <Histo values={final}/><Histogram values={final}/> </> :null
+            }
+          </TabPanel> 
+          <TabPanel value={value} index={4}>
+            {
+                result? <>  <Boxplot values={final}/> </> :null
             }
           </TabPanel> 
 
