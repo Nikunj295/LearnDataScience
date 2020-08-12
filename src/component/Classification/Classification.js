@@ -62,7 +62,7 @@ function Classification(){
     return (
         <div>
             <h1>Classification</h1>
-            <Grid container spacing={10} style={{padding: '24px'}}>
+            <Grid container spacing={10} style={{padding: '24px',width:'100%',margin:'0' }}>
             {
                 Details.map(item=>{
                     return (
@@ -84,14 +84,6 @@ function Classification(){
                                     </Typography>
                                 </CardContent>
                                 </CardActionArea>
-                                <CardActions>
-                                <Button size="small" color="primary">
-                                    Share
-                                </Button>
-                                <Button size="small" color="primary">
-                                    Learn More
-                                </Button>
-                                </CardActions>
                             </Card>
                         </Link>
                     )
@@ -99,7 +91,7 @@ function Classification(){
             }
 
                         <Link style={{textDecoration: 'none',padding:'10px'}} 
-                        to={{ pathname: '/CCreate', data: { data: `create` } }}>   
+                        to={{ pathname: '/CCreate' }}>   
                             <Card className={classes.root}>
                                 <CardActionArea >
                                 <CardMedia
@@ -116,14 +108,6 @@ function Classification(){
                                     </Typography>
                                 </CardContent>
                                 </CardActionArea>
-                                <CardActions>
-                                <Button size="small" color="primary">
-                                    Share
-                                </Button>
-                                <Button size="small" color="primary">
-                                    Learn More
-                                </Button>
-                                </CardActions>
                             </Card>
                         </Link>
             </Grid>

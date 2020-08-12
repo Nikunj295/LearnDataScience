@@ -7,10 +7,13 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Axios from "axios"
-import AxisSelect, { AxisSelect2 } from '../Select/AxisSelect';
+import AxisSelect, { AxisSelect2, Histo } from '../Select/AxisSelect';
 import Lines from '../Charts/Lines/Lines';
+import MultipeLines from '../Charts/Lines/MultipleLines';
 import Example from '../Charts/Lines/SynchronizedLineChart';
 import ScatterPlot1 from "../Charts/Scatterplot/ScatterPlot-with-trendline";
+import Histogram from '../Charts/Histogram/Histogram';
+import Boxplot from '../Charts/Boxplot/Boxplot';
 
 
 
@@ -111,25 +114,37 @@ export default function Visulization() {
             aria-label="nav tabs example"
           >
             <LinkTab label="Lines"  {...a11yProps(0)} />
-            <LinkTab label="Sync Chart"  {...a11yProps(1)} />
-            <LinkTab label="TrendLine"  {...a11yProps(2)} />
+            <LinkTab label="TrendLine"  {...a11yProps(1)} />
+            <LinkTab label="Multiple"  {...a11yProps(2)} />
+            <LinkTab label="Histogram"  {...a11yProps(3)} />
+            <LinkTab label="Box Plot"  {...a11yProps(4)} />
           </Tabs>
       </AppBar>
           <TabPanel value={value} index={0}>
             {
-                result? <> <AxisSelect values={final}/>  <Lines values={final}/> </> :null
+                result? <> <Lines values={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={1}>
             {
-                result? <> <AxisSelect values={final}/> <Example values={final}/> </> :null
+                result? <> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={2}>
             {
-                result? <> <AxisSelect2 values={final}/> <ScatterPlot1 data={final}/> </> :null
+                result? <> <MultipeLines values={final}/> </> :null
             }
           </TabPanel>
+          <TabPanel value={value} index={3}>
+            {
+                result? <>  <Histo values={final}/><Histogram values={final}/> </> :null
+            }
+          </TabPanel> 
+          <TabPanel value={value} index={4}>
+            {
+                result? <>  <Boxplot values={final}/> </> :null
+            }
+          </TabPanel> 
 
     </div>
   );

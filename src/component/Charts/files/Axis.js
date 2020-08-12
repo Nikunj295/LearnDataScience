@@ -8,8 +8,10 @@ export const AxisProvider = props => {
     const [x_axis,setX_axis] = useState(temp[0])
     const [y_axis,setY_axis] = useState(temp[1])
     const [tar,setTar] = useState("Predicted")
+    const [bins,setBins] = useState()
+
     return (
-        <AxisContext.Provider value={{x:[x_axis,setX_axis],y:[y_axis,setY_axis],z:[tar,setTar]}}> 
+        <AxisContext.Provider value={{x:[x_axis,setX_axis],y:[y_axis,setY_axis],z:[tar,setTar],b:[bins,setBins]}}> 
             {props.children}
         </AxisContext.Provider>
     )

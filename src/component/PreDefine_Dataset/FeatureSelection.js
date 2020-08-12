@@ -77,8 +77,7 @@ function FeatureSelection(){
                 ):null
             }
             <Link to={{
-                pathname:"SplitData",
-                selected:item
+                pathname:"SplitData"
             }}>Split Data</Link>
             {
                 data?

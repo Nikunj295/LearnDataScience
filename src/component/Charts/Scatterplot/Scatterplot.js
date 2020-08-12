@@ -3,7 +3,6 @@ import {
     ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts'
 import { AxisContext } from "../files/Axis"
-import ScatterPlot1 from "./ScatterPlot-with-trendline";
 
 
 function Scatterplot(props){

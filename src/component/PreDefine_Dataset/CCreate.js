@@ -30,7 +30,6 @@ function CCreate() {
     
     sessionStorage.setItem('raw','true')
     let type = sessionStorage.getItem('type')   
-    console.log(type)
     const getData = () => {
         let id = localStorage.getItem('myid')
         let payload = {
