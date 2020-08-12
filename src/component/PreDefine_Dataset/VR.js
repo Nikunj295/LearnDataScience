@@ -10,10 +10,13 @@ import Axios from "axios"
 import AxisSelect, { AxisSelect2, Histo } from '../Select/AxisSelect';
 import Lines from '../Charts/Lines/Lines';
 import MultipeLines from '../Charts/Lines/MultipleLines';
+
+import { Button } from '@material-ui/core'
 import Example from '../Charts/Lines/SynchronizedLineChart';
 import ScatterPlot1 from "../Charts/Scatterplot/ScatterPlot-with-trendline";
 import Histogram from '../Charts/Histogram/Histogram';
 import Boxplot from '../Charts/Boxplot/Boxplot';
+import Areaplot from '../Charts/Area/Areaplot';
 
 
 
@@ -74,6 +77,7 @@ export default function Visulization() {
   const [value, setValue] = React.useState(0);
   const [result,setResult] = useState([])
   const [final,setFinal] = useState([])
+  const [d,setD] = useState([])
   useEffect(() => {
         let id = localStorage.getItem('myid')
         let payload={
@@ -104,6 +108,7 @@ export default function Visulization() {
     setValue(newValue);
   };
 
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -114,10 +119,11 @@ export default function Visulization() {
             aria-label="nav tabs example"
           >
             <LinkTab label="Lines"  {...a11yProps(0)} />
-            <LinkTab label="TrendLine"  {...a11yProps(1)} />
-            <LinkTab label="Multiple"  {...a11yProps(2)} />
-            <LinkTab label="Histogram"  {...a11yProps(3)} />
-            <LinkTab label="Box Plot"  {...a11yProps(4)} />
+            <LinkTab label="Area"  {...a11yProps(1)} />
+            <LinkTab label="TrendLine"  {...a11yProps(2)} />
+            <LinkTab label="Multiple"  {...a11yProps(3)} />
+            <LinkTab label="Histogram"  {...a11yProps(4)} />
+            <LinkTab label="Box Plot"  {...a11yProps(5)} />
           </Tabs>
       </AppBar>
           <TabPanel value={value} index={0}>
@@ -127,22 +133,27 @@ export default function Visulization() {
           </TabPanel>
           <TabPanel value={value} index={1}>
             {
-                result? <> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
+                result? <> <Areaplot values={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={2}>
             {
-                result? <> <MultipeLines values={final}/> </> :null
+                result? <> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={3}>
             {
+                result? <> <MultipeLines values={final}/> </> :null
+            }
+          </TabPanel>
+          <TabPanel value={value} index={4}>
+            {
                 result? <>  <Histo values={final}/><Histogram values={final}/> </> :null
             }
           </TabPanel> 
-          <TabPanel value={value} index={4}>
+          <TabPanel value={value} index={5}>
             {
-                result? <>  <Boxplot values={final}/> </> :null
+                result? <> <Boxplot values={final}/> </> :null
             }
           </TabPanel> 
 
