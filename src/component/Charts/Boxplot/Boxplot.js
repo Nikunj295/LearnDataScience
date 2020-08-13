@@ -1,14 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import CanvasJSReact from '../files/canvasjs.react'
+import Axios from 'axios';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
-function Boxplot(props) {
+class Boxplot extends React.Component {
+	
+	state={
+		data:[],
+	}
 
-    const [options,setOptions] = useState({})
+	componentWillMount(){
+		let id = localStorage.getItem("myid")
+		let payload = {
+			id
+		}
+		Axios.post("http://127.0.0.1:5000/boxplot",null,{
+			params:{
+				payload
+			}
+		}).then(response=>response.data)
+		.then(data=>{
+			let da = Object.keys(data).map(key=>{
+				return data[key]
+			})
+			this.setState({data:da[0]})
+			console.log(da[0])
+		})
+	}
 
-    if(props.values){
-        let op = {
-            theme: "light2",
+	render() {
+		console.log(Math.floor(Math.random()*16777215).toString(16).padStart(6, '0'))
+		const options = {
+			theme: "light2",
 			animationEnabled: true,
 			title:{
 				text: "Energy in Baked Foods"
@@ -18,26 +41,20 @@ function Boxplot(props) {
 			},
 			data: [{
 				type: "boxAndWhisker",
-				yValueFormatString: "#,##0.# \"kcal/100g\"",
-				dataPoints: [
-					{ label: "Bread",  y: [179, 256, 300, 418, 274] },
-					{ label: "Cake",  y: [252, 346, 409, 437, 374.5] },
-					{ label: "Biscuit",  y: [236, 281.5, 336.5, 428, 313] },
-					{ label: "Doughnut",  y: [340, 382, 430, 452, 417] },
-					{ label: "Pancakes",  y: [194, 224.5, 342, 384, 251] },
-					{ label: "Bagels",  y: [241, 255, 276.5, 294, 274.5] }
-				]
+				whiskerThickness: 4,
+				upperBoxColor: `#${Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')}`,
+				lowerBoxColor: `#${Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')}`,
+				whiskerColor: `#${Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')}`,
+				dataPoints: this.state.data
 			}]
-        }
+		}
 
-        setOptions(op)
-    }
-
-    return (
-        <div>
-            <CanvasJSChart options = {options}/>
-        </div>
-    )
+		return (
+			<div>
+				<CanvasJSChart options = {options}/>
+			</div>
+		);
+	}
 }
 
 export default Boxplot

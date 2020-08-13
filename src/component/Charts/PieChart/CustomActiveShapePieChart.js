@@ -1,7 +1,6 @@
 import React from 'react';
-import {
-  PieChart, Pie, Legend, Tooltip,
-} from 'recharts';
+import CanvasJSReact from '../files/canvasjs.react'
+var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
 const groupBy=(arr, property)=>{
     return arr.reduce(function(memo, x) {
@@ -17,37 +16,61 @@ export default function CustomActiveShapePieChart (props) {
     var pre = []
     let i=0
     count.map(item=>{
-        pre.push({'name':i,value:item.length})
+        pre.push({'label':i,y:item.length})
         i++
     })
-    // console.log(pre)
+    const options = {
+        exportEnabled: true,
+        animationEnabled: true,
+        title: {
+            text: "Predicted"
+        },
+        data: [{
+            type: "pie",
+            startAngle: 75,
+            toolTipContent: "<b>{label}</b>: {y}times",
+            showInLegend: "true",
+            legendText: "{label}",
+            indexLabelFontSize: 16,
+            indexLabel: "{label} - {y}times",
+            dataPoints: pre
+        }]
+    }
+
     var count1 = groupBy(props.values,'target')
     var og = []
     let j=0
     count1.map(item=>{
-        og.push({'name':j,value:item.length})
+        og.push({'label':j,y:item.length})
         j++
     })
-    console.log(og)
     
+    const options1 = {
+        exportEnabled: true,
+        animationEnabled: true,
+        title: {
+            text: "Target"
+        },
+        data: [{
+            type: "pie",
+            startAngle: 75,
+            toolTipContent: "<b>{label}</b>: {y}times",
+            showInLegend: "true",
+            legendText: "{label}",
+            indexLabelFontSize: 16,
+            indexLabel: "{label} - {y}times",
+            dataPoints: og
+        }]
+    }
+
+
     return (
         <>
-        <div style={{ display:'flex',alignContent:'center',justifyContent:'center'}}>
-            <h3>Predicted</h3>
-            <PieChart width={400} height={400}>
-                <Pie dataKey="value" isAnimationActive={true} data={pre} 
-                    cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
-                <Tooltip />
-                <Legend/>
-            </PieChart>
-            <h3>Original</h3>
-            <PieChart width={400} height={400}>
-                <Pie dataKey="value" isAnimationActive={true} data={og} 
-                    cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
-                <Tooltip />
-                <Legend/>
-            </PieChart>
-        </div>
+            <CanvasJSChart options = {options}/>
+            <br/>
+            <br/>
+            <br/>
+            <CanvasJSChart options = {options1}/>
         </>
     );
 }

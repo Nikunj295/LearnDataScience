@@ -10,12 +10,15 @@ import Axios from "axios"
 import AxisSelect, { AxisSelect2, Histo } from '../Select/AxisSelect';
 import Lines from '../Charts/Lines/Lines';
 import MultipeLines from '../Charts/Lines/MultipleLines';
+
+import { Button } from '@material-ui/core'
 import Example from '../Charts/Lines/SynchronizedLineChart';
 import ScatterPlot1 from "../Charts/Scatterplot/ScatterPlot-with-trendline";
 import Histogram from '../Charts/Histogram/Histogram';
 import Boxplot from '../Charts/Boxplot/Boxplot';
-
-
+import Areaplot from '../Charts/Area/Areaplot';
+import Corr from '../Charts/HeatMap/Corr';
+import Range1 from '../Charts/Area/Range';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -24,8 +27,8 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`nav-tabpanel-${index}`}
-      aria-labelledby={`nav-tab-${index}`}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -45,26 +48,15 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `nav-tab-${index}`,
-    'aria-controls': `nav-tabpanel-${index}`,
+    id: `scrollable-auto-tab-${index}`,
+    'aria-controls': `scrollable-auto-tabpanel-${index}`,
   };
-}
-
-function LinkTab(props) {
-    return (
-    <Tab
-      component="a"
-      onClick={(event) => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: '100%',
     backgroundColor: theme.palette.background.paper,
   },
 }));
@@ -74,6 +66,7 @@ export default function Visulization() {
   const [value, setValue] = React.useState(0);
   const [result,setResult] = useState([])
   const [final,setFinal] = useState([])
+  const [d,setD] = useState([])
   useEffect(() => {
         let id = localStorage.getItem('myid')
         let payload={
@@ -104,20 +97,25 @@ export default function Visulization() {
     setValue(newValue);
   };
 
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
           <Tabs
-            variant="fullWidth"
             value={value}
             onChange={handleChange}
-            aria-label="nav tabs example"
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="scrollable auto tabs example"
           >
-            <LinkTab label="Lines"  {...a11yProps(0)} />
-            <LinkTab label="TrendLine"  {...a11yProps(1)} />
-            <LinkTab label="Multiple"  {...a11yProps(2)} />
-            <LinkTab label="Histogram"  {...a11yProps(3)} />
-            <LinkTab label="Box Plot"  {...a11yProps(4)} />
+            <Tab  label="Lines"  {...a11yProps(0)} />
+            <Tab  label="Area"  {...a11yProps(1)} />
+            <Tab  label="TrendLine"  {...a11yProps(2)} />
+            <Tab  label="Multiple"  {...a11yProps(3)} />
+            <Tab  label="Histogram"  {...a11yProps(4)} />
+            <Tab  label="Box Plot"  {...a11yProps(5)} />
+            <Tab  label="Correlation"  {...a11yProps(6)} />
+            <Tab  label="Range Area"  {...a11yProps(7)} />
           </Tabs>
       </AppBar>
           <TabPanel value={value} index={0}>
@@ -127,25 +125,39 @@ export default function Visulization() {
           </TabPanel>
           <TabPanel value={value} index={1}>
             {
-                result? <> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
+                result? <> <Areaplot values={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={2}>
             {
-                result? <> <MultipeLines values={final}/> </> :null
+                result? <> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={3}>
             {
+                result? <> <MultipeLines values={final}/> </> :null
+            }
+          </TabPanel>
+          <TabPanel value={value} index={4}>
+            {
                 result? <>  <Histo values={final}/><Histogram values={final}/> </> :null
             }
           </TabPanel> 
-          <TabPanel value={value} index={4}>
+          <TabPanel value={value} index={5}>
             {
-                result? <>  <Boxplot values={final}/> </> :null
+                result? <> <Boxplot values={final}/> </> :null
             }
           </TabPanel> 
-
+          <TabPanel value={value} index={6}>
+            {
+                result? <> <Corr values={final}/> </> :null
+            }
+          </TabPanel> 
+          <TabPanel value={value} index={7}>
+            {
+                result? <> <Range1 values={final}/> </> :null
+            }
+          </TabPanel> 
     </div>
   );
 }
