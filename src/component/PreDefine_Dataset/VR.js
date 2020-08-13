@@ -17,8 +17,8 @@ import ScatterPlot1 from "../Charts/Scatterplot/ScatterPlot-with-trendline";
 import Histogram from '../Charts/Histogram/Histogram';
 import Boxplot from '../Charts/Boxplot/Boxplot';
 import Areaplot from '../Charts/Area/Areaplot';
-
-
+import Corr from '../Charts/HeatMap/Corr';
+import Range1 from '../Charts/Area/Range';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -27,8 +27,8 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`nav-tabpanel-${index}`}
-      aria-labelledby={`nav-tab-${index}`}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -48,26 +48,15 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `nav-tab-${index}`,
-    'aria-controls': `nav-tabpanel-${index}`,
+    id: `scrollable-auto-tab-${index}`,
+    'aria-controls': `scrollable-auto-tabpanel-${index}`,
   };
-}
-
-function LinkTab(props) {
-    return (
-    <Tab
-      component="a"
-      onClick={(event) => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: '100%',
     backgroundColor: theme.palette.background.paper,
   },
 }));
@@ -113,17 +102,20 @@ export default function Visulization() {
     <div className={classes.root}>
       <AppBar position="static">
           <Tabs
-            variant="fullWidth"
             value={value}
             onChange={handleChange}
-            aria-label="nav tabs example"
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="scrollable auto tabs example"
           >
-            <LinkTab label="Lines"  {...a11yProps(0)} />
-            <LinkTab label="Area"  {...a11yProps(1)} />
-            <LinkTab label="TrendLine"  {...a11yProps(2)} />
-            <LinkTab label="Multiple"  {...a11yProps(3)} />
-            <LinkTab label="Histogram"  {...a11yProps(4)} />
-            <LinkTab label="Box Plot"  {...a11yProps(5)} />
+            <Tab  label="Lines"  {...a11yProps(0)} />
+            <Tab  label="Area"  {...a11yProps(1)} />
+            <Tab  label="TrendLine"  {...a11yProps(2)} />
+            <Tab  label="Multiple"  {...a11yProps(3)} />
+            <Tab  label="Histogram"  {...a11yProps(4)} />
+            <Tab  label="Box Plot"  {...a11yProps(5)} />
+            <Tab  label="Correlation"  {...a11yProps(6)} />
+            <Tab  label="Range Area"  {...a11yProps(7)} />
           </Tabs>
       </AppBar>
           <TabPanel value={value} index={0}>
@@ -156,7 +148,16 @@ export default function Visulization() {
                 result? <> <Boxplot values={final}/> </> :null
             }
           </TabPanel> 
-
+          <TabPanel value={value} index={6}>
+            {
+                result? <> <Corr values={final}/> </> :null
+            }
+          </TabPanel> 
+          <TabPanel value={value} index={7}>
+            {
+                result? <> <Range1 values={final}/> </> :null
+            }
+          </TabPanel> 
     </div>
   );
 }

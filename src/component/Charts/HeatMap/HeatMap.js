@@ -30,7 +30,6 @@ function HMap(props) {
     
     var check = false
     if(props.values.length!==0){
-        console.log(props.values)
         check = true
         const some = props.values.map(({target, Predicted}) => ({target, Predicted}))
         some.sort(compare_item)
@@ -49,7 +48,8 @@ function HMap(props) {
         target = newArray.map(item=>item.target)
         Predicted = newArray.map(item=>item.Predicted)
         CM2 = ConfusionMatrix.fromLabels(target,Predicted)   
-
+        console.log(CM.labels)
+        console.log(CM.matrix)
     }
 
     return (
