@@ -22,13 +22,13 @@ function CusNavbar() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <Link to="/classification">| Classification |</Link>
+              <Link style={{ textDecoration: 'none', color:"#f7bf31" }} to="/classification">&nbsp;&nbsp;Classification&nbsp;&nbsp;</Link>
             </NavItem>
             <NavItem>
-              <Link to="/regression">| Regression |</Link>
+              <Link style={{ textDecoration: 'none', color:"#b831f7" }} to="/regression">&nbsp;&nbsp;Regression&nbsp;&nbsp;</Link>
             </NavItem>
           </Nav>
-        <NavbarText>Learning.... </NavbarText>
+        <NavbarText><Link style={{ textDecoration: 'none', marginRight:"40px" }} to="/About">About Us</Link> </NavbarText>
         </Collapse>
       </Navbar>
     </div>

@@ -13,9 +13,7 @@ import ScatterPlot from "../Charts/Scatterplot/Scatterplot";
 import CustomActiveShapePieChart from "../Charts/PieChart/CustomActiveShapePieChart";
 import Tree from '../Charts/Tree/Tree';
 import Boxplot from '../Charts/Boxplot/Boxplot';
-import Areaplot from '../Charts/Area/Areaplot';
 import Corr from '../Charts/HeatMap/Corr';
-import Range1 from '../Charts/Area/Range';
 import ScatterPlot1 from "../Charts/Scatterplot/ScatterPlot-with-trendline";
 import Histogram from '../Charts/Histogram/Histogram';
 

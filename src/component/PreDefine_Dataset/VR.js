@@ -7,12 +7,9 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Axios from "axios"
-import AxisSelect, { AxisSelect2, Histo } from '../Select/AxisSelect';
+import { AxisSelect2, Histo } from '../Select/AxisSelect';
 import Lines from '../Charts/Lines/Lines';
 import MultipeLines from '../Charts/Lines/MultipleLines';
-
-import { Button } from '@material-ui/core'
-import Example from '../Charts/Lines/SynchronizedLineChart';
 import ScatterPlot1 from "../Charts/Scatterplot/ScatterPlot-with-trendline";
 import Histogram from '../Charts/Histogram/Histogram';
 import Boxplot from '../Charts/Boxplot/Boxplot';
@@ -66,7 +63,6 @@ export default function Visulization() {
   const [value, setValue] = React.useState(0);
   const [result,setResult] = useState([])
   const [final,setFinal] = useState([])
-  const [d,setD] = useState([])
   useEffect(() => {
         let id = localStorage.getItem('myid')
         let payload={
