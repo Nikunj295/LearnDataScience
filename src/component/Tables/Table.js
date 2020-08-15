@@ -84,19 +84,16 @@ TablePaginationActions.propTypes = {
 };
 
 const useStyles2 = makeStyles({
-  table: {
-    minWidth:1200
-  }
+
 });
 
 const darkTheme = createMuiTheme({
   palette: {
-    type: 'dark',
+    type:'dark',
   },
 });
 
 export default function CustomPaginationActionsTable({values,type}) {
-  const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   let r = 10
   if(type==="info"){
@@ -129,7 +126,7 @@ export default function CustomPaginationActionsTable({values,type}) {
      col?
      <ThemeProvider theme={darkTheme}>
      <TableContainer component={Paper}>
-      <Table className={classes.table} size="small" >
+      <Table size="small" >
   
         <TableHead>
             <TableRow>
@@ -181,8 +178,6 @@ export default function CustomPaginationActionsTable({values,type}) {
             />
           </TableRow>
         </TableFooter>:null}
-
-
       </Table>
     </TableContainer>
     </ThemeProvider>
