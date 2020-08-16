@@ -13,11 +13,11 @@ import ScatterPlot from "../Charts/Scatterplot/Scatterplot";
 import CustomActiveShapePieChart from "../Charts/PieChart/CustomActiveShapePieChart";
 import Tree from '../Charts/Tree/Tree';
 import Boxplot from '../Charts/Boxplot/Boxplot';
-import Areaplot from '../Charts/Area/Areaplot';
 import Corr from '../Charts/HeatMap/Corr';
-import Range1 from '../Charts/Area/Range';
 import ScatterPlot1 from "../Charts/Scatterplot/ScatterPlot-with-trendline";
 import Histogram from '../Charts/Histogram/Histogram';
+import Container from '@material-ui/core/Container';
+import Footer from '../Footer/Footer';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,6 +65,7 @@ export default function Visulization() {
   const [value, setValue] = React.useState(0);
   const [result,setResult] = useState([])
   const [final,setFinal] = useState([])
+  const algo = sessionStorage.getItem('algo')
   useEffect(() => {
         let id = localStorage.getItem('myid')
         let payload={
@@ -113,9 +114,14 @@ export default function Visulization() {
             <Tab label="Histogram"  {...a11yProps(4)} />
             <Tab label="Box Plot"  {...a11yProps(5)} />
             <Tab label="Correlation"  {...a11yProps(6)} />
-            <Tab label="Tree"  {...a11yProps(7)} />
+            {
+              algo==='dtree' || algo==="rtree"?
+              <Tab label="Tree"  {...a11yProps(7)} />:null  
+            }
           </Tabs>
       </AppBar>
+      <Container maxWidth="lg">
+      <div style={{margin:'auto'}}>  
           <TabPanel value={value} index={0}>
             {
               final? <> <AxisSelect values={final}/> <ScatterPlot values={final}/> </> : null
@@ -153,10 +159,13 @@ export default function Visulization() {
           </TabPanel> 
           <TabPanel value={value} index={7}>
             {
-              final? <> <Tree/> </> : null
+              algo==='dtree' || algo==="rtree"? final? <> <Tree/> </> : null: null
             }
           </TabPanel>
-
+          </div>
+          <hr style={{borderWidth: "5px"}}/>
+          </Container>
+        <Footer/>
     </div>
   );
 }
