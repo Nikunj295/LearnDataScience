@@ -71,8 +71,8 @@ function SplitData() {
             </div>
             <div style={{marginTop:"50px"}}>
                 <h3>Training Data</h3>
-                <h6>The observations in the training set form the experience that the algorithm uses to learn. In supervised learning problems, each observation consists of an observed output variable and one or more observed input variables.
-            </h6>
+                <h5>The observations in the training set form the experience that the algorithm uses to learn. In supervised learning problems, each observation consists of an observed output variable and one or more observed input variables.
+            </h5>
             </div>
             
             <div style={{ alignItems: "230px", position: "relative"}}>
@@ -92,7 +92,8 @@ function SplitData() {
             </div>
             <div style={{marginTop:"50px"}}>
                 <h3>Test Data</h3>
-                <h6>The test set is a set of observations used to evaluate the performance of the model using some performance metric. It is important that no observations from the training set are included in the test set. If the test set does contain examples from the training set, it will be difficult to assess whether the algorithm has learned to generalize from the training set or has simply memorized it.</h6>
+                <h5>The test set is a set of observations used to evaluate the performance of the model using some performance metric. It is important that no observations from the training set are included in the test set. If the test set does contain examples from the training set, it will be difficult to assess whether the algorithm has learned to generalize from the training set or has simply memorized it.
+                </h5>
             </div>
             {
                 show?<>

@@ -1,11 +1,25 @@
 import React,{ useContext} from 'react'
 import {
-    ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend
+    ScatterChart, Scatter, XAxis, YAxis,ResponsiveContainer, CartesianGrid, Tooltip, Legend, Label
 } from 'recharts'
 import { AxisContext } from "../files/Axis"
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress'
 
+const useStyles = makeStyles((theme) =>({
+    prog:{
+        width:"800px",
+        marginTop:"200px",
+        [theme.breakpoints.down(500)]: {
+            width: 400,
+        }
+    },
+}))
 
 function Scatterplot(props){
+    
+    const classes = useStyles();
     const {x,y,z} = useContext(AxisContext)
     const [x_axis,setX_axis] = x
     const [y_axis,setY_axis] = y
@@ -41,21 +55,25 @@ function Scatterplot(props){
     var final = groupByObj(newArray, 'z');
     const arr = ["star","traingle","circle","square"]
     let i=-1
+
     return (
-        <div>
+        <div>    
+        <Container maxWidth="lg">
+        <div style={{ display:'flex', flexDirection:'column', alignContent:'center'}}>
         {
             props.values?
                 <ScatterChart
-                    width={1000}
-                    height={500}
+                    width={window.innerWidth/1.6}
+                    height={window.innerHeight/1.4}
                     margin={{
                         top: 100, right: 20, bottom: 20, left: 20,
                     }}
                 >
                     <CartesianGrid />
-                    <XAxis type="number" dataKey="x" name="0"  />
-                    <YAxis type="number" dataKey="y" name="1"  />
+                    <XAxis type="number" dataKey="x" name="0" label={{ value: x_axis, position: 'Bottom' }}/>
+                    <YAxis type="number" dataKey="y" name="1" label={{ value: y_axis, angle: -90, position: 'Left' }}/>
                     <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                    
                     <Legend />
                     {
                         Object.keys(final).map(function(key, index) {
@@ -64,8 +82,10 @@ function Scatterplot(props){
                     }
                 </ScatterChart>
             :
-            null 
-        }   
+            <LinearProgress className={classes.prog} color="secondary"/>
+        }  
+        </div> 
+        </Container>
         </div>
     )
 }

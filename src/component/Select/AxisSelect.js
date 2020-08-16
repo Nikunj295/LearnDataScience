@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import {AxisContext}  from "../Charts/files/Axis"
 import TextField from "@material-ui/core/TextField"
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -53,8 +54,9 @@ function AxisSelect(props){
 
     const classes = useStyles();
     return (
-        <div>
-            <h2 className="mt-3">Graph</h2>
+        <div >
+        <Container maxWidth="lg">
+        <div style={{display:'flex', flexDirection:'row', justifyContent :'center'}}>
             <FormControl className={classes.formControl}>
                 <InputLabel id="x">X-axis</InputLabel>
                 <Select
@@ -97,6 +99,8 @@ function AxisSelect(props){
                     <MenuItem name="tg" value="target">Target</MenuItem>
                 </Select>
             </FormControl>
+            </div>
+            </Container>
         </div>
     )
 }
@@ -128,7 +132,9 @@ export function AxisSelect2(props){
     const classes = useStyles();
     return (
         <div>
-            <h2 className="mt-3">Graph</h2>
+            <Container maxWidth="lg">
+            <div style={{display:'flex', flexDirection:'row', justifyContent :'center'}}>
+        
             <FormControl className={classes.formControl}>
                 <InputLabel id="x">X-axis</InputLabel>
                 <Select
@@ -156,6 +162,8 @@ export function AxisSelect2(props){
                     <MenuItem name="tg" value="target">Original</MenuItem>
                 </Select>
             </FormControl>
+            </div>
+            </Container>
         </div>
     )
 }
@@ -187,7 +195,9 @@ export function Histo(props){
     const classes = useStyles();
     return (
         <div>
-            <h2 className="mt-3">Graph</h2>
+            <Container maxWidth="lg">
+            <div style={{display:'flex', flexDirection:'row', justifyContent :'center'}}>
+        
             <FormControl className={classes.formControl}>
                 <InputLabel id="x">X-axis</InputLabel>
                 <Select
@@ -212,6 +222,8 @@ export function Histo(props){
                     helperText="Bins: Number of Distribution"
                     onChange={(e)=>updateBin(e)}
             />
+            </div>
+            </Container>
         </div>
     )
 }
