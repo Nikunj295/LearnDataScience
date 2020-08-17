@@ -33,12 +33,7 @@ class Boxplot extends React.Component {
 		const options = {
 			theme: "light2",
 			animationEnabled: true,
-			title:{
-				text: "Energy in Baked Foods"
-			},
-			axisY: {
-				title: "Energy Per 100 g (kcal/100g)"
-			},
+			width:window.innerWidth/1.4,
 			data: [{
 				type: "boxAndWhisker",
 				whiskerThickness: 4,

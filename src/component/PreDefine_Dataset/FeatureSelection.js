@@ -37,6 +37,7 @@ function FeatureSelection(){
     col.map(item=>arr.push(item))
     let [item,setItem] = React.useState(arr)
     const dataset = sessionStorage.getItem('db')
+    
     useEffect(()=>{
         const id = localStorage.getItem('myid')
         const raw = sessionStorage.getItem('raw')

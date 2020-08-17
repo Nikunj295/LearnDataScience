@@ -62,7 +62,7 @@ function RCreate() {
                     columns.push(column[i])
                 }
             }
-            localStorage.setItem("selected",columns)
+            sessionStorage.setItem("selected",columns)
         })
     }
 

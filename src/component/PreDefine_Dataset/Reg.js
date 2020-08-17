@@ -42,7 +42,7 @@ function Reg(props){
                     columns.push(column[i])
                 }
             }
-            localStorage.setItem("selected",columns)
+            sessionStorage.setItem("selected",columns)
         })
     },[dataset])
 

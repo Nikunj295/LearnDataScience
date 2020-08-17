@@ -215,7 +215,7 @@ export function Histo(props){
             </FormControl>
             <TextField className={classes.formControl} 
                     type="number" 
-                    InputProps={{ inputProps: { min: 10, max: 100000 } }} 
+                    InputProps={{ inputProps: { min: 0, max: 100000 } }} 
                     id="standard-basic" 
                     label="Bins"
                     value={bin}

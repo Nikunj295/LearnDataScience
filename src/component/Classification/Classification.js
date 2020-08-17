@@ -16,6 +16,7 @@ import Create from "../Other/Classification/Create.jpg"
 import content from "../Other/Classification/content.jpg"
 import Diabete from "../Other/Classification/Diabete.jpg"
 import Footer from '../Footer/Footer';
+
 const useStyles = makeStyles({
     root: {
       width: 345,
@@ -98,8 +99,7 @@ function Classification(){
             <h1 className={classes.heading}><span>&#10004;</span>Classification&#10008;</h1><br/>
             <div className={classes.content}>
                 <div><h4>
-                &nbsp;&nbsp;&nbsp;&nbsp;Machine learning is a class of techniques for automatically finding patterns in data and using it to draw inferences or make predictions.
-                    You have already seen linear regression, which is one kind of machine learning. This chapter introduces a new one: <u>Classification</u>.
+                &nbsp;&nbsp;&nbsp;&nbsp;Classification is the process of predicting the class of given data points. Classes are sometimes called as targets/ labels or categories. Classification predictive modeling is the task of approximating a mapping function (f) from input variables (X) to discrete output variables (y).
                 </h4></div>
             </div>
             <div><br/><br/><br/>

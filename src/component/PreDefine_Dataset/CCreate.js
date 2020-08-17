@@ -82,7 +82,7 @@ function CCreate() {
                     columns.push(column[i])
                 }
             }
-            localStorage.setItem("selected",columns)
+            sessionStorage.setItem("selected",columns)
             setShow(true)
         })
     }

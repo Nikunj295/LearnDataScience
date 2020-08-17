@@ -1,6 +1,7 @@
 import React ,{ useContext, useState, useEffect}from 'react'
 import { Chart } from "react-google-charts";
 import { AxisContext } from "../files/Axis"
+import Container from '@material-ui/core/Container';
 
 function Histogram(props) {
     const {x,b} = useContext(AxisContext)
@@ -15,9 +16,11 @@ function Histogram(props) {
     
     return (
         <div>
+        <Container maxWidth="lg">
+        <div style={{ display:'flex', flexDirection:'column', alignContent:'center'}}>  
             <Chart
-                width={'500px'}
-                height={'300px'}
+                width={window.innerWidth/1.4}
+                height={window.innerHeight/1.65}
                 chartType="Histogram"
                 loader={<div>Loading Chart</div>}
                 data={mod}
@@ -31,6 +34,8 @@ function Histogram(props) {
                 rootProps={{ 'data-testid': '1' }}
                 
                 />
+        </div>
+        </Container>
         </div>
     )
 }
