@@ -1,6 +1,5 @@
-import React, { useState, useContext} from 'react'
+import React, { useState, useEffect } from 'react'
 import CanvasJSReact from '../files/canvasjs.react'
-import { Button } from '@material-ui/core';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
 function MultipeLines(props){
@@ -14,9 +13,9 @@ function MultipeLines(props){
 			e.dataSeries.visible = true;
         }
         setState({});
-	}
+    }
 
-    const handle = () => {
+    useEffect(()=>{
         var newArray = [];
         let count = 0;
         let count1 = 0;
@@ -34,9 +33,6 @@ function MultipeLines(props){
         const options = {
             zoomEnabled: true,
             animationEnabled: true,	
-            title:{
-                text: "Number of New Customers"
-            },
             axisY : {
                 title: "Predicted",
                 includeZero: false,
@@ -75,12 +71,14 @@ function MultipeLines(props){
             ]
         }
         setOptions(options)
-    }
+    },[props.values])
 
         return (
             <div>
-                <Button onClick={handle}>SHOW!!!!!!!!</Button>
-                <CanvasJSChart options={options}/>
+                <div style={{display:'flex',flexDirection: 'column',alignItems: 'center'}}>
+                    <div><h3>Prediction and Original Comparison</h3></div> 
+                    <CanvasJSChart options={options}/>
+                </div>
             </div>
         )
 }

@@ -15,6 +15,7 @@ import svm from "../Other/Classification/svm.jpg";
 import rtree from "../Other/Classification/random.png";
 import naive from "../Other/Classification/naive.jpg";
 import log from "../Other/Classification/3.png";
+import reg from "../Other/Images/VisualHome.jpg";
 
 
 const useStyles = makeStyles({
@@ -66,19 +67,23 @@ const c = [
 const r = [
     {
         algo:"linearRegression",
-        name:"Linear Regression"
+        name:"Linear Regression",
+        img:reg
     },
     {
         algo:"logisticRegression",
-        name:"Logistic Regression"
+        name:"Logistic Regression",
+        img:log,
     },
     {
         algo:"svm",
-        name:"Support Vector Machine"
+        name:"Support Vector Machine",
+        img:svm
     },
     {
-        algo:"ridge",
-        name:"Ridge"
+        algo:"rtree",
+        name:"Random Tree",
+        img:rtree
     },
 ]
 
@@ -128,7 +133,7 @@ function Model() {
                 </>
                 :
                 <>
-                    <Grid container spacing={10} style={{padding: '24px', textAlign:'center'}}>
+                    <Grid container direction="row" justify="space-evenly" alignItems="center" spacing={10} style={{ margin:"0px",marginTop:"10px",width:"auto"}}>
                         {
                             r.map(item=>{
                                 return (
@@ -138,15 +143,12 @@ function Model() {
                                             <CardActionArea>
                                             <CardMedia
                                                 className={classes.media}
-                                                image={log}
+                                                image={item.img}
                                                 title={item.name}
                                             />
-                                            <CardContent style={{height:'150px',width:'250px'}}>
+                                            <CardContent style={{height:'150px',width:'100%',textAlign:'center'}}>
                                                 <Typography gutterBottom variant="h5" component="h2">
                                                     {item.name}
-                                                </Typography>
-                                                <Typography variant="body2" color="textSecondary" component="p">
-                                                {item.name}
                                                 </Typography>
                                             </CardContent>
                                             </CardActionArea>
@@ -171,14 +173,6 @@ function Model() {
                 <h5>
                 -&gt;Model selection is different from model assessment.
                 For example, we evaluate or assess candidate models in order to choose the best one, and this is model selection. Whereas once a model is chosen, it can be evaluated in order to communicate how well it is expected to perform in general; this is model assessment.
-                </h5>
-            </div>
-            <div className={classes.body}>
-                <h4>
-                What do we care about when choosing a final model?
-                </h4>
-                <h5>
-                -&gt;The project stakeholders may have specific requirements, such as maintainability and limited model complexity. As such, a model that has lower skill but is simpler and easier to understand may be preferred.Alternately, if model skill is prized above all other concerns, then the ability of the model to perform well on out-of-sample data will be preferred regardless of the computational complexity involved.
                 </h5>
             </div>
             <div className={classes.body}>

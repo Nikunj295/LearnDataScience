@@ -13,9 +13,11 @@ import MultipeLines from '../Charts/Lines/MultipleLines';
 import ScatterPlot1 from "../Charts/Scatterplot/ScatterPlot-with-trendline";
 import Histogram from '../Charts/Histogram/Histogram';
 import Boxplot from '../Charts/Boxplot/Boxplot';
-import Areaplot from '../Charts/Area/Areaplot';
 import Corr from '../Charts/HeatMap/Corr';
 import Range1 from '../Charts/Area/Range';
+import Container from '@material-ui/core/Container';
+import Footer from '../Footer/Footer';
+import Tree from '../Charts/Tree/Tree';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -63,6 +65,7 @@ export default function Visulization() {
   const [value, setValue] = React.useState(0);
   const [result,setResult] = useState([])
   const [final,setFinal] = useState([])
+  const algo = sessionStorage.getItem('algo')
   useEffect(() => {
         let id = localStorage.getItem('myid')
         let payload={
@@ -105,15 +108,20 @@ export default function Visulization() {
             aria-label="scrollable auto tabs example"
           >
             <Tab  label="Lines"  {...a11yProps(0)} />
-            <Tab  label="Area"  {...a11yProps(1)} />
-            <Tab  label="TrendLine"  {...a11yProps(2)} />
-            <Tab  label="Multiple"  {...a11yProps(3)} />
-            <Tab  label="Histogram"  {...a11yProps(4)} />
-            <Tab  label="Box Plot"  {...a11yProps(5)} />
-            <Tab  label="Correlation"  {...a11yProps(6)} />
-            <Tab  label="Range Area"  {...a11yProps(7)} />
+            <Tab  label="TrendLine"  {...a11yProps(1)} />
+            <Tab  label="Multiple"  {...a11yProps(2)} />
+            <Tab  label="Histogram"  {...a11yProps(3)} />
+            <Tab  label="Box Plot"  {...a11yProps(4)} />
+            <Tab  label="Correlation"  {...a11yProps(5)} />
+            <Tab  label="Range Area"  {...a11yProps(6)} />
+            {
+              algo==='dtree' || algo==="rtree"?
+              <Tab label="Tree"  {...a11yProps(7)} />:null  
+            }
           </Tabs>
       </AppBar>
+      <Container maxWidth="lg">
+      <div style={{margin:'auto'}}> 
           <TabPanel value={value} index={0}>
             {
                 result? <> <Lines values={final}/> </> :null
@@ -121,39 +129,42 @@ export default function Visulization() {
           </TabPanel>
           <TabPanel value={value} index={1}>
             {
-                result? <> <Areaplot values={final}/> </> :null
+                result? <> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={2}>
             {
-                result? <> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
+                result? <> <MultipeLines values={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={3}>
             {
-                result? <> <MultipeLines values={final}/> </> :null
-            }
-          </TabPanel>
-          <TabPanel value={value} index={4}>
-            {
                 result? <>  <Histo values={final}/><Histogram values={final}/> </> :null
             }
           </TabPanel> 
-          <TabPanel value={value} index={5}>
+          <TabPanel value={value} index={4}>
             {
                 result? <> <Boxplot values={final}/> </> :null
             }
           </TabPanel> 
-          <TabPanel value={value} index={6}>
+          <TabPanel value={value} index={5}>
             {
                 result? <> <Corr values={final}/> </> :null
             }
           </TabPanel> 
-          <TabPanel value={value} index={7}>
+          <TabPanel value={value} index={6}>
             {
                 result? <> <Range1 values={final}/> </> :null
             }
           </TabPanel> 
+          <TabPanel value={value} index={7}>
+            {
+              algo==='dtree' || algo==="rtree"? final? <> <Tree/> </> : null: null
+            }
+          </TabPanel>
+          </div>
+      </Container>
+      <Footer/>
     </div>
   );
 }

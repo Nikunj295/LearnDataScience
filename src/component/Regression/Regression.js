@@ -10,34 +10,43 @@ import { Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Container from '@material-ui/core/Container';
-import log4 from "../ChoiceMethod/4.png"
-import regression from "../Other/Images/regression.jpg" 
+import regression from "../Other/Images/regression.jpg"
+import boston from "../Other/Regression/boston.jpg" 
+import car from "../Other/Regression/car.jpg" 
+import housing from "../Other/Regression/housing.jpeg" 
+import insurance from "../Other/Regression/insurance.png" 
+import redwine from "../Other/Regression/redwine.jpg" 
+import crt from "../Other/Regression/Create.jpg"
 
 const Details = [
     {
         db:'boston',
         name:'Boston Price',
-        detail:`This is perhaps the best known database to be found in the pattern recognition literature. Fisher's paper is a classic in the field and is referenced frequently to this day. The data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant`
+        img:boston,
+        detail:`The dataset for this project originates from the UCI Machine Learning Repository. The Boston housing data was collected in 1978 and each of the 506 entries represent aggregated data about 14 features for homes from various suburbs in Boston, Massachusetts.`
     },
     {
         db:'RedWine',
+        img:redwine,
         name:'Red Wine Quality',
-        detail:`This analysis aims to observe which features are most helpful in predicting malignant or benign cancer and to see general trends that may aid us in model selection and hyper parameter selection. The goal is to classify whether the breast cancer is benign or malignant.`
+        detail:`The inputs include objective tests (e.g. PH values) and the output is based on sensory data
+        (median of at least 3 evaluations made by wine experts). Each expert graded the wine quality
+        between 0 (very bad) and 10 (very excellent).`
     },
     {
         db:'car',
+        img:car,
         name:'Car Mileage',
-        detail:`The Digit Dataset. This dataset is made up of 1797 8x8 images. Each image, like the one shown below, is of a hand-written digit. In order to utilize an 8x8 figure like this, we'd have to first transform it into a feature vector with length 64.`
+        detail:`This dataset is a slightly modified version of the dataset provided in
+        the StatLib library. In line with the use by Ross Quinlan (1993) in
+        predicting the attribute "mpg", 8 of the original instances were removed
+        because they had unknown values for the "mpg" attribute.`
     },
     {
-        db:'housing',
-        name:'House Cost Prediction',
-        detail:`The Digit Dataset. This dataset is made up of 1797 8x8 images. Each image, like the one shown below, is of a hand-written digit. In order to utilize an 8x8 figure like this, we'd have to first transform it into a feature vector with length 64.`
-    },
-    {
-        name:'Insurance',
+        name:'Medical Cost',
+        img:insurance,
         db:'insurance',
-        detail:`The Digit Dataset. This dataset is made up of 1797 8x8 images. Each image, like the one shown below, is of a hand-written digit. In order to utilize an 8x8 figure like this, we'd have to first transform it into a feature vector with length 64.`
+        detail:` This Data is a pratical is used in the book Machine Learning with R by Brett Lantz; which is a book that provides an introduction to machine learning using R. All of these datasets are in the public domain but simply needed some cleaning up and recoding to match the format in the book.`
     },
 ]
 
@@ -51,16 +60,7 @@ const useStyles = makeStyles({
     },
     heading:{
         textAlign:'center',
-        margin:"30px"
-    },
-    content:{
-        textAlign:'justify'
-    },
-    short:{
-        textAlign:'justify',
-        marginLeft:"auto",
-        marginBottom:"auto",
-        lineHeight: "1.8",
+        margin:"30px",
     },
     im:{
         display: "block",
@@ -68,14 +68,11 @@ const useStyles = makeStyles({
         marginLeft: "auto",
         marginRight: "auto"
     },
-    m:{
-        marginTop:"60px",
-        lineHeight: "1.8",
-    },
     ml:{
-        marginTop:"60px",
+        marginTop:"40px",
         marginBottom:"60px",
         lineHeight: "1.8",
+        textAlign:'justify',
     }
 });
 
@@ -96,16 +93,21 @@ function Regression (){
     return (
         <div>
         <Container maxWidth="lg">
-            <h1 className={classes.heading}>Regression</h1><br/>
-            <div className={classes.content}>
-                <div><h4>
-                &nbsp;&nbsp;&nbsp;&nbsp;Regression analysis is a machine learning algorithm that can be used to measure how closely related independent variable(s) relate with a dependent variable. An extensive use of regression analysis is building models on datasets that accurately predict the values of the dependent variable.
-                </h4></div>
+            <div className={classes.heading}><h1><i class="fa fa-area-chart" style={{fontSize:"32px"}} />&nbsp;&nbsp;&nbsp;Regression&nbsp;&nbsp;&nbsp;<i class="fa fa-bar-chart" style={{fontSize:"36px"}}></i></h1><br/></div>
+            <div>
+                <div>
+                    <h4 className={classes.ml}>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Regression analysis is a machine learning algorithm that can be used to measure how closely 
+                        related independent variable(s) relate with a dependent variable. An extensive use of regression analysis is building 
+                        models on datasets that accurately predict the values of the dependent variable.
+                    </h4>
+                </div>
             </div>
-            <div><br/><br/><br/>
+            
+            <div>
                 <h3 className={classes.heading}><u>Step 1: Obtain Data</u></h3>
-                <div className={classes.short} >
-                    <h4>The very first step of a data science project is straightforward. We obtain the data that we need from available data sources.
+                <div>
+                    <h4 className={classes.ml}>The very first step of a data science project is straightforward. We obtain the data that we need from available data sources.
                     In this step, you will need to query databases, using technical skills like MySQL to process the data. You may also receive data in file formats like Microsoft Excel. If you are using Python or R, they have specific packages that can read data from these data sources directly into your data science programs.
                     Another popular option to gather data is connecting to Web APIs. Websites such as Facebook and Twitter allows users to connect to their web servers and access their data. All you need to do is to use their Web API to crawl their data.
                     We have provided some datasets to start with explore. Choice any one of it.
@@ -123,7 +125,7 @@ function Regression (){
                                 <CardActionArea >
                                 <CardMedia
                                     className={classes.media}
-                                    image={log4}
+                                    image={item.img}
                                     title={item.name}
                                 />
                                 <CardContent style={{height:'200px'}}>
@@ -145,7 +147,7 @@ function Regression (){
                         <CardActionArea >
                         <CardMedia
                             className={classes.media}
-                            image={log4}
+                            image={crt}
                             title="Create Your Own Data"
                         />
                         <CardContent style={{height:'200px'}}>
@@ -161,26 +163,33 @@ function Regression (){
                 </Link>
             </Grid>
             <div>
-                <div className={classes.short} style={{marginTop:"60px"}}>
-                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Regression Analysis is a very interesting machine learning technique that can be applied in different areas to predict numerical values such as predicting the price of a product/house, predicting the number of goals soccer players score in a season and predicting the BMI of people.</h4>
+                <div style={{marginTop:"60px"}}>
+                    <h4 className={classes.ml}>
+                        Regression Analysis is a very interesting machine learning technique that can be applied in different areas to predict numerical values such as predicting the price of a product/house, predicting the number of goals soccer players score in a season and predicting the BMI of people.
+                    </h4>
                 </div>
+
                 <div><img src={regression} alt="content1_image" height="60%" width="60%" className={classes.im}/></div>
-                <div className={classes.short} >
-                    <h4 className={classes.m}>
+                
+                <div>
+                    <h4 className={classes.ml} >
                     At the beginning of regression analysis, a dataset can be split into two groups: a training dataset and a testing dataset. The training dataset can be used to create a model to figure out the best approach to apply the line of best fit into the graph. Thus, it can be a straight line or a curve that easily fits into the graph of the independent variable(s) vs the dependent variable.
-                    </h4></div>
-                <div className={classes.short}>
+                    </h4>
+                </div>
+                
+                <div >
                     <h4 className={classes.ml}>
                     This newly created model can be used to predict the dependent variable of the testing dataset. Then, predicted values can be compared to the original dependent variable values by using different accuracy measures like R-squared, root mean square error, root mean average error, pearson correlation coefficient and others.
                     </h4>
                 </div>
-                <div className={classes.short}>
+                
+                <div>
                     <h4 className={classes.ml}>
                     If the accuracy score is not accurate enough and a stronger model wants to be built, the percentage of the datasets allocated to the training and testing datasets can be changed. For instance, if the training dataset had 70 % of the dataset with the testing dataset having 30%, the training dataset can now have 80% of the dataset with the testing dataset having 20%.
                     </h4>
                 </div>
-                <div className={classes.short}>
+                
+                <div>
                     <h4 className={classes.ml}>
                     There are different regression analysis approaches for continuous variables such as Linear Regression, Multiple Linear Regression, Polynomial Regression and Multiple Polynomial Regression.
                     </h4>

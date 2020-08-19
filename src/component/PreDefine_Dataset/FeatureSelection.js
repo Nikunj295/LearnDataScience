@@ -61,6 +61,7 @@ function FeatureSelection(){
                     return tb[key];
                 })
                 setData(myData)
+                setShow(true)
             })
         }
         else{

@@ -17,9 +17,10 @@ export default function Lines (props){
   return (
     <>
       {
-        props.values?
+        props.values?<>
         <div style={{display:'flex',flexDirection: 'column',alignItems: 'center'}}>
-          <ResponsiveContainer width="70%" height={400}>
+          <div style={{marginTop:"32px"}}><h2>Prediction and Target(Original) Comparison</h2></div>
+          <ResponsiveContainer width="75%" height={400}>
             <LineChart
                 data={props.values}
                 margin={{
@@ -32,12 +33,20 @@ export default function Lines (props){
                 <YAxis/>
                 <Tooltip />
                 <Legend />
-                <Brush endIndex={40} />
+                <Brush/>
                 <Line type="monotone" dataKey='Predicted' stroke="#8884d8" activeDot={{ r: 8 }} />
                 <Line dataKey='target' stroke="red" />
             </LineChart> 
           </ResponsiveContainer>
-          <ResponsiveContainer width="95%" height={400}>
+          </div>
+          
+          <div style={{display:'flex',flexDirection: 'row',justifyContent: 'space-around'}}>
+            <div style={{marginTop:"32px"}}><h2>Original Graph</h2></div>
+            <div style={{marginTop:"42px"}}><h2>Prediction Graph</h2></div>
+          </div>
+
+        <div style={{display:'flex',flexDirection: 'row',justifyContent: 'center'}}>
+          <ResponsiveContainer width="50%" height={400}>
             <LineChart
                 data={props.values}
                 syncId="id"
@@ -54,7 +63,8 @@ export default function Lines (props){
                 <Line dataKey='target' stroke="red" />
             </LineChart> 
           </ResponsiveContainer>
-          <ResponsiveContainer width="95%" height={400}>
+
+          <ResponsiveContainer width="50%" height={400}>
             <LineChart
                 data={props.values}
                 syncId="id"
@@ -72,7 +82,7 @@ export default function Lines (props){
             </LineChart> 
           </ResponsiveContainer>
         </div>
-        :null
+        </>:null
       }
     </>
   );

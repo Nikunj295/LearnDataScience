@@ -83,10 +83,6 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-const useStyles2 = makeStyles({
-
-});
-
 const darkTheme = createMuiTheme({
   palette: {
     type:'dark',
