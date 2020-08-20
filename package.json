@@ -26,6 +26,8 @@
     "react-dom": "^16.13.1",
     "react-google-charts": "^3.0.15",
     "react-heatmap-grid": "^0.8.2",
+    "react-image-magnifiers": "^1.4.0",
+    "react-image-zoom": "^1.3.1",
     "react-numeric-input": "^2.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",

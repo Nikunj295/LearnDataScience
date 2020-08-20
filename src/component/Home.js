@@ -140,10 +140,10 @@ const useStyles = makeStyles((theme) => ({
             <hr style={{borderWidth: "5px"}}/>
             <h2 style={{display:'flex',flexDirection: 'column', alignItems: 'center', marginTop:'30px'}}><u>Contact</u></h2>
             <div style={{display:'flex',flexDirection: 'rows', justifyContent:"space-evenly", alignItems: 'center',marginTop:'20px',marginBottom:"50px"}}>
-            <i class="fa fa-github" style={{fontSize:"26px"}}>&nbsp;&nbsp;<a style={{ textDecoration: 'none',color: "inherit" }} target="blank" href="https://www.github.com/Nikunj295">Github</a></i>
-            <i class="fa fa-linkedin" style={{fontSize:"26px"}}>&nbsp;&nbsp;<a style={{ textDecoration: 'none',color: "inherit" }} target="blank" href="https://www.linkedin.com/in/nikunj-viradiya-56a7a3179">LinkedIn</a></i>
-            <i class="fa fa-twitter" style={{fontSize:"26px"}}>&nbsp;&nbsp;Twitter</i>
-            <i class="fa fa-google" style={{fontSize:"26px"}}>&nbsp;&nbsp;Google+</i>
+            <i className="fa fa-github" style={{fontSize:"26px"}}>&nbsp;&nbsp;<a style={{ textDecoration: 'none',color: "inherit" }} target="blank" href="https://www.github.com/Nikunj295">Github</a></i>
+            <i className="fa fa-linkedin" style={{fontSize:"26px"}}>&nbsp;&nbsp;<a style={{ textDecoration: 'none',color: "inherit" }} target="blank" href="https://www.linkedin.com/in/nikunj-viradiya-56a7a3179">LinkedIn</a></i>
+            <i className="fa fa-twitter" style={{fontSize:"26px"}}>&nbsp;&nbsp;Twitter</i>
+            <i className="fa fa-google" style={{fontSize:"26px"}}>&nbsp;&nbsp;Google+</i>
         </div>
         <Footer/>
         </Container >  

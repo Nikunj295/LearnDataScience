@@ -13,7 +13,6 @@ import Container from '@material-ui/core/Container';
 import regression from "../Other/Images/regression.jpg"
 import boston from "../Other/Regression/boston.jpg" 
 import car from "../Other/Regression/car.jpg" 
-import housing from "../Other/Regression/housing.jpeg" 
 import insurance from "../Other/Regression/insurance.png" 
 import redwine from "../Other/Regression/redwine.jpg" 
 import crt from "../Other/Regression/Create.jpg"
@@ -80,6 +79,7 @@ function Regression (){
     useEffect(()=>{
         let id = localStorage.getItem('myid')     
         sessionStorage.setItem('type','regression')
+        sessionStorage.setItem('raw',false)
         axios.post("http://127.0.0.1:5000/addId",null,{
             params:{
                 id,

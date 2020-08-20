@@ -1,12 +1,11 @@
-import React, { useContext,useEffect, useState} from 'react'
+import React, { useContext } from 'react'
 import {LineChart,ResponsiveContainer, Line, XAxis,YAxis, CartesianGrid, Tooltip, Legend,Brush} from 'recharts';
 import { AxisContext } from "../files/Axis"
 
 export default function Lines (props){
-  const {x,y,z} = useContext(AxisContext)
+  const {x,y} = useContext(AxisContext)
   const [x_axis,setX_axis] = x
   const [y_axis,setY_axis] = y
-  const [tar,setTar] = z
 
   if(props.values[0]){
     console.log((props.values[0][x_axis]))

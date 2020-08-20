@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField"
 import CustomPaginationActionsTable from "../Tables/Table";
 import { Link } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
+import Footer from '../Footer/Footer';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +30,8 @@ function RCreate() {
     const [cluster, setCluster] = useState(2)
     const [values, setValues] = useState([])
     const [info, setInfo] = useState([])
+    
+    const [show,setShow] = useState(false)
 
     const getData = () => {
         let id = localStorage.getItem('myid')
@@ -63,12 +67,18 @@ function RCreate() {
                 }
             }
             sessionStorage.setItem("selected",columns)
+            setShow(true)
         })
     }
 
 
     return (
         <div>
+            <Container maxWidth="lg">
+            <div style={{marginTop:"30px"}}>
+            <h1>Step 2: Explore the Data</h1>
+                <h2 style={{marginTop:"30px"}}>Create Your own data</h2>
+            </div>
             <TextField className={classes.formControl} 
                         type="number" 
                         InputProps={{ inputProps: { min: 10, max: 100000 } }} 
@@ -103,22 +113,41 @@ function RCreate() {
                 className={classes.button}
             >Create</Button>
 
-            <Link to={{
-                pathname:"/FeatureSelection",
-                featureSelection:{
-                    data:values
-                }
-            }}>
-                Feature Selection
-            </Link>
+            
+                <Button disabled={!show} variant="contained"color="primary"className={classes.button}>
+                <Link style={{textDecoration:"none",color:'inherit'}} to={{
+                    pathname:"/FeatureSelection",
+                    data:{data:values}
+                }}>Feature Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i></Link>
+                </Button>
+            
+            
             {
-                values?<>
+                show?<>
                     <CustomPaginationActionsTable values={values}/> 
-                    <CustomPaginationActionsTable values={info}/>            
                     </>
                 :null
             }
-
+            <div style={{marginBottom:"70px"}}>
+                              
+                {show? <> 
+                    <h3>Below Table given is quick statistics of each columns:</h3>  
+                    <CustomPaginationActionsTable values={info} type="info"/>
+                    <div>
+                    <h3>Now, next step is Feature Selection. "What is Feature Selection?" you ask</h3>
+                    <div style={{ alignItems: "230px", position: "relative"}}>
+                    <Button disabled={!show} variant="contained" color="primary"className={classes.button}>
+                    <Link  style={{textDecoration:"none",color:'inherit'}} to={{
+                        pathname:"/FeatureSelection",data:{data:values}
+                    }}>Feature Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i></Link>
+                    </Button>
+                    </div></div>
+                    <hr style={{borderWidth: "5px"}}/> 
+                </>: null}            
+            </div>
+            
+        </Container>
+        <Footer/>
         </div>
     )
 }

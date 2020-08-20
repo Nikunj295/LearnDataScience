@@ -76,7 +76,7 @@ function Prediction() {
             <div style={{ position: "relative"}}>
                 <Link to={{pathname:"/Check"}} style={{textDecoration:"none"}}>
                     <Button variant="contained"color="primary"className={classes.button}>
-                        Visualization&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                        Visualization&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                     </Button>
                 </Link>
             </div>
@@ -104,7 +104,7 @@ function Prediction() {
                 <div style={{ alignItems: "230px", position: "relative"}}>
                     <Link to={{pathname:"/Check"}} style={{textDecoration:"none"}}>
                         <Button variant="contained"color="primary"className={classes.button}>
-                        Visualization&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                        Visualization&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                         </Button>
                     </Link>
                 </div> 

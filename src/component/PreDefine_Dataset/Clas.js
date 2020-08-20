@@ -177,9 +177,9 @@ function Clas(props){
             <h5>{content[dataset].classes}</h5>
             </div>
             <div style={{ position: "relative"}}>
-                <Link to={{pathname:"/FeatureSelection"}} style={{textDecoration:"none"}}>
+                <Link to={{pathname:"/FeatureSelection",data:{data:data}}} style={{textDecoration:"none"}}>
                     <Button variant="contained"color="primary"className={classes.button}>
-                        Feature Selection&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                        Feature Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                     </Button>
                 </Link>
             </div>
@@ -203,9 +203,9 @@ function Clas(props){
             <div>
                 <h3>Now, next step is Feature Selection. "What is Feature Selection?" you ask</h3>
                 <div style={{ alignItems: "230px", position: "relative"}}>
-                    <Link to={{pathname:"/FeatureSelection"}} style={{textDecoration:"none"}}>
+                    <Link to={{pathname:"/FeatureSelection",data:{data:data}}} style={{textDecoration:"none"}}>
                         <Button variant="contained"color="primary"className={classes.button}>
-                            Feature Selection&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                            Feature Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                         </Button>
                     </Link>
                 </div> 

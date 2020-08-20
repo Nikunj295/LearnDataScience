@@ -58,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     backgroundColor: theme.palette.background.paper,
   },
+  head:{
+    margin:'auto',
+    textAlign:'center',
+  }
 }));
 
 export default function Visulization() {
@@ -129,27 +133,27 @@ export default function Visulization() {
           </TabPanel>
           <TabPanel value={value} index={1}>
             {
-                result? <> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
+                result? <> <h2 className={classes.head}>Trend Line of Regression</h2> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={2}>
             {
-                result? <> <MultipeLines values={final}/> </> :null
+                result? <><MultipeLines values={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={3}>
             {
-                result? <>  <Histo values={final}/><Histogram values={final}/> </> :null
+                result? <> <h2 className={classes.head}>Histogram Plot </h2> <Histo values={final}/><Histogram values={final}/> </> :null
             }
           </TabPanel> 
           <TabPanel value={value} index={4}>
             {
-                result? <> <Boxplot values={final}/> </> :null
+                result? <> <h2 className={classes.head}>Box Plot </h2> <Boxplot values={final}/> </> :null
             }
           </TabPanel> 
           <TabPanel value={value} index={5}>
             {
-                result? <> <Corr values={final}/> </> :null
+                result? <> <h2 className={classes.head}>Correlation Plot </h2> <Corr values={final}/> </> :null
             }
           </TabPanel> 
           <TabPanel value={value} index={6}>

@@ -1,4 +1,4 @@
-import React ,{ useContext, useState, useEffect}from 'react'
+import React ,{ useContext }from 'react'
 import { Chart } from "react-google-charts";
 import { AxisContext } from "../files/Axis"
 import Container from '@material-ui/core/Container';

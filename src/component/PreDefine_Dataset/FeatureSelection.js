@@ -22,13 +22,30 @@ const useStyles = makeStyles((theme) =>({
         }
     },
     body:{
-        // marginTop:"70px",
         margin:"70px",
         textAlign:'justify'
     }
 }))
 
-function FeatureSelection(){
+function arr_diff (a1, a2) {
+    var a = [], diff = [];
+    for (var i = 0; i < a1.length; i++) {
+        a[a1[i]] = true;
+    }
+    for (var i = 0; i < a2.length; i++) {
+        if (a[a2[i]]) {
+            delete a[a2[i]];
+        } else {
+            a[a2[i]] = true;
+        }
+    }
+    for (var k in a) {
+        diff.push(k);
+    }
+    return diff;
+}
+
+function FeatureSelection(props){
     const classes = useStyles();
     const [data, setData] = useState([])
     const [show,setShow] = useState(false)
@@ -36,51 +53,87 @@ function FeatureSelection(){
     var arr = []
     col.map(item=>arr.push(item))
     let [item,setItem] = React.useState(arr)
+
     const dataset = sessionStorage.getItem('db')
+    sessionStorage.setItem('train',item)
     
     useEffect(()=>{
         const id = localStorage.getItem('myid')
         const raw = sessionStorage.getItem('raw')
-        
-        let payload = {
-            id,
-            item,
-            dataset
-        }
-
-        if(raw==='true'){
-            axios.post("http://127.0.0.1:5000/create/selection",null,{
-                params:{
-                    payload
-                }
-            })
-            .then(response=>response.data)
-            .then(data => {
-                const tb = data
-                var myData = Object.keys(tb).map(key => {
-                    return tb[key];
+        if(!props.location.data){
+            console.log("refreshed")
+            let payload = {
+                id,
+                item,
+                dataset
+            }
+            if(raw==='true'){
+                axios.post("http://127.0.0.1:5000/create/selection",null,{
+                    params:{
+                        payload
+                    }
                 })
-                setData(myData)
-                setShow(true)
-            })
+                .then(response=>response.data)
+                .then(data => {
+                    const tb = data
+                    var myData = Object.keys(tb).map(key => {
+                        return tb[key];
+                    })
+                    setData(myData)
+                    setShow(true)
+                })
+            }
+            else{
+                axios.post("http://127.0.0.1:5000/selection",null,{
+                    params:{
+                        payload
+                    }
+                })
+                .then(response=>response.data)
+                .then(data => {
+                    const tb = data
+                    var myData = Object.keys(tb).map(key => {
+                        return tb[key];
+                    })
+                    setData(myData)
+                    setShow(true)
+                })
+            }
+            sessionStorage.setItem('train',item)
         }
         else{
-            axios.post("http://127.0.0.1:5000/selection",null,{
-                params:{
-                    payload
-                }
-            })
-            .then(response=>response.data)
-            .then(data => {
-                const tb = data
-                var myData = Object.keys(tb).map(key => {
-                    return tb[key];
-                })
-                setData(myData)
-                setShow(true)
-            })
+            let train = sessionStorage.getItem('train').split(",")
+            let total = sessionStorage.getItem('selected').split(",")
+            train.push("target")
+            total.push("target")
+            let temp = props.location.data.data
+            let dele = arr_diff(train,total)
+            var res = [];
+            temp.forEach(function(item) { 
+                var tempItem = Object.assign({}, item);
+                dele.map(i=>{
+                    delete tempItem[i];
+                }) 
+                res.push(tempItem);
+            });
+            setShow(true)
+            setData(res)
         }
-        sessionStorage.setItem('train',item)
+        return ()=>{
+            if(raw===false){
+                let column = sessionStorage.getItem('train').split(",")
+                let payload = {
+                    id,
+                    item:column,
+                    dataset
+                }
+                axios.post("http://127.0.0.1:5000/selection",null,{
+                    params:{
+                        payload
+                    }
+                })
+            }
+        }
     },[item])
 
     const handleChange = (event) => {
@@ -117,7 +170,7 @@ function FeatureSelection(){
            
             <Link to={{pathname:"/SplitData"}}>
                 <Button variant="contained"color="primary"className={classes.button}>
-                        Split Data&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                        Split Data&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                 </Button>
             </Link>
             </div>
@@ -157,7 +210,7 @@ function FeatureSelection(){
                 <div style={{ alignItems: "230px", position: "relative"}}>
                     <Link to={{pathname:"/SplitData"}} style={{textDecoration:"none"}}>
                         <Button variant="contained"color="primary"className={classes.button}>
-                            Split Data&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                            Split Data&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                         </Button>
                     </Link>
                 </div> 

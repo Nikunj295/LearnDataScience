@@ -109,7 +109,7 @@ function Model() {
                         {
                             c.map(item=>{
                                 return (
-                                    <Link style={{textDecoration: 'none',padding:'10px'}} 
+                                    <Link key={item.algo} style={{textDecoration: 'none',padding:'10px'}} 
                                     to={{ pathname: '/Test', data: { data: `${item.algo}` } }}>   
                                         <Card className={classes.root} >
                                             <CardActionArea >

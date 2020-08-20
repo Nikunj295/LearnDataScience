@@ -78,7 +78,7 @@ function SplitData() {
             <div style={{ alignItems: "230px", position: "relative"}}>
                 <Link to={{pathname:"/Model"}} style={{textDecoration:"none"}}>
                     <Button variant="contained"color="primary"className={classes.button}>
-                        Model Selection&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                        Model Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                     </Button>
                 </Link>
             </div> 
@@ -122,7 +122,7 @@ function SplitData() {
                 <div style={{ alignItems: "230px", position: "relative"}}>
                     <Link to={{pathname:"/Model"}} style={{textDecoration:"none"}}>
                         <Button variant="contained"color="primary"className={classes.button}>
-                            Model Selection&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                            Model Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                         </Button>
                     </Link>
                 </div> 

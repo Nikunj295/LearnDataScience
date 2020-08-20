@@ -202,8 +202,6 @@ const useStyles = makeStyles((theme) =>({
     },
     im:{
         display: "block",
-        // alignItems:'center',
-        // flexDirection:'row'
         marginTop:"50px",
         marginLeft: "auto",
         marginRight: "auto"
@@ -212,7 +210,6 @@ const useStyles = makeStyles((theme) =>({
 
 function Test(props) {    
     const classes = useStyles();
-    const [show,setShow] = useState(false)
     let id = localStorage.getItem('myid')
 
     let algo = ""
@@ -234,7 +231,6 @@ function Test(props) {
                 payload
             }
         })
-        .then(response=>console.log(response))
     },[])
 
     return (
@@ -251,7 +247,7 @@ function Test(props) {
                    <div style={{ alignItems: "230px", position: "relative"}}>
                         <Link to={{pathname:"/Prediction"}} style={{textDecoration:"none"}}>
                             <Button variant="contained"color="primary"className={classes.button}>
-                                Predict Test Data&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                                Predict Test Data&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                             </Button>
                         </Link>
                     </div> 
@@ -277,13 +273,13 @@ function Test(props) {
                 <div className={classes.body}>
                     <h3>Advantages :</h3>
                     {
-                        cla[algo].adv.map(i=><h5>-{">"}{i}</h5>)
+                        cla[algo].adv.map(i=><h5 key={i}>-{">"}{i}</h5>)
                     }
                 </div>
                 <div className={classes.body}>
                     <h3>Disadvantages :</h3>
                     {
-                        cla[algo].dis.map(i=><h5>-{">"}{i}</h5>)
+                        cla[algo].dis.map(i=><h5 key={i}>-{">"}{i}</h5>)
                     }
                 </div>
                 <div>
@@ -291,7 +287,7 @@ function Test(props) {
                     <div style={{ alignItems: "230px", position: "relative"}}>
                         <Link to={{pathname:"/Prediction"}} style={{textDecoration:"none"}}>
                             <Button variant="contained"color="primary"className={classes.button}>
-                                Predict Test Data&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                                Predict Test Data&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                             </Button>
                         </Link>
                     </div> 

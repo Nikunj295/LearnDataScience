@@ -42,6 +42,7 @@ class Corr extends Component {
                         }
                     })
                 })
+                
                 let temp = []
                 let count = 0
                 columns.map(i=>{

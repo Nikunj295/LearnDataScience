@@ -1,6 +1,6 @@
 import React,{ useContext} from 'react'
 import {
-    ScatterChart, Scatter, XAxis, YAxis,ResponsiveContainer, CartesianGrid, Tooltip, Legend, Label
+    ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts'
 import { AxisContext } from "../files/Axis"
 import Container from '@material-ui/core/Container';
@@ -10,7 +10,7 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 const useStyles = makeStyles((theme) =>({
     prog:{
         width:"800px",
-        marginTop:"200px",
+        marginTop:"100px",
         [theme.breakpoints.down(500)]: {
             width: 400,
         }
@@ -53,34 +53,33 @@ function Scatterplot(props){
         
 
     var final = groupByObj(newArray, 'z');
-    const arr = ["star","traingle","circle","square"]
-    let i=-1
+    const arr = [ 'square','circle' , 'cross' ,'diamond' ,'star' , 'triangle' , 'wye']
 
     return (
         <div>    
         <Container maxWidth="lg">
         <div style={{ display:'flex', flexDirection:'column', alignContent:'center'}}>
         {
-            props.values?
+            props.values?<>
                 <ScatterChart
                     width={window.innerWidth/1.6}
                     height={window.innerHeight/1.4}
                     margin={{
-                        top: 100, right: 20, bottom: 20, left: 20,
+                        top: 20, right: 20, bottom: 20, left: 20,
                     }}
                 >
                     <CartesianGrid />
-                    <XAxis type="number" dataKey="x" name="0" label={{ value: x_axis, position: 'Bottom' }}/>
-                    <YAxis type="number" dataKey="y" name="1" label={{ value: y_axis, angle: -90, position: 'Left' }}/>
+                    <XAxis type="number" dataKey="x" name="0" label={{ value: x_axis, position: 'bottom' }}/>
+                    <YAxis type="number" dataKey="y" name="1" label={{ value: y_axis, angle: -90, position: 'left' }}/>
                     <Tooltip cursor={{ strokeDasharray: '3 3' }} />
                     
-                    <Legend />
+                    <Legend verticalAlign="top" height={36}/>
                     {
                         Object.keys(final).map(function(key, index) {
                             return <Scatter name={key} data={final[key]} shape={""+arr[Math.floor(Math.random() * arr.length)]} fill={"#"+Math.floor(Math.random()*16777215).toString(16)}  />
                         })    
                     }
-                </ScatterChart>
+                </ScatterChart></>
             :
             <LinearProgress className={classes.prog} color="secondary"/>
         }  

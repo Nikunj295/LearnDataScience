@@ -127,7 +127,7 @@ export default function CustomPaginationActionsTable({values,type}) {
         <TableHead>
             <TableRow>
               {
-                col.map(item=><TableCell align="center">{item}</TableCell>)
+                col.map(item=><TableCell key={item} align="center">{item}</TableCell>)
               }
               <TableCell align="center">Target</TableCell>
             </TableRow>
@@ -142,7 +142,7 @@ export default function CustomPaginationActionsTable({values,type}) {
             ).map(row=>
                 <TableRow key={row.id}>
                   {
-                    Object.values(row).map(item=><TableCell align="center">{item}</TableCell>)
+                    Object.values(row).map(item=><TableCell key={row.id} align="center">{item}</TableCell>)
                   }
                 </TableRow>
               )          

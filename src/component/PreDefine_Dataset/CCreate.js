@@ -7,7 +7,6 @@ import CustomPaginationActionsTable from "../Tables/Table";
 import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Footer from '../Footer/Footer';
-import LinearProgress from '@material-ui/core/LinearProgress'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -62,7 +61,6 @@ function CCreate() {
             params:{payload}
         }).then(response=>response.data)
         .then(data => {
-            console.log(data)
             const tb = data[0]
             const ds = data[1]
             var myData = Object.keys(tb).map(key => {
@@ -137,7 +135,8 @@ function CCreate() {
                 <Button disabled={!show} variant="contained"color="primary"className={classes.button}>
                 <Link style={{textDecoration:"none",color:'inherit'}} to={{
                     pathname:"/FeatureSelection",
-                }}>Feature Selection&nbsp;&nbsp; <i class="fa fa-mail-forward"></i></Link>
+                    data:{data:values}
+                }}>Feature Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i></Link>
                 </Button>
             
             
@@ -157,8 +156,8 @@ function CCreate() {
                     <div style={{ alignItems: "230px", position: "relative"}}>
                     <Button disabled={!show} variant="contained" color="primary"className={classes.button}>
                     <Link  style={{textDecoration:"none",color:'inherit'}} to={{
-                        pathname:"/FeatureSelection",
-                    }}>Feature Selection&nbsp;&nbsp; <i class="fa fa-mail-forward"></i></Link>
+                        pathname:"/FeatureSelection",data:{data:values}
+                    }}>Feature Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i></Link>
                     </Button>
                     </div></div>
                     <hr style={{borderWidth: "5px"}}/> 
