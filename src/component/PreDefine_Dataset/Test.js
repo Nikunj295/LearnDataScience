@@ -206,6 +206,14 @@ const useStyles = makeStyles((theme) =>({
         marginLeft: "auto",
         marginRight: "auto"
     },
+    short:{
+        textAlign:'justify',
+        marginLeft:"auto",
+        marginRight:"auto",
+        lineHeight:'1.8',
+        marginTop:'30px',
+        marginBottom:'50px',
+    }, 
 }))
 
 function Test(props) {    
@@ -226,7 +234,7 @@ function Test(props) {
             id,
             algorithm: algo
         }
-        Axios.post("http://127.0.0.1:5000/model",null,{
+        Axios.post("https://l-data-science.herokuapp.com/model",null,{
             params:{
                 payload
             }
@@ -240,8 +248,8 @@ function Test(props) {
                     <h1>Step 6: Model Creation</h1>
                 </div>
                 <h2 style={{marginTop:"30px"}}>{cla[algo].name}</h2>
-                <h4 style={{marginTop:"20px"}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;{cla[algo].heading}
+                <h4 className={classes.short}>
+                    {cla[algo].heading}
                 </h4>
                 <div>
                    <div style={{ alignItems: "230px", position: "relative"}}>
@@ -256,32 +264,33 @@ function Test(props) {
                     <img src={cla[algo].img} className={classes.im} height="40%" width="40%" alt="kear_img"/>
                 </div>
                 <div>
-                    {cla[algo].body1?<h5 className={classes.body}>--{cla[algo].body1}</h5>:null}
+                    {cla[algo].body1?<h5 className={classes.short}>--{cla[algo].body1}</h5>:null}
                 </div>
                 <div>
-                    {cla[algo].body2?<h5 className={classes.body}>--{cla[algo].body2}</h5>:null}
+                    {cla[algo].body2?<h5 className={classes.short}>--{cla[algo].body2}</h5>:null}
                 </div>
                 {cla[algo].img1?<div >
                     <img className={classes.im} src={cla[algo].img1} height="60%" width="60%" alt="kear_img"/>
                 </div>:null}
                 <div> 
-                    {cla[algo].body3?<h5 className={classes.body}><pre>{cla[algo].body3}</pre></h5>:null}
+                    {cla[algo].body3?<h5 className={classes.shrot}><pre>{cla[algo].body3}</pre></h5>:null}
                 </div>
                 <div> 
-                    {cla[algo].body4?<h5 className={classes.body}>{cla[algo].body4}</h5>:null}
+                    {cla[algo].body4?<h5 className={classes.short}>{cla[algo].body4}</h5>:null}
                 </div>
-                <div className={classes.body}>
+                <div >
                     <h3>Advantages :</h3>
                     {
-                        cla[algo].adv.map(i=><h5 key={i}>-{">"}{i}</h5>)
+                        cla[algo].adv.map(i=><h5 className={classes.short} key={i}>-{">"}{i}</h5>)
                     }
                 </div>
-                <div className={classes.body}>
+                <div >
                     <h3>Disadvantages :</h3>
                     {
-                        cla[algo].dis.map(i=><h5 key={i}>-{">"}{i}</h5>)
+                        cla[algo].dis.map(i=><h5 className={classes.short} key={i}>-{">"}{i}</h5>)
                     }
                 </div>
+                
                 <div>
                     <h3>Now, next step is Test/Predict Data.</h3>
                     <div style={{ alignItems: "230px", position: "relative"}}>

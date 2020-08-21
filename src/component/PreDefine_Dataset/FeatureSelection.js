@@ -21,10 +21,14 @@ const useStyles = makeStyles((theme) =>({
             width: 400,
         }
     },
-    body:{
-        margin:"70px",
-        textAlign:'justify'
-    }
+    short:{
+        textAlign:'justify',
+        marginLeft:"auto",
+        marginRight:"auto",
+        lineHeight:'1.8',
+        marginTop:'30px',
+        marginBottom:'50px',
+    },
 }))
 
 function arr_diff (a1, a2) {
@@ -68,7 +72,7 @@ function FeatureSelection(props){
                 dataset
             }
             if(raw==='true'){
-                axios.post("http://127.0.0.1:5000/create/selection",null,{
+                axios.post("https://l-data-science.herokuapp.com/create/selection",null,{
                     params:{
                         payload
                     }
@@ -84,7 +88,7 @@ function FeatureSelection(props){
                 })
             }
             else{
-                axios.post("http://127.0.0.1:5000/selection",null,{
+                axios.post("https://l-data-science.herokuapp.com/selection",null,{
                     params:{
                         payload
                     }
@@ -116,23 +120,19 @@ function FeatureSelection(props){
                 }) 
                 res.push(tempItem);
             });
-            setShow(true)
-            setData(res)
-        }
-        return ()=>{
-            if(raw===false){
-                let column = sessionStorage.getItem('train').split(",")
+            let column = sessionStorage.getItem('train').split(",")
                 let payload = {
                     id,
                     item:column,
                     dataset
                 }
-                axios.post("http://127.0.0.1:5000/selection",null,{
+                axios.post("https://l-data-science.herokuapp.com/selection",null,{
                     params:{
                         payload
                     }
-                })
-            }
+            })
+            setShow(true)
+            setData(res)
         }
     },[item])
 
@@ -148,14 +148,15 @@ function FeatureSelection(props){
     return (
         <div >
             <Container maxWidth="lg">
-            <div style={{marginTop:"30px"}}>
+            <div style={{marginTop:"30px",marginBottom:"30px"}}>
                 <h1>Step 3: Feature Selection</h1>
             </div>
             <div>
-                <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span style={{fontSize:'28px'}}>F</span>eature selection is the process of reducing the number of input variables when developing a predictive model.
+                <h4 className={classes.short}>
+                <span style={{fontSize:'28px'}}>F</span>eature selection is the process of reducing the number of input variables when developing a predictive model.
                 It is desirable to reduce the number of input variables to both reduce the computational cost of modeling and, 
-                in some cases, to improve the performance of the model. Let's check first with all inputs</h5>
+                in some cases, to improve the performance of the model. Let's check first with all inputs
+                </h4>
             </div>
             <div style={{marginTop:"50px"}}>
             {
@@ -179,32 +180,25 @@ function FeatureSelection(props){
                     </> 
                 :<><LinearProgress className={classes.prog} color="secondary"/></>
             } 
-            <div className={classes.body}>
-                <h5>
+            <h5 className={classes.short}>
                 Statistical-based feature selection methods involve evaluating the relationship between each input variable and the 
                 target variable using statistics and selecting those input variables that have the strongest relationship with the target variable. 
                 These methods can be fast and effective, 
                 although the choice of statistical measures depends on the data type of both the input and output variables.
-                </h5>
-            </div>
-            <div className={classes.body}>
-                <h5>
+            </h5>
+            <h5  className={classes.short}>
                 The difference has to do with whether features are selected based on the target variable or not. Unsupervised feature selection techniques ignores the target variable, such as methods that remove redundant variables using correlation. 
                 Supervised feature selection techniques use the target variable, such as methods that remove irrelevant variables..
                 Another way to consider the mechanism used to select features which may be divided into wrapper and filter methods. 
                 These methods are almost always supervised and are evaluated based on the performance of a resulting model on a hold out dataset.
                 Wrapper feature selection methods create many models with different subsets of input features and select those features that result in the best performing model according to a performance metric. These methods are unconcerned with the variable types, although they can be computationally expensive. RFE is a good example of a wrapper feature selection method.
-                </h5>
-            </div>
-            <div className={classes.body}>
-                <h5>
+            </h5>
+            <h5 className={classes.short}>
                 Filter feature selection methods use statistical techniques to evaluate the relationship between each input variable and the target variable, and these scores are used as the basis to choose (filter) those input variables that will be used in the model.
-                </h5>
-            </div>
-            <div className={classes.body}>
-                <h5>
-                Finally, there are some machine learning algorithms that perform feature selection automatically as part of learning the model. We might refer to these techniques as intrinsic feature selection methods. These methods will come in the future updates.</h5>
-            </div>
+            </h5>
+            <h5  className={classes.short}>
+                Finally, there are some machine learning algorithms that perform feature selection automatically as part of learning the model. We might refer to these techniques as intrinsic feature selection methods. These methods will come in the future updates.
+            </h5>
             <div>
                 <h3>Now, next step is Split Data.</h3>
                 <div style={{ alignItems: "230px", position: "relative"}}>

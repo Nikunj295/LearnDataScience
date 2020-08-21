@@ -14,7 +14,7 @@ class Boxplot extends React.Component {
 		let payload = {
 			id
 		}
-		Axios.post("http://127.0.0.1:5000/boxplot",null,{
+		Axios.post("https://l-data-science.herokuapp.com/boxplot",null,{
 			params:{
 				payload
 			}

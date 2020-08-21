@@ -75,7 +75,7 @@ export default function Visulization() {
         let payload={
             id
         }    
-        Axios.post("http://127.0.0.1:5000/visualize",null,{
+        Axios.post("https://l-data-science.herokuapp.com/visualize",null,{
             params:{
                 payload
             }

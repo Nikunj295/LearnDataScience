@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import Axios from "axios"
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { makeStyles } from '@material-ui/core/styles';
-import reg from "../../Other/Images/1.jpg"
 import ReactImageZoom from 'react-image-zoom';
 
 const useStyles = makeStyles((theme) =>({
@@ -17,7 +16,6 @@ const useStyles = makeStyles((theme) =>({
         display: "flex",
         alignItems:'center',
         flexDirection:'row',
-        // overflow: 'auto',
     },
     head:{
         margin:'auto',
@@ -43,7 +41,7 @@ function Tree() {
         let payload={
             id
         }    
-        Axios.post("http://127.0.0.1:5000/getTree",null,{
+        Axios.post("https://l-data-science.herokuapp.com/getTree",null,{
             params:{
                 payload
             }

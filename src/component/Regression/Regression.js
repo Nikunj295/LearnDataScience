@@ -80,7 +80,7 @@ function Regression (){
         let id = localStorage.getItem('myid')     
         sessionStorage.setItem('type','regression')
         sessionStorage.setItem('raw',false)
-        axios.post("http://127.0.0.1:5000/addId",null,{
+        axios.post("https://l-data-science.herokuapp.com/addId",null,{
             params:{
                 id,
             }   

@@ -43,7 +43,7 @@ function RCreate() {
             cluster,
             type
         }
-        axios.post('http://127.0.0.1:5000/create',null,{
+        axios.post('https://l-data-science.herokuapp.com/create',null,{
             params:{payload}
         }).then(response=>response.data)
         .then(data => {

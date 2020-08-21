@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import Footer from '../Footer/Footer';
-import dtree from "../Other/Classification/decision.PNG";
+import dtree from "../Other/Classification/dtree.jpg";
 import knear from "../Other/Classification/knear.png";
 import svm from "../Other/Classification/svm.jpg";
 import rtree from "../Other/Classification/random.png";
@@ -25,10 +25,14 @@ const useStyles = makeStyles({
     media: {
       height: 200
     },
-    body:{
-        margin:"70px",
-        textAlign:'justify'
-    }
+    short:{
+        textAlign:'justify',
+        marginLeft:"auto",
+        marginRight:"auto",
+        lineHeight:'1.8',
+        marginTop:'30px',
+        marginBottom:'50px',
+    }, 
 });
 
 const c = [
@@ -98,9 +102,10 @@ function Model() {
             <div style={{marginTop:"50px"}}>
                 <h1>Step 5: Model Selection</h1>
             </div>
-            <div style={{marginTop:"30px"}}>
-                <h5>Model selection is the process of selecting one final machine learning model from among a collection of candidate machine learning models for a training dataset.</h5>
-            </div>
+            <h4 className={classes.short}>
+                Model selection is the process of selecting one final machine learning model from among a collection of candidate machine learning models for a training dataset.
+            </h4>
+
             <div style={{marginTop:"30px"}}>
             {
                 type==='classification'?
@@ -161,36 +166,29 @@ function Model() {
                 </>
             }
             </div>
-            <div className={classes.body}>
-                <h5>
+            <h5 className={classes.short}>
                 -&gt;For example, we may have a dataset for which we are interested in developing a classification or regression predictive model. We do not know beforehand as to which model will perform best on this problem, as it is unknowable. Therefore, we fit and evaluate a suite of different models on the problem.
-                </h5>
-            </div>
-            <div className={classes.body}>
-                <h5>
+            </h5>
+            <h5 className={classes.short}>
                 -&gt;Model selection is the process of choosing one of the models as the final model that addresses the problem.
-                </h5>
-                <h5>
+            </h5>
+            <h5 className={classes.short}>
                 -&gt;Model selection is different from model assessment.
                 For example, we evaluate or assess candidate models in order to choose the best one, and this is model selection. Whereas once a model is chosen, it can be evaluated in order to communicate how well it is expected to perform in general; this is model assessment.
-                </h5>
-            </div>
-            <div className={classes.body}>
-                <h4>
+            </h5>
+            <h4 >
                 What do we care about when choosing a final model?
-                </h4>
-                <h5>
+            </h4>
+            <h5  className={classes.short}>
                 -&gt;The project stakeholders may have specific requirements, such as maintainability and limited model complexity. As such, a model that has lower skill but is simpler and easier to understand may be preferred.Alternately, if model skill is prized above all other concerns, then the ability of the model to perform well on out-of-sample data will be preferred regardless of the computational complexity involved.
-                </h5>
-            </div>
-            <div className={classes.body}>
-                <h5>Therefore, a “good enough” model may refer to many things and is specific to your project, such as:
+            </h5>
+            <h5 className={classes.short}>Therefore, a “good enough” model may refer to many things and is specific to your project, such as:
                 <br/>-&gt;A model that meets the requirements and constraints of project stakeholders.
                 <br/>-&gt;A model that is sufficiently skillful given the time and resources available.
                 <br/>-&gt;A model that is skillful as compared to naive models.
                 <br/>-&gt;A model that is skillful relative to other tested models.
-                <br/>-&gt;A model that is skillful relative to the state-of-the-art</h5>
-            </div>
+                <br/>-&gt;A model that is skillful relative to the state-of-the-art
+            </h5>
             </Container>
             <hr style={{borderWidth: "5px"}}/>
             <Footer/>

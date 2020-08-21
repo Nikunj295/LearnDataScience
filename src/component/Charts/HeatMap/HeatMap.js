@@ -2,8 +2,6 @@ import React from 'react'
 import HeatMap from "react-heatmap-grid"
 import ConfusionMatrix from 'ml-confusion-matrix';
 import Container from '@material-ui/core/Container';
-import Footer from '../../Footer/Footer';
-import LinearProgress from '@material-ui/core/LinearProgress'
 
 function HMap(props) {
 

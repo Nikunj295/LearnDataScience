@@ -29,7 +29,15 @@ const useStyles = makeStyles((theme) =>({
         marginTop:"70px",
         marginBottom:"70px",
         textAlign:'justify'
-    }
+    },
+    short:{
+        textAlign:'justify',
+        marginLeft:"auto",
+        marginRight:"auto",
+        lineHeight:'1.8',
+        marginTop:'30px',
+        marginBottom:'50px',
+    }, 
 }))
 
 function Prediction() {
@@ -44,7 +52,7 @@ function Prediction() {
             id
         }    
 
-        axios.post("http://127.0.0.1:5000/predict",null,{
+        axios.post("https://l-data-science.herokuapp.com/predict",null,{
             params:{
                 payload
             }
@@ -71,7 +79,9 @@ function Prediction() {
         <Container maxWidth="lg">
             <div style={{marginTop:"30px", marginBottom:"30px"}}>
                 <h1>Step 7: Predicted Data</h1>
-                <h3 style={{marginTop:"30px"}}>Predictive analytics encompasses a variety of statistical techniques from data mining, predictive modelling, and machine learning, that analyze current and historical facts to make predictions about future or otherwise unknown events</h3>
+                <h4 className={classes.short}>
+                    Predictive analytics encompasses a variety of statistical techniques from data mining, predictive modelling, and machine learning, that analyze current and historical facts to make predictions about future or otherwise unknown events
+                </h4>
             </div>
             <div style={{ position: "relative"}}>
                 <Link to={{pathname:"/Check"}} style={{textDecoration:"none"}}>
@@ -80,16 +90,16 @@ function Prediction() {
                     </Button>
                 </Link>
             </div>
-            <div className={classes.body}>
-                <h3>Predicted Data Table:</h3>
+            <div >
+                <h3 className={classes.short}>Predicted Data Table:</h3>
             </div>
             {show? <>
                 <CustomPaginationActionsTable values={result} /> 
                     </> 
                 :<><LinearProgress className={classes.prog} color="secondary"/></>
             } 
-            <div className={classes.body}>
-                <h3>Comparison of Predicted Data and Original Data(Target):</h3>
+            <div >
+                <h3 className={classes.short}>Comparison of Predicted Data and Original Data(Target):</h3>
             </div>
             {show? <>
                 <CustomPaginationActionsTable values={final} /> 
@@ -100,7 +110,7 @@ function Prediction() {
 
             </div>
             <div>
-                <h3>Now, next step is Visualization. It is boring to watch data in tables instead of that lets analyze the data with Visualization in chart and many more....</h3>
+                <h3 className={classes.short}>Now, next step is Visualization. It is boring to watch data in tables instead of that lets analyze the data with Visualization in chart and many more....</h3>
                 <div style={{ alignItems: "230px", position: "relative"}}>
                     <Link to={{pathname:"/Check"}} style={{textDecoration:"none"}}>
                         <Button variant="contained"color="primary"className={classes.button}>

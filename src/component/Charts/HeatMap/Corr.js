@@ -16,7 +16,7 @@ class Corr extends Component {
                 id
             }
     
-            Axios.post("http://127.0.0.1:5000/corr",null,{
+            Axios.post("https://l-data-science.herokuapp.com/corr",null,{
                 params:{
                     payload
                 }
