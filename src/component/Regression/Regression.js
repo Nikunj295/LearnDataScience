@@ -54,6 +54,12 @@ const useStyles = makeStyles({
       width: 345,
       textAlign:'justify'
     },
+    short:{
+        textAlign:'justify',
+        marginLeft:"auto",
+        marginBottom:"auto",
+        lineHeight:'1.8'
+    },
     media: {
       height: 300,
     },
@@ -96,22 +102,22 @@ function Regression (){
             <div className={classes.heading}><h1><i class="fa fa-area-chart" style={{fontSize:"32px"}} />&nbsp;&nbsp;&nbsp;Regression&nbsp;&nbsp;&nbsp;<i class="fa fa-bar-chart" style={{fontSize:"36px"}}></i></h1><br/></div>
             <div>
                 <div>
-                    <h4 className={classes.ml}>
-                        &nbsp;&nbsp;&nbsp;&nbsp;Regression analysis is a machine learning algorithm that can be used to measure how closely 
+                    <h5 className={classes.short}>
+                        Regression analysis is a machine learning algorithm that can be used to measure how closely 
                         related independent variable(s) relate with a dependent variable. An extensive use of regression analysis is building 
                         models on datasets that accurately predict the values of the dependent variable.
-                    </h4>
+                    </h5>
                 </div>
             </div>
             
             <div>
                 <h3 className={classes.heading}><u>Step 1: Obtain Data</u></h3>
                 <div>
-                    <h4 className={classes.ml}>The very first step of a data science project is straightforward. We obtain the data that we need from available data sources.
+                    <h5 className={classes.short}>The very first step of a data science project is straightforward. We obtain the data that we need from available data sources.
                     In this step, you will need to query databases, using technical skills like MySQL to process the data. You may also receive data in file formats like Microsoft Excel. If you are using Python or R, they have specific packages that can read data from these data sources directly into your data science programs.
                     Another popular option to gather data is connecting to Web APIs. Websites such as Facebook and Twitter allows users to connect to their web servers and access their data. All you need to do is to use their Web API to crawl their data.
                     We have provided some datasets to start with explore. Choice any one of it.
-                    </h4>
+                    </h5>
                 </div>
             </div>
             <div><h3 className={classes.heading}>Dataset:</h3></div>
@@ -164,35 +170,35 @@ function Regression (){
             </Grid>
             <div>
                 <div style={{marginTop:"60px"}}>
-                    <h4 className={classes.ml}>
+                    <h5 className={classes.short}>
                         Regression Analysis is a very interesting machine learning technique that can be applied in different areas to predict numerical values such as predicting the price of a product/house, predicting the number of goals soccer players score in a season and predicting the BMI of people.
-                    </h4>
+                    </h5>
                 </div>
 
                 <div><img src={regression} alt="content1_image" height="60%" width="60%" className={classes.im}/></div>
                 
                 <div>
-                    <h4 className={classes.ml} >
+                    <h5 className={classes.short} >
                     At the beginning of regression analysis, a dataset can be split into two groups: a training dataset and a testing dataset. The training dataset can be used to create a model to figure out the best approach to apply the line of best fit into the graph. Thus, it can be a straight line or a curve that easily fits into the graph of the independent variable(s) vs the dependent variable.
-                    </h4>
+                    </h5>
                 </div>
                 
                 <div >
-                    <h4 className={classes.ml}>
+                    <h5 className={classes.short}>
                     This newly created model can be used to predict the dependent variable of the testing dataset. Then, predicted values can be compared to the original dependent variable values by using different accuracy measures like R-squared, root mean square error, root mean average error, pearson correlation coefficient and others.
-                    </h4>
+                    </h5>
                 </div>
                 
                 <div>
-                    <h4 className={classes.ml}>
+                    <h5 className={classes.short}>
                     If the accuracy score is not accurate enough and a stronger model wants to be built, the percentage of the datasets allocated to the training and testing datasets can be changed. For instance, if the training dataset had 70 % of the dataset with the testing dataset having 30%, the training dataset can now have 80% of the dataset with the testing dataset having 20%.
-                    </h4>
+                    </h5>
                 </div>
                 
                 <div>
-                    <h4 className={classes.ml}>
+                    <h5 className={classes.short}>
                     There are different regression analysis approaches for continuous variables such as Linear Regression, Multiple Linear Regression, Polynomial Regression and Multiple Polynomial Regression.
-                    </h4>
+                    </h5>
                 </div>
             </div>
         </Container>
