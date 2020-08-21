@@ -83,12 +83,7 @@ const r = [
         algo:"svm",
         name:"Support Vector Machine",
         img:svm
-    },
-    {
-        algo:"rtree",
-        name:"Random Tree",
-        img:rtree
-    },
+    }
 ]
 
 function Model() {
