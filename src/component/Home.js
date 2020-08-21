@@ -14,6 +14,8 @@ import VisualHome from "../component/Other/Images/VisualHome.jpg"
 import Datacycle from "../component/Other/Images/Datacycle.png"
 import Footer from "../component/Footer/Footer";
 import Container from '@material-ui/core/Container';
+import { Fade, Bounce } from "react-awesome-reveal";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -55,16 +57,19 @@ const useStyles = makeStyles((theme) => ({
     return (
         <>
         <Container maxWidth="md">
-            <div className={classes.dfam}>
-                <h1>Learn Data Science</h1>
-                <div> 
-                    <img className={classes.margin} src={logo} height={250} width={250} alt="DataScience_HomeLogo" /> 
+            <Fade duration={2000} >
+                <div className={classes.dfam}>
+                    <h1>Learn Data Science</h1>
+                    <div> 
+                        <img className={classes.margin} src={logo} height={250} width={250} alt="DataScience_HomeLogo" /> 
+                    </div>
+                    <Button component={Link} to="/Choicemethod" variant="contained" size="large" color="primary" className={classes.margin}>
+                        Get Started
+                    </Button>
                 </div>
-                <Button component={Link} to="/Choicemethod" variant="contained" size="large" color="primary" className={classes.margin}>
-                    Get Started
-                </Button>
-            </div>
+            </Fade>
 
+            <Fade  delay={100} duration={1200}>
             <div className={classes.dfam} >
             
               <h1 style={{marginBottom:"50px"}}>What we provide</h1>
@@ -122,7 +127,8 @@ const useStyles = makeStyles((theme) => ({
                     </Card>
                 </Grid>
             </div>
-
+            </Fade>
+            <Fade  delay={100} duration={1200}>
             <div className={classes.content1}>
                 <div><h2>What is Data Science?</h2></div><br/>
                 <div>
@@ -156,6 +162,9 @@ const useStyles = makeStyles((theme) => ({
                 the most promising jobs in 2017 and 2018, along with multiple data-science-related skills as the most in-demand by companies
                 </div>
             </div>
+            </Fade>
+            
+            <Fade  delay={100} duration={1200}>
             <div className={classes.content1}>
                 <img src={Datacycle} alt="Cycle_image"/><h4>Data Science Cycle</h4>
             </div>
@@ -173,6 +182,7 @@ const useStyles = makeStyles((theme) => ({
                 <i className="fa fa-twitter" style={{fontSize:"26px"}}>&nbsp;&nbsp;Twitter</i>
                 <i className="fa fa-google" style={{fontSize:"26px"}}>&nbsp;&nbsp;Google+</i>
             </div>
+            </Fade>
         <Footer/>
         </Container >  
         </>
