@@ -24,11 +24,11 @@ function About() {
         </div>
         <Container maxWidth="md">
             <div style={{textAlign:'justify'}}>
-                <h2 style={{lineHeight:'1.4'}}>This website came in the story as amount of the data is increasing exponetial which can be used for improve result in business or research,  
+                <h3 style={{lineHeight:'1.4'}}>This website came in the story as amount of the data is increasing exponetial which can be used for improve result in business or research,  
                     which result in rise in data science domain by day. As result, every one should have some gist amount of knowledge about it and how it works and how
                     it can be use in their business to make it efficient. We provide some easy real life exmaples to increase our your 
                     knowledge in Data science domain. Remember this is just a starting layer and hope you got something from this.
-                </h2>
+                </h3>
             </div>
         </Container>
     

@@ -91,7 +91,7 @@ function Prediction() {
                 </Link>
             </div>
             <div >
-                <h3 className={classes.short}>Predicted Data Table:</h3>
+                <h4 className={classes.short}>Predicted Data Table:</h4>
             </div>
             {show? <>
                 <CustomPaginationActionsTable values={result} /> 
@@ -99,7 +99,7 @@ function Prediction() {
                 :<><LinearProgress className={classes.prog} color="secondary"/></>
             } 
             <div >
-                <h3 className={classes.short}>Comparison of Predicted Data and Original Data(Target):</h3>
+                <h4 className={classes.short}>Comparison of Predicted Data and Original Data(Target):</h4>
             </div>
             {show? <>
                 <CustomPaginationActionsTable values={final} /> 
@@ -110,7 +110,7 @@ function Prediction() {
 
             </div>
             <div>
-                <h3 className={classes.short}>Now, next step is Visualization. It is boring to watch data in tables instead of that lets analyze the data with Visualization in chart and many more....</h3>
+                <h4 className={classes.short}>Now, next step is Visualization. It is boring to watch data in tables instead of that lets analyze the data with Visualization in chart and many more....</h4>
                 <div style={{ alignItems: "230px", position: "relative"}}>
                     <Link to={{pathname:"/Check"}} style={{textDecoration:"none"}}>
                         <Button variant="contained"color="primary"className={classes.button}>

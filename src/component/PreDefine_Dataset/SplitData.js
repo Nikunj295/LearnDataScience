@@ -79,9 +79,9 @@ function SplitData() {
             </div>
             <div style={{marginTop:"50px"}}>
                 <h3>Training Data</h3>
-                <h4 className={classes.short}>
+                <h5 className={classes.short}>
                     The observations in the training set form the experience that the algorithm uses to learn. In supervised learning problems, each observation consists of an observed output variable and one or more observed input variables.
-                </h4>
+                </h5>
             </div>
             
             <div style={{ alignItems: "230px", position: "relative"}}>

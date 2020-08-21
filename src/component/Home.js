@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     const classes = useStyles();
     return (
         <>
-        <Container maxWidth="lg">
+        <Container maxWidth="md">
             <div className={classes.dfam}>
                 <h1>Learn Data Science</h1>
                 <div> 

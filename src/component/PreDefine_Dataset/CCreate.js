@@ -149,10 +149,10 @@ function CCreate() {
             <div style={{marginBottom:"70px"}}>
                               
                 {show? <> 
-                    <h3>Below Table given is quick statistics of each columns:</h3>  
+                    <h4>Below Table given is quick statistics of each columns:</h4>  
                     <CustomPaginationActionsTable values={info} type="info"/>
                     <div>
-                    <h3>Now, next step is Feature Selection. "What is Feature Selection?" you ask</h3>
+                    <h4>Now, next step is Feature Selection. "What is Feature Selection?" you ask</h4>
                     <div style={{ alignItems: "230px", position: "relative"}}>
                     <Button disabled={!show} variant="contained" color="primary"className={classes.button}>
                     <Link  style={{textDecoration:"none",color:'inherit'}} to={{

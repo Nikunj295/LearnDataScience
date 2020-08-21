@@ -92,9 +92,9 @@ function Classification(){
         <div>
         <Container maxWidth="lg">
             <h1 className={classes.heading}><span>&#10004;</span>Classification&#10008;</h1><br/>
-            <h4 className={classes.content}>
+            <h5 className={classes.content}>
                 Classification is the process of predicting the class of given data points. Classes are sometimes called as targets/ labels or categories. Classification predictive modeling is the task of approximating a mapping function (f) from input variables (X) to discrete output variables (y).
-            </h4>
+            </h5>
             <h3 className={classes.heading}>Dataset:</h3>
             
             <Grid container direction="row" justify="space-evenly" alignItems="center" spacing={10} style={{ margin:"0px",marginTop:"10px",width:"auto"}}>
@@ -147,36 +147,36 @@ function Classification(){
         
             <div><br/><br/><br/>
                 <h3 className={classes.heading}><u>Step 1: Obtain Data</u></h3>
-                <h4 className={classes.short} >The very first step of a data science project is straightforward. We obtain the data that we need from available data sources.
+                <h5 className={classes.short} >The very first step of a data science project is straightforward. We obtain the data that we need from available data sources.
                     In this step, you will need to query databases, using technical skills like MySQL to process the data. You may also receive data in file formats like Microsoft Excel. If you are using Python or R, they have specific packages that can read data from these data sources directly into your data science programs.
                     Another popular option to gather data is connecting to Web APIs. Websites such as Facebook and Twitter allows users to connect to their web servers and access their data. All you need to do is to use their Web API to crawl their data.
                     We have provided some datasets to start with explore. Choice any one of it.
-                </h4>
+                </h5>
             </div>
             
             <div>
-                <h4 className={classes.short} style={{marginTop:"60px"}}>
+                <h5 className={classes.short} style={{marginTop:"60px"}}>
                     In a classification task, each individual or situation where we’d like to make a prediction is 
                     called an observation. We ordinarily have many observations. Each observation has 
                     multiple attributes, which are known (for example, the total value of the order on Amazon, or the voter’s annual 
                     salary). Also, each observation has a class, which is the answer to the question we care about (for example, fraudulent or 
                     not, or voting for you or not).
-                </h4>
+                </h5>
                 
                 <div><img src={content} alt="content1_image" height="60%" width="60%" className={classes.im}/></div>
                 
-                <h4 className={classes.short} style={{marginTop:"60px"}} >
+                <h5 className={classes.short} style={{marginTop:"60px"}} >
                     Classification requires data. It involves looking for patterns, and to find patterns, you need data. 
                     That’s where the data science comes in. In particular, we’re going to assume that we have access to training data: a 
                     bunch of observations, where we know the class of each observation. The collection of these pre-classified observations is also 
                     called a training set. A classification algorithm is going to analyze the training set, and then come up with a classifier: an algorithm for predicting the class of future observations.
-                </h4>
+                </h5>
 
-                <h4 className={classes.short} style={{marginBottom:"60px",marginTop:"60px"}}>
+                <h5 className={classes.short} style={{marginBottom:"60px",marginTop:"60px"}}>
                     Classifiers do not need to be perfect to be useful. They can be useful even if their accuracy is less than 100%. For instance, 
                     if the online dating site occasionally makes a bad recommendation, that’s OK; their customers already expect to have to meet many people before they’ll find someone they hit it off with. 
                     Of course, you don’t want the classifier to make too many errors — but it doesn’t have to get the right answer every single time.
-                </h4>
+                </h5>
             </div>
         </Container>
         <Footer/>

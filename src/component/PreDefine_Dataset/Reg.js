@@ -29,7 +29,15 @@ const useStyles = makeStyles((theme) =>({
         marginTop:"70px",
         marginBottom:"70px",
         textAlign:'justify'
-    }
+    },
+    short:{
+        textAlign:'justify',
+        marginLeft:"auto",
+        marginRight:"auto",
+        lineHeight:'1.8',
+        marginTop:'30px',
+        marginBottom:'50px',
+    }, 
 }))
 
 const content = {
@@ -176,12 +184,12 @@ function Reg(props){
         <h2 style={{marginTop:"30px"}}>{content[dataset].name}</h2>
         </div>
         <div>
-            {content[dataset].heading}
+            <h4 className={classes.short}>{content[dataset].heading}</h4>
         </div>
         <div>
             <br/>
             <h3>Attribute Information</h3>
-            <pre>{content[dataset].attri}</pre>
+            <h5><pre>{content[dataset].attri}</pre></h5>
         </div>
         <div className={classes.img}>
             <img src={content[dataset].img} alt={content[dataset].img}/>
@@ -206,9 +214,9 @@ function Reg(props){
                     :<><LinearProgress className={classes.prog} color="secondary"/></>
                 } 
             </div>
-            <div className={classes.body}>
-                <h5 className={classes.body}>{content[dataset].body1}</h5>
-                <h5 className={classes.body}>{content[dataset].body2}</h5>
+            <div>
+                <h5 className={classes.short}>{content[dataset].body1}</h5>
+                <h5 className={classes.short}>{content[dataset].body2}</h5>
             </div>
             <div style={{marginBottom:"70px"}}>
                 <h3>Below Table given is quick statistics of each columns:</h3>                

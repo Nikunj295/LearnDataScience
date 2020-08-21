@@ -160,7 +160,7 @@ function Clas(props){
     <Container maxWidth="lg">
         <h1 style={{marginTop:"30px"}}>Step 2: Explore the Data</h1>
         <h2 style={{marginTop:"30px"}}>{content[dataset].name}</h2>
-        <h4 className={classes.body}>{content[dataset].heading}</h4>
+        <h5 className={classes.body}>{content[dataset].heading}</h5>
         <div>
             <h3>Attribute Information</h3>
             <h5><pre>{content[dataset].attri}</pre></h5>
@@ -190,16 +190,16 @@ function Clas(props){
                     :<><LinearProgress className={classes.prog} color="secondary"/></>
                 } 
             </div>
-            <h4 className={classes.body}>{content[dataset].body1}</h4>
-            <h4 className={classes.body}>{content[dataset].body2}</h4>
+            <h5 className={classes.body}>{content[dataset].body1}</h5>
+            <h5 className={classes.body}>{content[dataset].body2}</h5>
             
             <div style={{marginBottom:"70px"}}>
-                <h3>Below Table given is quick statistics of each columns:</h3>                
+                <h4>Below Table given is quick statistics of each columns:</h4>                
                 {show? <CustomPaginationActionsTable values={infoData} type="info"/> : <LinearProgress className={classes.prog} color="secondary"/>}            
             </div>
             
             <div>
-                <h3>Now, next step is Feature Selection. "What is Feature Selection?" you ask</h3>
+                <h4>Now, next step is Feature Selection. "What is Feature Selection?" you ask</h4>
                 <div style={{ alignItems: "230px", position: "relative"}}>
                     <Link to={{pathname:"/FeatureSelection",data:{data:data}}} style={{textDecoration:"none"}}>
                         <Button variant="contained"color="primary"className={classes.button}>
