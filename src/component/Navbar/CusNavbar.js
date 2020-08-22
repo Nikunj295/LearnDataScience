@@ -17,7 +17,7 @@ function CusNavbar() {
   return (
     <div>
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/">| Learn Data Science |</NavbarBrand>
+        <NavbarBrand href="/">| Data Science |</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>

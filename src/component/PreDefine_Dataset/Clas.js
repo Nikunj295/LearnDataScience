@@ -27,10 +27,11 @@ const useStyles = makeStyles((theme) =>({
         overflow: 'auto',
     },
     body:{
-        marginTop:"70px",
-        marginBottom:"70px",
-        textAlign:'justify'
-    }
+        marginTop:"50px",
+        marginBottom:"50px",
+        textAlign:'justify',
+        lineHeight:'1.8'
+    },
 }))
 
 const content = {
@@ -127,7 +128,7 @@ function Clas(props){
 
     useEffect(()=>{
         sessionStorage.setItem('raw','false')
-        axios.post(`http://127.0.0.1:5000/fetchData/${dataset}`)
+        axios.post(`https://l-data-science.herokuapp.com/fetchData/${dataset}`)
         .then(response=>response.data)
         .then(data => {
             const tb = data[0]
@@ -157,29 +158,26 @@ function Clas(props){
     return (
     <>
     <Container maxWidth="lg">
-        <div style={{marginTop:"30px"}}>
-            <h1>Step 2: Explore the Data</h1>
+        <h1 style={{marginTop:"30px"}}>Step 2: Explore the Data</h1>
         <h2 style={{marginTop:"30px"}}>{content[dataset].name}</h2>
-        </div>
+        <h5 className={classes.body}>{content[dataset].heading}</h5>
         <div>
-            {content[dataset].heading}
-        </div>
-        <div>
-            <br/>
             <h3>Attribute Information</h3>
-            <pre>{content[dataset].attri}</pre>
+            <h5><pre>{content[dataset].attri}</pre></h5>
         </div>
+
         <div className={classes.img}>
             <img src={content[dataset].img} alt={content[dataset].img}/>
         </div>
+
         <div style={{marginBottom:"50px"}}>
             <div><h3>Target:</h3>
             <h5>{content[dataset].classes}</h5>
             </div>
             <div style={{ position: "relative"}}>
-                <Link to={{pathname:"/FeatureSelection"}} style={{textDecoration:"none"}}>
+                <Link to={{pathname:"/FeatureSelection",data:{data:data}}} style={{textDecoration:"none"}}>
                     <Button variant="contained"color="primary"className={classes.button}>
-                        Feature Selection&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                        Feature Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                     </Button>
                 </Link>
             </div>
@@ -192,20 +190,20 @@ function Clas(props){
                     :<><LinearProgress className={classes.prog} color="secondary"/></>
                 } 
             </div>
-            <div className={classes.body}>
-                <h5 className={classes.body}>{content[dataset].body1}</h5>
-                <h5 className={classes.body}>{content[dataset].body2}</h5>
-            </div>
+            <h5 className={classes.body}>{content[dataset].body1}</h5>
+            <h5 className={classes.body}>{content[dataset].body2}</h5>
+            
             <div style={{marginBottom:"70px"}}>
-                <h3>Below Table given is quick statistics of each columns:</h3>                
+                <h4>Below Table given is quick statistics of each columns:</h4>                
                 {show? <CustomPaginationActionsTable values={infoData} type="info"/> : <LinearProgress className={classes.prog} color="secondary"/>}            
             </div>
+            
             <div>
-                <h3>Now, next step is Feature Selection. "What is Feature Selection?" you ask</h3>
+                <h4>Now, next step is Feature Selection. "What is Feature Selection?" you ask</h4>
                 <div style={{ alignItems: "230px", position: "relative"}}>
-                    <Link to={{pathname:"/FeatureSelection"}} style={{textDecoration:"none"}}>
+                    <Link to={{pathname:"/FeatureSelection",data:{data:data}}} style={{textDecoration:"none"}}>
                         <Button variant="contained"color="primary"className={classes.button}>
-                            Feature Selection&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                            Feature Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                         </Button>
                     </Link>
                 </div> 

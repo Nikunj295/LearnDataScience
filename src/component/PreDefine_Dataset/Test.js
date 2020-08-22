@@ -13,6 +13,7 @@ import svm from "../Other/Classification/svmcontent.PNG";
 import naive from "../Other/Classification/naivecontent.jpeg";
 import dtree from "../Other/Classification/dtreecontent.PNG";
 import rtree from "../Other/Classification/rtreecontent.PNG";
+import linear from "../Other/Regression/linearregression.png"
 
 const cla = {
     "logisticRegression":{
@@ -162,6 +163,25 @@ Step-5: For new data points, find the predictions of each decision tree, and ass
         img:naive,
         img1:"",
     },
+    "linearRegression":{
+        name:"Linear Regression Algorithm",
+        body1:`The linear equation assigns one scale factor to each input value or column, called a coefficient and represented by the capital Greek letter Beta (B). One additional coefficient is also added, giving the line an additional degree of freedom (e.g. moving up and down on a two-dimensional plot) and is often called the intercept or the bias coefficient.`,
+        heading:`Linear regression is an attractive model because the representation is so simple.
+        The representation is a linear equation that combines a specific set of input values (x) the solution to which is the predicted output for that set of input values (y). As such, both the input values (x) and the output value are numeric.`,
+        body2:`For example, in a simple regression problem (a single x and a single y), the form of the model would be:
+        y = B0 + B1*x`,
+        body3:``,
+        body4:`In higher dimensions when we have more than one input (x), the line is called a plane or a hyper-plane. The representation therefore is the form of the equation and the specific values used for the coefficients (e.g. B0 and B1 in the above example).
+        It is common to talk about the complexity of a regression model like linear regression. This refers to the number of coefficients used in the model.When a coefficient becomes zero, it effectively removes the influence of the input variable on the model and therefore from the prediction made from the model (0 * x = 0). This becomes  relevant if you look at regularization methods that change the learning algorithm to reduce the complexity of regression models by putting pressure on the absolute size of the coefficients, driving some to zero.`,
+        adv:["Linear Regression performs well when the dataset is linearly separable. We can use it to find the nature of the relationship among the variables.",
+        "Linear Regression is easier to implement, interpret and very efficient to train.",
+        "Linear Regression is prone to over-fitting but it can be easily avoided using some dimensionality reduction techniques, regularization (L1 and L2) techniques and cross-validation."],
+        dis:[" Main limitation of Linear Regression is the assumption of linearity between the dependent variable and the independent variables. In the real world, the data is rarely linearly separable. It assumes that there is a straight-line relationship between the dependent and independent variables which is incorrect many times.",
+        " If the number of observations are lesser than the number of features, Linear Regression should not be used, otherwise it may lead to overfit because is starts considering noise in this scenario while building the model.",
+        " Linear regression is very sensitive to outliers (anomalies). So, outliers should be analyzed and removed before applying Linear Regression to the dataset."],
+        img:linear,
+        img1:"",
+    }
 }
 
 
@@ -182,17 +202,22 @@ const useStyles = makeStyles((theme) =>({
     },
     im:{
         display: "block",
-        // alignItems:'center',
-        // flexDirection:'row'
         marginTop:"50px",
         marginLeft: "auto",
         marginRight: "auto"
     },
+    short:{
+        textAlign:'justify',
+        marginLeft:"auto",
+        marginRight:"auto",
+        lineHeight:'1.8',
+        marginTop:'30px',
+        marginBottom:'50px',
+    }, 
 }))
 
 function Test(props) {    
     const classes = useStyles();
-    const [show,setShow] = useState(false)
     let id = localStorage.getItem('myid')
 
     let algo = ""
@@ -209,12 +234,11 @@ function Test(props) {
             id,
             algorithm: algo
         }
-        Axios.post("http://127.0.0.1:5000/model",null,{
+        Axios.post("https://l-data-science.herokuapp.com/model",null,{
             params:{
                 payload
             }
         })
-        .then(response=>console.log(response))
     },[])
 
     return (
@@ -224,14 +248,14 @@ function Test(props) {
                     <h1>Step 6: Model Creation</h1>
                 </div>
                 <h2 style={{marginTop:"30px"}}>{cla[algo].name}</h2>
-                <h4 style={{marginTop:"20px"}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;{cla[algo].heading}
+                <h4 className={classes.short}>
+                    {cla[algo].heading}
                 </h4>
                 <div>
                    <div style={{ alignItems: "230px", position: "relative"}}>
                         <Link to={{pathname:"/Prediction"}} style={{textDecoration:"none"}}>
                             <Button variant="contained"color="primary"className={classes.button}>
-                                Predict Test Data&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                                Predict Test Data&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                             </Button>
                         </Link>
                     </div> 
@@ -240,38 +264,39 @@ function Test(props) {
                     <img src={cla[algo].img} className={classes.im} height="40%" width="40%" alt="kear_img"/>
                 </div>
                 <div>
-                    {cla[algo].body1?<h5 className={classes.body}>--{cla[algo].body1}</h5>:null}
+                    {cla[algo].body1?<h5 className={classes.short}>--{cla[algo].body1}</h5>:null}
                 </div>
                 <div>
-                    {cla[algo].body2?<h5 className={classes.body}>--{cla[algo].body2}</h5>:null}
+                    {cla[algo].body2?<h5 className={classes.short}>--{cla[algo].body2}</h5>:null}
                 </div>
                 {cla[algo].img1?<div >
                     <img className={classes.im} src={cla[algo].img1} height="60%" width="60%" alt="kear_img"/>
                 </div>:null}
                 <div> 
-                    {cla[algo].body3?<h5 className={classes.body}><pre>{cla[algo].body3}</pre></h5>:null}
+                    {cla[algo].body3?<h5 className={classes.shrot}><pre>{cla[algo].body3}</pre></h5>:null}
                 </div>
                 <div> 
-                    {cla[algo].body4?<h5 className={classes.body}>{cla[algo].body4}</h5>:null}
+                    {cla[algo].body4?<h5 className={classes.short}>{cla[algo].body4}</h5>:null}
                 </div>
-                <div className={classes.body}>
+                <div >
                     <h3>Advantages :</h3>
                     {
-                        cla[algo].adv.map(i=><h5>-{">"}{i}</h5>)
+                        cla[algo].adv.map(i=><h5 className={classes.short} key={i}>-{">"}{i}</h5>)
                     }
                 </div>
-                <div className={classes.body}>
+                <div >
                     <h3>Disadvantages :</h3>
                     {
-                        cla[algo].dis.map(i=><h5>-{">"}{i}</h5>)
+                        cla[algo].dis.map(i=><h5 className={classes.short} key={i}>-{">"}{i}</h5>)
                     }
                 </div>
+                
                 <div>
                     <h3>Now, next step is Test/Predict Data.</h3>
                     <div style={{ alignItems: "230px", position: "relative"}}>
                         <Link to={{pathname:"/Prediction"}} style={{textDecoration:"none"}}>
                             <Button variant="contained"color="primary"className={classes.button}>
-                                Predict Test Data&nbsp;&nbsp; <i class="fa fa-mail-forward"></i>
+                                Predict Test Data&nbsp;&nbsp; <i className="fa fa-mail-forward"></i>
                             </Button>
                         </Link>
                     </div> 

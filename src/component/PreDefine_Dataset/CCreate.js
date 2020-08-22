@@ -7,7 +7,6 @@ import CustomPaginationActionsTable from "../Tables/Table";
 import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Footer from '../Footer/Footer';
-import LinearProgress from '@material-ui/core/LinearProgress'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,11 +57,10 @@ function CCreate() {
             cluster,
             type
         }
-        axios.post('http://127.0.0.1:5000/create',null,{
+        axios.post('https://l-data-science.herokuapp.com/create',null,{
             params:{payload}
         }).then(response=>response.data)
         .then(data => {
-            console.log(data)
             const tb = data[0]
             const ds = data[1]
             var myData = Object.keys(tb).map(key => {
@@ -82,7 +80,7 @@ function CCreate() {
                     columns.push(column[i])
                 }
             }
-            localStorage.setItem("selected",columns)
+            sessionStorage.setItem("selected",columns)
             setShow(true)
         })
     }
@@ -137,7 +135,8 @@ function CCreate() {
                 <Button disabled={!show} variant="contained"color="primary"className={classes.button}>
                 <Link style={{textDecoration:"none",color:'inherit'}} to={{
                     pathname:"/FeatureSelection",
-                }}>Feature Selection&nbsp;&nbsp; <i class="fa fa-mail-forward"></i></Link>
+                    data:{data:values}
+                }}>Feature Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i></Link>
                 </Button>
             
             
@@ -150,15 +149,15 @@ function CCreate() {
             <div style={{marginBottom:"70px"}}>
                               
                 {show? <> 
-                    <h3>Below Table given is quick statistics of each columns:</h3>  
+                    <h4>Below Table given is quick statistics of each columns:</h4>  
                     <CustomPaginationActionsTable values={info} type="info"/>
                     <div>
-                    <h3>Now, next step is Feature Selection. "What is Feature Selection?" you ask</h3>
+                    <h4>Now, next step is Feature Selection. "What is Feature Selection?" you ask</h4>
                     <div style={{ alignItems: "230px", position: "relative"}}>
                     <Button disabled={!show} variant="contained" color="primary"className={classes.button}>
                     <Link  style={{textDecoration:"none",color:'inherit'}} to={{
-                        pathname:"/FeatureSelection",
-                    }}>Feature Selection&nbsp;&nbsp; <i class="fa fa-mail-forward"></i></Link>
+                        pathname:"/FeatureSelection",data:{data:values}
+                    }}>Feature Selection&nbsp;&nbsp; <i className="fa fa-mail-forward"></i></Link>
                     </Button>
                     </div></div>
                     <hr style={{borderWidth: "5px"}}/> 

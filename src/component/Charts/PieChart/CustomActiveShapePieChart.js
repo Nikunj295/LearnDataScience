@@ -22,6 +22,7 @@ export default function CustomActiveShapePieChart (props) {
     const options = {
         exportEnabled: true,
         animationEnabled: true,
+        width:window.innerWidth/3,
         title: {
             text: "Predicted"
         },
@@ -48,6 +49,7 @@ export default function CustomActiveShapePieChart (props) {
     const options1 = {
         exportEnabled: true,
         animationEnabled: true,
+        width:window.innerWidth/3,
         title: {
             text: "Target"
         },
@@ -65,13 +67,10 @@ export default function CustomActiveShapePieChart (props) {
 
 
     return (
-        <>
+        <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
             <CanvasJSChart options = {options}/>
-            <br/>
-            <br/>
-            <br/>
             <CanvasJSChart options = {options1}/>
-        </>
+        </div>
     );
 }
 

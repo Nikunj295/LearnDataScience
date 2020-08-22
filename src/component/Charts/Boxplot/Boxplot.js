@@ -14,7 +14,7 @@ class Boxplot extends React.Component {
 		let payload = {
 			id
 		}
-		Axios.post("http://127.0.0.1:5000/boxplot",null,{
+		Axios.post("https://l-data-science.herokuapp.com/boxplot",null,{
 			params:{
 				payload
 			}
@@ -33,12 +33,7 @@ class Boxplot extends React.Component {
 		const options = {
 			theme: "light2",
 			animationEnabled: true,
-			title:{
-				text: "Energy in Baked Foods"
-			},
-			axisY: {
-				title: "Energy Per 100 g (kcal/100g)"
-			},
+			width:window.innerWidth/1.4,
 			data: [{
 				type: "boxAndWhisker",
 				whiskerThickness: 4,

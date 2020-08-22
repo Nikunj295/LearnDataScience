@@ -67,7 +67,7 @@ function AxisSelect(props){
                 >
                     {
                         columns.map(item=>{
-                            return <MenuItem name="xaxe" value={item}>{item}</MenuItem>        
+                            return <MenuItem key={item} name="xaxe" value={item}>{item}</MenuItem>        
                         })
                     }
                 </Select>
@@ -82,7 +82,7 @@ function AxisSelect(props){
                 >
                     {
                         columns.map(item=>{
-                        return <MenuItem name="yaxe" value={item}>{item}</MenuItem>        
+                        return <MenuItem key={item} name="yaxe" value={item}>{item}</MenuItem>        
                         })
                     }                
                 </Select>
@@ -95,8 +95,8 @@ function AxisSelect(props){
                     value={tg}
                     onChange={(e)=>updateTg(e)}
                 >
-                    <MenuItem name="tg" value="Predicted">Predicted</MenuItem>
-                    <MenuItem name="tg" value="target">Target</MenuItem>
+                    <MenuItem key="Predicted" name="tg" value="Predicted">Predicted</MenuItem>
+                    <MenuItem key="target" name="tg" value="target">Target</MenuItem>
                 </Select>
             </FormControl>
             </div>
@@ -145,7 +145,7 @@ export function AxisSelect2(props){
                 >
                     {
                         columns.map(item=>{
-                            return <MenuItem name="xaxe" value={item}>{item}</MenuItem>        
+                            return <MenuItem key={item} name="xaxe" value={item}>{item}</MenuItem>        
                         })
                     }
                 </Select>
@@ -158,8 +158,8 @@ export function AxisSelect2(props){
                     value={tg}
                     onChange={(e)=>updateTg(e)}
                 >
-                    <MenuItem name="tg" value="Predicted">Predicted</MenuItem>
-                    <MenuItem name="tg" value="target">Original</MenuItem>
+                    <MenuItem name="tg" key="Predicted"value="Predicted">Predicted</MenuItem>
+                    <MenuItem name="tg" key="target" value="target">Original</MenuItem>
                 </Select>
             </FormControl>
             </div>
@@ -208,14 +208,14 @@ export function Histo(props){
                 >
                     {
                         columns.map(item=>{
-                            return <MenuItem name="xaxe" value={item}>{item}</MenuItem>        
+                            return <MenuItem key={item} name="xaxe" value={item}>{item}</MenuItem>        
                         })
                     }
                 </Select>
             </FormControl>
             <TextField className={classes.formControl} 
                     type="number" 
-                    InputProps={{ inputProps: { min: 10, max: 100000 } }} 
+                    InputProps={{ inputProps: { min: 0, max: 100000 } }} 
                     id="standard-basic" 
                     label="Bins"
                     value={bin}

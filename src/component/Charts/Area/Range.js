@@ -1,4 +1,4 @@
-import React, { useState, useContext, Component} from 'react'
+import React, {Component} from 'react'
 import CanvasJSReact from '../files/canvasjs.react'
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 

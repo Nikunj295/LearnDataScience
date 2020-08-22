@@ -7,7 +7,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-
 import logo from "../component/Other/Images/logo.png"
 import AlgoHome from "../component/Other/Images/AlgoHome.jpg"
 import DataHome from "../component/Other/Images/DataHome.png"
@@ -15,6 +14,8 @@ import VisualHome from "../component/Other/Images/VisualHome.jpg"
 import Datacycle from "../component/Other/Images/Datacycle.png"
 import Footer from "../component/Footer/Footer";
 import Container from '@material-ui/core/Container';
+import { Fade, Bounce } from "react-awesome-reveal";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,24 +26,55 @@ const useStyles = makeStyles((theme) => ({
     },
     margin: {
         marginTop: theme.spacing(6)
+    },
+    dfam:{
+        display:'flex',
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        marginTop:'120px'
+    },
+    content1:{
+        display:'flex',
+        flexDirection: 'column',
+        alignItems: 'center', 
+        marginTop:'100px', 
+        textAlign:'justify',
+        lineHeight:'1.8'
+    },
+    contact:{
+        display:'flex',
+        flexDirection: 'rows',
+        justifyContent:"space-evenly",
+        alignItems: 'center',
+        marginTop:'20px',
+        marginBottom:"50px"
     }
+    
 }));
 
   function Home() {
     const classes = useStyles();
     return (
         <>
-        <Container maxWidth="lg">
-            <div style={{display:'flex',flexDirection: 'column', alignItems: 'center', marginTop:'120px'}}>
-                <h1 >Learn Data Science</h1>
-                <div> <img className={classes.margin} src={logo} height={250} width={250} alt="DataScience_HomeLogo" /> </div> 
-                <Button component={Link} to="/Choicemethod" variant="contained" size="large" color="primary" className={classes.margin}>
-                    Get Started
-                </Button>
-            </div>
-            <div style={{display:'flex',flexDirection: 'column', alignItems: 'center', marginTop:'100px'}}>
-            <h1 style={{marginBottom:"50px"}}>What we provide</h1>
-            <Grid
+        <Container maxWidth="md">
+            <Fade duration={2000} >
+                <div className={classes.dfam}>
+                    <h1>Learn Data Science</h1>
+                    <div> 
+                        <img className={classes.margin} src={logo} height={250} width={250} alt="DataScience_HomeLogo" /> 
+                    </div>
+                    <Button component={Link} to="/Choicemethod" variant="contained" size="large" color="primary" className={classes.margin}>
+                        Get Started
+                    </Button>
+                </div>
+            </Fade>
+
+            <Fade  delay={100} duration={1200}>
+            <div className={classes.dfam} >
+            
+              <h1 style={{marginBottom:"50px"}}>What we provide</h1>
+            
+                <Grid
                     container
                     direction="row"
                     justify="space-evenly"
@@ -95,7 +127,9 @@ const useStyles = makeStyles((theme) => ({
                     </Card>
                 </Grid>
             </div>
-            <div style={{display:'flex',flexDirection: 'column', alignItems: 'center', marginTop:'100px', textAlign:'justify'}}>
+            </Fade>
+            <Fade  delay={100} duration={1200}>
+            <div className={classes.content1}>
                 <div><h2>What is Data Science?</h2></div><br/>
                 <div>
                 <span style={{fontSize:'160%'}}>D</span>ata science continues to evolve as one of the most promising and in-demand career paths for skilled professionals. 
@@ -106,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
                 and understanding to maximize returns at each phase of the process.
                 </div>
             </div>
-            <div style={{display:'flex',flexDirection: 'column', alignItems: 'center', marginTop:'80px', textAlign:'justify'}}>
+            <div className={classes.content1}>
                 <div><h2>What Does a Data Scientist Do?</h2></div><br/>
                 <div>
                 <span style={{fontSize:'160%'}}>D</span>ata scientists need to be curious and result-oriented, 
@@ -128,10 +162,13 @@ const useStyles = makeStyles((theme) => ({
                 the most promising jobs in 2017 and 2018, along with multiple data-science-related skills as the most in-demand by companies
                 </div>
             </div>
-            <div style={{display:'flex',flexDirection: 'column', alignItems: 'center', marginTop:'80px'}}>
+            </Fade>
+            
+            <Fade  delay={100} duration={1200}>
+            <div className={classes.content1}>
                 <img src={Datacycle} alt="Cycle_image"/><h4>Data Science Cycle</h4>
             </div>
-            <div style={{display:'flex',flexDirection: 'column', alignItems: 'center', marginTop:'80px'}}>
+            <div className={classes.content1}>
                 <h2>Enough with talks, Let's get started</h2>
                 <Button component={Link} to="/Choicemethod" variant="contained" size="large" color="primary"style={{margin:'25px'}}> 
                     Get Started
@@ -139,12 +176,13 @@ const useStyles = makeStyles((theme) => ({
             </div>
             <hr style={{borderWidth: "5px"}}/>
             <h2 style={{display:'flex',flexDirection: 'column', alignItems: 'center', marginTop:'30px'}}><u>Contact</u></h2>
-            <div style={{display:'flex',flexDirection: 'rows', justifyContent:"space-evenly", alignItems: 'center',marginTop:'20px',marginBottom:"50px"}}>
-            <i class="fa fa-github" style={{fontSize:"26px"}}>&nbsp;&nbsp;<a style={{ textDecoration: 'none',color: "inherit" }} target="blank" href="https://www.github.com/Nikunj295">Github</a></i>
-            <i class="fa fa-linkedin" style={{fontSize:"26px"}}>&nbsp;&nbsp;<a style={{ textDecoration: 'none',color: "inherit" }} target="blank" href="https://www.linkedin.com/in/nikunj-viradiya-56a7a3179">LinkedIn</a></i>
-            <i class="fa fa-twitter" style={{fontSize:"26px"}}>&nbsp;&nbsp;Twitter</i>
-            <i class="fa fa-google" style={{fontSize:"26px"}}>&nbsp;&nbsp;Google+</i>
-        </div>
+            <div className={classes.contact}>
+                <i className="fa fa-github" style={{fontSize:"26px"}}>&nbsp;&nbsp;<a style={{ textDecoration: 'none',color: "inherit" }} target="blank" href="https://www.github.com/Nikunj295">Github</a></i>
+                <i className="fa fa-linkedin" style={{fontSize:"26px"}}>&nbsp;&nbsp;<a style={{ textDecoration: 'none',color: "inherit" }} target="blank" href="https://www.linkedin.com/in/nikunj-viradiya-56a7a3179">LinkedIn</a></i>
+                <i className="fa fa-twitter" style={{fontSize:"26px"}}>&nbsp;&nbsp;Twitter</i>
+                <i className="fa fa-google" style={{fontSize:"26px"}}>&nbsp;&nbsp;Google+</i>
+            </div>
+            </Fade>
         <Footer/>
         </Container >  
         </>

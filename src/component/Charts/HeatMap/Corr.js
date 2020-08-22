@@ -1,77 +1,3 @@
-// import React, {useState} from 'react'
-// import Axios from 'axios'
-// import HeatMap from "react-heatmap-grid"
-// import { local, set } from 'd3'
-// import { Button } from '@material-ui/core'
-// import { Component } from 'react'
-
-// class Corr extends Component {
-//     state = {
-//         lab:[],
-//         da:[],
-//         r:false
-//     }
-//     componentWillMount(){
-//         if(this.props.values){
-//             let id = localStorage.getItem('myid')
-//             let payload = {
-//                 id
-//             }
-    
-//             Axios.post("http://127.0.0.1:5000/corr",null,{
-//                 params:{
-//                     payload
-//                 }
-//             })
-//             .then(res => res.data)
-//             .then(data=>{
-//                 var myData1 = Object.keys(data).map(key => {
-//                     return data[key];
-//                 })
-//                 let column = [] 
-//                 let columns = []
-//                 column = Object.keys(myData1[0])
-//                 for(let i=1;i<column.length;i++){
-//                     columns.push(column[i])
-//                 }
-//                 this.setState({lab:columns})
-
-//                 let temp = []
-//                 columns.map(key=>{
-//                     let x = myData1.map(a=>a[key])
-//                     temp.push(x)
-//                 })
-//                 // let temp = []
-//                 // columns.map()
-                
-//                 this.setState({r:true})
-//                 this.setState({da:temp})
-//             })
-            
-//         }
-//     }
-//     render(){
-//         return (
-//             <div>
-//                 <h1>Corr</h1>
-//                     {
-//                         this.state.r?<HeatMap
-//                             xLabels={[this.state.lab]}
-//                             yLabels={[1,1,1,1,1,1,1]}
-//                             data={[[1,1],[2,3]]}
-//                             height={100}
-//                             cellStyle={(background, value, min, max, data, x, y) => ({
-//                                     background: `rgba(66, 86, 244, ${1 - (max - value)*0.6 / (max - min)})`,
-//                                     fontSize: "20px",
-//                                 })
-//                             }
-//                             // cellRender={value => value && `${((value/CM.total)*100).toFixed(2)}%`}
-//                         />:null}
-//             </div>
-//         )
-//     }
-// }
-//
 import Chart from "react-apexcharts";
 import React ,{Component} from "react"
 import Axios from "axios"
@@ -90,7 +16,7 @@ class Corr extends Component {
                 id
             }
     
-            Axios.post("http://127.0.0.1:5000/corr",null,{
+            Axios.post("https://l-data-science.herokuapp.com/corr",null,{
                 params:{
                     payload
                 }
@@ -100,7 +26,6 @@ class Corr extends Component {
                 var myData1 = Object.keys(data).map(key => {
                     return data[key];
                 })
-                // this.setState({series:myData1})
 
                 let column = [] 
                 let columns = []
@@ -117,6 +42,7 @@ class Corr extends Component {
                         }
                     })
                 })
+                
                 let temp = []
                 let count = 0
                 columns.map(i=>{
@@ -134,7 +60,6 @@ class Corr extends Component {
                 this.setState({series:temp})
                 let options = {
                     chart: {
-                      height: 350,
                       type: 'heatmap',
                     },
                     stroke: {
@@ -142,7 +67,7 @@ class Corr extends Component {
                     },
                     plotOptions: {
                       heatmap: {
-                        radius: 30,
+                        radius: 10,
                         enableShades: false,
                         colorScale: {
                           ranges: [{
@@ -163,11 +88,25 @@ class Corr extends Component {
                     dataLabels: {
                       enabled: true,
                       style: {
-                        colors: ['#fff']
+                        colors: ['#fff'],
+                        fontSize:"18px"
                       }
                     },
                     xaxis: {
                         type: 'category',
+                        labels:{
+                          style:{
+                            fontSize:'18px'
+                          }
+                        }
+                    },
+                    yaxis: {
+                        type: 'category',
+                        labels:{
+                          style:{
+                            fontSize:'18px'
+                          }
+                        }
                     },
                     title: {
                       text: 'Rounded (Range without Shades)'

@@ -58,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     backgroundColor: theme.palette.background.paper,
   },
+  head:{
+    margin:'auto',
+    textAlign:'center',
+  }
 }));
 
 export default function Visulization() {
@@ -71,7 +75,7 @@ export default function Visulization() {
         let payload={
             id
         }    
-        Axios.post("http://127.0.0.1:5000/visualize",null,{
+        Axios.post("https://l-data-science.herokuapp.com/visualize",null,{
             params:{
                 payload
             }
@@ -124,37 +128,37 @@ export default function Visulization() {
       <div style={{margin:'auto'}}>  
           <TabPanel value={value} index={0}>
             {
-              final? <> <AxisSelect values={final}/> <ScatterPlot values={final}/> </> : null
+              final? <> <h2 className={classes.head}>Scatter Plot </h2><AxisSelect values={final}/> <ScatterPlot values={final}/> </> : null
             }
           </TabPanel>
           <TabPanel value={value} index={1}>
             {
-                result? <> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
+                result? <><h2 className={classes.head}>Trend Line of Regression</h2> <AxisSelect2 values={final}/><ScatterPlot1 data={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={2}>
             {
-              result?<HeatMap values={final}/>:null
+              result?<><h2 className={classes.head}>HeatMap Plot </h2><HeatMap values={final}/></>:null
             }
           </TabPanel>
           <TabPanel value={value} index={3}>
             {
-              final? <CustomActiveShapePieChart values={final} />:null
+              final?<> <h2 className={classes.head}>Pie Plot </h2><CustomActiveShapePieChart values={final} /></>:null
             }
           </TabPanel>
           <TabPanel value={value} index={4}>
             {
-                result? <>  <Histo values={final}/><Histogram values={final}/> </> :null
+                result? <>  <h2 className={classes.head}>Histogram Plot </h2> <Histo values={final}/><Histogram values={final}/> </> :null
             }
           </TabPanel>
           <TabPanel value={value} index={5}>
             {
-                result? <> <Boxplot values={final}/> </> :null
+                result? <> <h2 className={classes.head}>Box Plot </h2> <Boxplot values={final}/> </> :null
             }
           </TabPanel> 
           <TabPanel value={value} index={6}>
             {
-                result? <> <Corr values={final}/> </> :null
+                result? <> <h2 className={classes.head}>Correlation Plot </h2> <Corr values={final}/> </> :null
             }
           </TabPanel> 
           <TabPanel value={value} index={7}>

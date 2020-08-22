@@ -1,6 +1,7 @@
 import React from 'react'
 import HeatMap from "react-heatmap-grid"
 import ConfusionMatrix from 'ml-confusion-matrix';
+import Container from '@material-ui/core/Container';
 
 function HMap(props) {
 
@@ -48,14 +49,12 @@ function HMap(props) {
         target = newArray.map(item=>item.target)
         Predicted = newArray.map(item=>item.Predicted)
         CM2 = ConfusionMatrix.fromLabels(target,Predicted)   
-        console.log(CM.labels)
-        console.log(CM.matrix)
     }
 
     return (
-        <div>
-            
-            <h1>HEATMAP</h1>
+        <div >
+            <Container maxWidth="lg">
+            <div style={{display:'flex', flexDirection:'row',justifyContent:'center'}}>
             {
                 check?
                 <>
@@ -83,7 +82,7 @@ function HMap(props) {
                     <HeatMap
                         xLabels={CM.labels}
                         yLabels={CM.labels}
-                        data={CM.matrix}
+                        data={CM2.matrix}
                         height={100}
                         cellStyle={(background, value, min, max, data, x, y) => ({
                                 background: `rgba(66, 86, 244, ${1 - (max - value)*0.6 / (max - min)})`,
@@ -96,7 +95,8 @@ function HMap(props) {
                 </>
             :null
             }
-
+        </div>
+        </Container>
         </div>
     )
 }
