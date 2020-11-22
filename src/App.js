@@ -18,6 +18,7 @@ import { AxisProvider } from "../src/component/Charts/files/Axis";
 import Home from './component/Home';
 import About from './component/About/About';
 
+
 function App(){ 
   return (
         <>
@@ -45,4 +46,5 @@ function App(){
       )
   }
 
+  //testing
 export default App
